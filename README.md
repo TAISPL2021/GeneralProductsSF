@@ -7,7 +7,7 @@
 * [GitHub](https://github.com/sebas3986)
 * [Email](mailto:h-camacho@javeriana.edu.co)
 
-**Daniel Beltran** 
+**Daniela Beltran** 
 * [GitHub](https://github.com/DanielaBeltranSaavedra)
 * [Email](mailto:d_beltran@javeriana.edu.co)
 
