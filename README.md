@@ -2,6 +2,8 @@
 ![Version](https://img.shields.io/badge/Version-1.0.0-green)
 ## Overview
 
+## Wiki 
+For more project details, click [Here](https://github.com/TAISPL2021/GeneralProductsSF/wiki)
 ## TopicosPL Team
 **Huil Sebastian Camacho** 
 * [GitHub](https://github.com/sebas3986)
