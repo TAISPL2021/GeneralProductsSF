@@ -8,31 +8,31 @@
 
 
 2. ### Class Diagram
-
+![Class Diagram](Diagrams\Class-diagram.png)
 
 3. ### Deploy Diagrams
 
 ## TopicosPL Team
 **Huil Sebastian Camacho** 
 * [GitHub](https://github.com/sebas3986)
-* [Email](h-camacho@javeriana.edu.co)
+* [Email](mailto:h-camacho@javeriana.edu.co)
 
 **Daniel Beltran** 
 * [GitHub](https://github.com/DanielaBeltranSaavedra)
-* [Email](d_beltran@javeriana.edu.co)
+* [Email](mailto:d_beltran@javeriana.edu.co)
 
 **Jairo Andres Camargo Vargas** 
 * [GitHub](https://github.com/andrez299321)
-* [Email](camargo-ja@javeriana.edu.co)
+* [Email](mailto:camargo-ja@javeriana.edu.co)
 
 **Oscar Nope** 
 * [GitHub](https://github.com/oscarnope)
-* [Email](nopeoscar@javeriana.edu.co)
+* [Email](mailto:nopeoscar@javeriana.edu.co)
 
 **Felix Rafael Moreno Tabares** 
 * [GitHub](https://github.com/FelixMorenoT)
-* [Email](felix.morenot@javeriana.edu.co)
+* [Email](mailto:felix.morenot@javeriana.edu.co)
 
 **Juliana Murillo Marmolejo** 
 * [GitHub](https://github.com/JulianaMurillo1509)
-* [Email](ju_murillo@javeriana.edu.co)
+* [Email](mailto:ju_murillo@javeriana.edu.co)
