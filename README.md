@@ -1,16 +1,6 @@
 # GeneralProductsSF
 ![Version](https://img.shields.io/badge/Version-1.0.0-green)
-
 ## Overview
-
-## Diagrams
-1. ### Use Case Diagram
-
-
-2. ### Class Diagram
-![Class Diagram](Diagrams\Class-diagram.png)
-
-3. ### Deploy Diagrams
 
 ## TopicosPL Team
 **Huil Sebastian Camacho** 
