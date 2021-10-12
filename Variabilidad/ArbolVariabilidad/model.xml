@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <featureModel>
 	<properties>
-		<graphics key="legendposition" value="391,18"/>
+		<graphics key="legendposition" value="424,23"/>
 		<graphics key="legendautolayout" value="false"/>
 		<graphics key="showshortnames" value="false"/>
 		<graphics key="layout" value="vertical"/>
@@ -20,15 +20,32 @@
 				<feature name="ListaProductos"/>
 				<feature name="Pedidos"/>
 			</or>
-			<or mandatory="true" name="Administracion">
+			<or name="Administracion">
 				<feature name="Facturacion"/>
 				<feature name="Inventario"/>
 				<feature name="Promocion"/>
 			</or>
-			<alt name="PagoElectronico">
+			<or name="PagoElectronico">
 				<feature name="Pagos"/>
 				<feature name="Reportes"/>
-			</alt>
+			</or>
 		</and>
 	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>Pedidos</var>
+				<var>Facturacion</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Pagos</var>
+				<conj>
+					<var>Facturacion</var>
+					<var>Pedidos</var>
+				</conj>
+			</imp>
+		</rule>
+	</constraints>
 </featureModel>
