@@ -13,6 +13,5 @@
 	<feature name="Inventario"/>
 	<feature name="Promocion"/>
 	<feature name="PagoElectronico"/>
-	<feature name="Pagos"/>
-	<feature name="Reportes"/>
+	<feature name="Reporte"/>
 </configuration>

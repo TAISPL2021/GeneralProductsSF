@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <featureModel>
 	<properties>
-		<graphics key="legendposition" value="424,23"/>
-		<graphics key="legendautolayout" value="false"/>
+		<graphics key="legendautolayout" value="true"/>
 		<graphics key="showshortnames" value="false"/>
 		<graphics key="layout" value="vertical"/>
 		<graphics key="showcollapsedconstraints" value="true"/>
@@ -25,10 +24,8 @@
 				<feature name="Inventario"/>
 				<feature name="Promocion"/>
 			</or>
-			<or name="PagoElectronico">
-				<feature name="Pagos"/>
-				<feature name="Reportes"/>
-			</or>
+			<feature name="PagoElectronico"/>
+			<feature name="Reporte"/>
 		</and>
 	</struct>
 	<constraints>
@@ -39,13 +36,12 @@
 			</imp>
 		</rule>
 		<rule>
-			<imp>
-				<var>Pagos</var>
-				<conj>
-					<var>Facturacion</var>
-					<var>Pedidos</var>
-				</conj>
-			</imp>
+			<disj>
+				<not>
+					<var>PagoElectronico</var>
+				</not>
+				<var>Pedidos</var>
+			</disj>
 		</rule>
 	</constraints>
 </featureModel>
