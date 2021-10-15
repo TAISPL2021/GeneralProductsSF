@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Proyecto2"/>
+	<feature automatic="selected" name="Autenticacion"/>
+	<feature manual="selected" name="Registro"/>
+	<feature manual="selected" name="Cuenta"/>
+	<feature name="AdministracionUsuarios"/>
+	<feature automatic="selected" name="Catalogo"/>
+	<feature manual="selected" name="ListaProductos"/>
+	<feature name="Pedidos"/>
+	<feature name="Administracion"/>
+	<feature name="Facturacion"/>
+	<feature name="Inventario"/>
+	<feature name="Promocion"/>
+	<feature name="PagoElectronico"/>
+	<feature name="Reporte"/>
+</configuration>
