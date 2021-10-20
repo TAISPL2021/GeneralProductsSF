@@ -31,7 +31,7 @@ public class ProductoService implements IProductoService {
 	@Override
 	public ResponseEntity<List<ProductoDTO>> getAllRecords() {
 		return new ResponseEntity<>(
-				productoRepository.findAll().stream().map(ProductoDTO::new).collect(Collectors.toList()),
+				productoRepository.findByProductoEstado(true).stream().map(ProductoDTO::new).collect(Collectors.toList()),
 				HttpStatus.OK);
 	}
 

@@ -1,2 +1,2 @@
 #Swagger Endpoint
-http://localhost:8000/swagger-ui
+http://localhost:port/swagger-ui.html

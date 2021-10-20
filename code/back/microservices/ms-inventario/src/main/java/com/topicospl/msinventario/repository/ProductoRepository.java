@@ -15,4 +15,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 	List<Producto> findByProductoNombreLike(@Param("username") String querySearch);
 
 	Optional<Producto> findByProductoCode(Long productoCode);
+	
+	List<Producto> findByProductoEstado(Boolean productoEstado);
 }
