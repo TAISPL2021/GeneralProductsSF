@@ -21,11 +21,7 @@
 				<feature name="BuscarProductos"/>
 				<feature name="CompraProductos"/>
 			</or>
-			<and mandatory="true" name="Inventario">
-				<feature mandatory="true" name="IncluirProducto"/>
-				<feature mandatory="true" name="ActualizarProducto"/>
-				<feature name="EliiminarProducto"/>
-			</and>
+			<feature mandatory="true" name="Inventario"/>
 			<or name="Administracion">
 				<feature name="Facturacion"/>
 				<feature name="Promocion"/>
@@ -39,17 +35,18 @@
 	<constraints>
 		<rule>
 			<imp>
-				<var>BuscarProductos</var>
+				<var>CompraProductos</var>
 				<var>Facturacion</var>
 			</imp>
 		</rule>
 		<rule>
-			<disj>
-				<not>
-					<var>PagoElectronico</var>
-				</not>
-				<var>BuscarProductos</var>
-			</disj>
+			<imp>
+				<var>PagoElectronico</var>
+				<conj>
+					<var>Facturacion</var>
+					<var>CompraProductos</var>
+				</conj>
+			</imp>
 		</rule>
 	</constraints>
 </featureModel>
