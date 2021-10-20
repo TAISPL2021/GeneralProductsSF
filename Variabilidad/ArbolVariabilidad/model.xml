@@ -21,9 +21,13 @@
 				<feature name="BuscarProductos"/>
 				<feature name="CompraProductos"/>
 			</or>
+			<and mandatory="true" name="Inventario">
+				<feature mandatory="true" name="IncluirProducto"/>
+				<feature mandatory="true" name="ActualizarProducto"/>
+				<feature name="EliiminarProducto"/>
+			</and>
 			<or name="Administracion">
 				<feature name="Facturacion"/>
-				<feature name="Inventario"/>
 				<feature name="Promocion"/>
 				<feature name="GestionDeUsuarios"/>
 				<feature name="Pedidos"/>

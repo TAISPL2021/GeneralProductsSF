@@ -9,9 +9,11 @@
 	<feature manual="selected" name="VisualizarProductos"/>
 	<feature name="BuscarProductos"/>
 	<feature name="CompraProductos"/>
+	<feature automatic="selected" manual="selected" name="Inventario"/>
+	<feature automatic="selected" name="NewFeature"/>
+	<feature name="NewFeature2"/>
 	<feature name="Administracion"/>
 	<feature name="Facturacion"/>
-	<feature name="Inventario"/>
 	<feature name="Promocion"/>
 	<feature name="GestionDeUsuarios"/>
 	<feature name="Pedidos"/>
