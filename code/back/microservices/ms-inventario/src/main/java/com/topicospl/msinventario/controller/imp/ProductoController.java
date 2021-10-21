@@ -13,8 +13,8 @@ import com.topicospl.msinventario.controller.IProductoController;
 import com.topicospl.msinventario.response.InventarioResponse;
 import com.topicospl.msinventario.service.IProductoService;
 
+@CrossOrigin(origins = "http://localhost:4200",allowedHeaders = "*")
 @RestController
-@CrossOrigin("*")
 public class ProductoController implements IProductoController {
 
 	@Autowired
@@ -39,5 +39,5 @@ public class ProductoController implements IProductoController {
 	public ResponseEntity<InventarioResponse> updateProducto(ProductoDTO inProducto) {
 		return productoService.updateRecord(inProducto);
 	}
-
+	
 }

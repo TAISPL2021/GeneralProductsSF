@@ -54,7 +54,7 @@ public class ProductoService implements IProductoService {
 			response.setCode(String.valueOf(HttpStatus.OK.value()));
 			response.setStatus(HttpStatus.OK.name());
 			response.setMessage("Creacion del Producto con codigo: [" +product.getProductoCode() +"], fue realizado con exito");
-			
+		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
@@ -65,11 +65,12 @@ public class ProductoService implements IProductoService {
 		
 		if(tmpProductoChecker.isPresent()) {
 			var tmpProducto = tmpProductoChecker.get();
-				
+							
 				tmpProducto.setProductoPrecio(product.getProductoPrecio());
 				tmpProducto.setProductoDetalles(product.getProductoDetalles());
 				tmpProducto.setProductoDescuento(product.getProductoDescuento());
 				tmpProducto.setProductoCantidadDisponible(product.getProductoCantidadDisponible());
+				tmpProducto.setProductoEstado(product.getProductoEstado());
 
 			productoRepository.save(tmpProducto);
 			
@@ -77,7 +78,7 @@ public class ProductoService implements IProductoService {
 				response.setCode(String.valueOf(HttpStatus.OK.value()));
 				response.setStatus(HttpStatus.OK.name());
 				response.setMessage("Actualizacion del Producto con codigo: [" +product.getProductoCode() +"], fue realizado con exito");
-			
+						
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		}else {
 			throw new ProductoNotFoundException("El Producto con el Codigo: ["+product.getProductoCode()+"] no se encontro en la DB");
@@ -95,9 +96,9 @@ public class ProductoService implements IProductoService {
 				.productoNombre(p.getProductoNombre())
 				.productoPrecio(p.getProductoPrecio())
 				.productoDetalles(p.getProductoDetalles())
-				.productoEstado(false)
-				.productoDescuento(0)
-				.productoImg(imgRouteURL)
+				.productoEstado(p.getProductoEstado() == null ? false : p.getProductoEstado())
+				.productoDescuento(p.getProductoDescuento() == null ? 0 : p.getProductoDescuento())
+				.productoImg(p.getProductoImg() == null ? imgRouteURL : p.getProductoImg())
 				.productoFechaInclusion(new Date())
 				.productoCantidadDisponible(p.getProductoCantidadDisponible() == null ? 0 : p.getProductoCantidadDisponible())
 			.build();

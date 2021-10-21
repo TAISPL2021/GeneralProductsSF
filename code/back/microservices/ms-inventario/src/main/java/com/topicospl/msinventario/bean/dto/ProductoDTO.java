@@ -34,9 +34,9 @@ public class ProductoDTO {
 	@JsonProperty("description")
 	private String productoDetalles;
 	
-	@JsonIgnore()
+	@JsonProperty("state")
 	private Boolean productoEstado;
-	
+
 	@JsonProperty("discount")
 	private Integer productoDescuento;
 	

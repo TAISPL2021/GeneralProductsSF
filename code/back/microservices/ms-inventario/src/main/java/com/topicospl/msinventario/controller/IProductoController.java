@@ -2,11 +2,13 @@ package com.topicospl.msinventario.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.topicospl.msinventario.bean.dto.ProductoDTO;
@@ -21,8 +23,8 @@ public interface IProductoController {
 	public ResponseEntity<List<ProductoDTO>> findBySearch(@PathVariable String query);
 	
 	@PostMapping("/producto")
-	public ResponseEntity<InventarioResponse> saveProducto(@RequestBody ProductoDTO inProducto);
+	public ResponseEntity<InventarioResponse> saveProducto(@Valid @RequestBody ProductoDTO inProducto);
 	
-	@PatchMapping("/producto")
-	public ResponseEntity<InventarioResponse> updateProducto(@RequestBody ProductoDTO inProducto);
+	@PutMapping("/producto")
+	public ResponseEntity<InventarioResponse> updateProducto(@Valid @RequestBody ProductoDTO inProducto);
 }
