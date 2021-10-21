@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 5px;
+}
+
+@media( min-width : 576px){
+    .product-list{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+    }
+    .container{
+        width:100%;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+.container{
+    max-width:1110px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-left: auto;
+    margin-right: auto ;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+} 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
