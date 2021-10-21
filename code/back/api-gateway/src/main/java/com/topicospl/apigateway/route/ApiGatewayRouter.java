@@ -11,7 +11,6 @@ public class ApiGatewayRouter {
 	@Bean
 	public RouteLocator gatewayRouter(RouteLocatorBuilder rBuilder) {
 		return rBuilder.routes()
-					.route(p -> p.path("/producto/**").uri("lb://ms-inventario"))
 					.route(p -> p.path("/catalogo/**").uri("lb://ms-catalogo"))
 					.route(p -> p.path("/autenticacion/**").uri("lb://ms-autenticacion"))
 				.build();
