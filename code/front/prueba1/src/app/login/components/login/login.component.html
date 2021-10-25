@@ -7,8 +7,8 @@
           <div class="row">
             <div class="col-xs">
               <mat-form-field appearance="fill">
-                <mat-label>usuario</mat-label>
-                <input formControlName="user" matInput placeholder="usuario" required type="text">
+                <mat-label>Usuario</mat-label>
+                <input formControlName="user" matInput [type]="hide" required type="text">
                 <mat-error *ngIf="form.get('user').hasError('required')">{{getErrorMessage()}}</mat-error>
               </mat-form-field>  
             </div>
@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-xs">
               <mat-form-field appearance="fill">
-                <mat-label>Enter your password</mat-label>
+                <mat-label>Ingresa tu contraseña</mat-label>
                 <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -26,7 +26,7 @@
           </div>
       </mat-card-content>
       <mat-card-actions>
-          <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
+          <button [disabled]="form.invalid" mat-raised-button type="submit">Iniciar Sesión</button>
       </mat-card-actions>
   </mat-card>
   

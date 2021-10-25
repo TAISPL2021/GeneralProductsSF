@@ -24,16 +24,45 @@ form {
   margin: 100px auto 0;
   box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);
   border-radius: 3px;
-  h1 {
-    box-sizing: border-box;
-    padding: 20px;
-  }
+
+}
+
+mat-card-content{
+  display: grid;
+  padding-left: 15px;
+}
+
+.row {
+  float: left;
+  grid-column: 1;
+  padding-bottom: 30px;
+}
+
+.row2 {
+  float: right;
+  grid-column: 2;
+
+}
+
+#one{
+  grid-row: 1;
+}
+
+#two{
+  grid-row: 2;
+}
+
+#three{
+  grid-row: 3;
+}
+
+#four{
+  grid-row: 4;
 }
 
 input {
-  margin: 40px 25px;
+  
   width: 200px;
-  display: block;
   border: none;
   padding: 10px 0;
   border-bottom: solid 1px $color;
@@ -58,12 +87,17 @@ input {
 
 mat-card{
     height:100%;
+    width: 500px;
+    margin-top: -80px;
 }
 
 mat-form-field{
-    width: 300px;
-    margin-left: 80px;
+    width: 200px;
+    height: 10px;
+   
+    
 }
+
 
 button {
   border: none;
@@ -112,8 +146,3 @@ mat-card-actions{
     }
   }
 }
-
-
-
-  
- 
