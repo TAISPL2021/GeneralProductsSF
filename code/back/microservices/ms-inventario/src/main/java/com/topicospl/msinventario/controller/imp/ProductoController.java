@@ -24,6 +24,11 @@ public class ProductoController implements IProductoController {
 	public ResponseEntity<List<ProductoDTO>> findAll() {
 		return productoService.getAllRecords();
 	}
+	
+	@Override
+	public ResponseEntity<List<ProductoDTO>> findAllActive() {
+		return productoService.getAllRecordsActive();
+	}
 
 	@Override
 	public ResponseEntity<List<ProductoDTO>> findBySearch(@PathVariable String query) {
@@ -39,5 +44,7 @@ public class ProductoController implements IProductoController {
 	public ResponseEntity<InventarioResponse> updateProducto(ProductoDTO inProducto) {
 		return productoService.updateRecord(inProducto);
 	}
+
+
 	
 }

@@ -31,9 +31,17 @@ public class ProductoService implements IProductoService {
 	@Override
 	public ResponseEntity<List<ProductoDTO>> getAllRecords() {
 		return new ResponseEntity<>(
+				productoRepository.findAll().stream().map(ProductoDTO::new).collect(Collectors.toList()),
+				HttpStatus.OK);
+	}
+	
+	@Override
+	public ResponseEntity<List<ProductoDTO>> getAllRecordsActive() {
+		return new ResponseEntity<>(
 				productoRepository.findByProductoEstado(true).stream().map(ProductoDTO::new).collect(Collectors.toList()),
 				HttpStatus.OK);
 	}
+	
 
 	@Override
 	public ResponseEntity<List<ProductoDTO>> getRecordsBySearch(String querySearch) {
@@ -103,5 +111,7 @@ public class ProductoService implements IProductoService {
 				.productoCantidadDisponible(p.getProductoCantidadDisponible() == null ? 0 : p.getProductoCantidadDisponible())
 			.build();
 	}
+
+
 	
 }

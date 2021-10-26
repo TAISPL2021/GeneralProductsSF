@@ -12,6 +12,7 @@ import com.topicospl.msinventario.response.InventarioResponse;
 public interface IProductoService {
 
 	public ResponseEntity<List<ProductoDTO>> getAllRecords();
+	public ResponseEntity<List<ProductoDTO>> getAllRecordsActive();
 	public ResponseEntity<List<ProductoDTO>> getRecordsBySearch(String querySearch);
 	public ResponseEntity<InventarioResponse> saveRecord(ProductoDTO product);
 	public ResponseEntity<InventarioResponse> updateRecord(ProductoDTO product);

@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit {
 
   fetchProducts(): any{
     this.products = this.productsMock;
-    this.productsService.getAllProduct("").subscribe(products => {
+    this.productsService.getAllProductActive("").subscribe(products => {
       this.products = products;
       console.log(JSON.stringify(this.products));
     });

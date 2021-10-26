@@ -12,7 +12,7 @@ import com.topicospl.mscatalogo.bean.ProductoDTO;
 @FeignClient(name = "ms-inventario")
 public interface CatalagoProxy {
 
-	@GetMapping("/inventario/producto")
+	@GetMapping("/inventario/productos") 
 	public ResponseEntity<List<ProductoDTO>> getListProductosFromInventario();
 	
 	@GetMapping("inventario/producto/{query}")

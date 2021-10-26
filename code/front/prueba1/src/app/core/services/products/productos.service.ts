@@ -27,7 +27,12 @@ export class ProductosService {
 
   getAllProduct(nombre: string): Observable<Product[]>
   {
-    return this.http.get<Product[]>(`${environment.url_api}/producto`);
+    return this.http.get<Product[]>(`${environment.url_api}/inventario/producto`);
+  }
+
+  getAllProductActive(nombre: string): Observable<Product[]>
+  {
+    return this.http.get<Product[]>(`${environment.url_api}/catalogo/producto`);
   }
 
   createProduct(product: Partial<Product>): any{
@@ -38,7 +43,7 @@ export class ProductosService {
     .set('Access-Control-Allow-Origin', '*')
     .set('Access-Control-Request-Headers', '*')
     .set('Access-Control-Request-Method', '*');
-    return this.http.post(`${environment.url_api}/producto`, product,{'headers': headers})
+    return this.http.post(`${environment.url_api}/inventario/producto`, product,{'headers': headers})
    
   }
 
@@ -58,7 +63,7 @@ export class ProductosService {
   updateProduct(changes: Partial<Product>): any
   {
     console.log(JSON.stringify(changes));
-    return this.http.put(`${environment.url_api}/producto`, changes);
+    return this.http.put(`${environment.url_api}/inventario/producto`, changes);
   }
 
   deleteProduct(id: number): any{

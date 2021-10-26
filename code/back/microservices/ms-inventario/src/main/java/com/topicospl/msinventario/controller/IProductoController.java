@@ -24,9 +24,13 @@ public interface IProductoController {
 	@GetMapping("/producto/{query}")
 	public ResponseEntity<List<ProductoDTO>> findBySearch(@PathVariable String query);
 	
+	@GetMapping("/productos")
+	public ResponseEntity<List<ProductoDTO>> findAllActive();
+	
 	@PostMapping("/producto")
 	public ResponseEntity<InventarioResponse> saveProducto(@Valid @RequestBody ProductoDTO inProducto);
 	
 	@PutMapping("/producto")
 	public ResponseEntity<InventarioResponse> updateProducto(@Valid @RequestBody ProductoDTO inProducto);
+	
 }
