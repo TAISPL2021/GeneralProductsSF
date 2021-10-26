@@ -24,6 +24,7 @@ public class User {
     private String secondLastName;
     private String address;
     private String phone;
+    private String gender;
     @Column (unique = true)
     private String userName;
     private String email;
@@ -32,13 +33,14 @@ public class User {
     @JoinTable (name = "user_rol", joinColumns = @JoinColumn (name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Role role;
 
-    public User(String name,String secondName, String lastName,String secondLastName,String address, String phone,String userName, String email, String password) {
+    public User(String name,String secondName, String lastName,String secondLastName,String address, String phone,String gender,String userName, String email, String password) {
         this.name = name;
         this.secondName = secondName;
         this.lastName = lastName;
         this.secondLastName = secondLastName;
         this.address = address;
         this.phone = phone;
+        this.gender = gender;
         this.userName = userName;
         this.email = email;
         this.password = password;
