@@ -52,10 +52,9 @@ public class AuthController implements IAuthController {
             return new ResponseEntity(new Message("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
         if(iUserService.existsByUserName(newUser.getUserName()))
             return new ResponseEntity(new Message("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        if(iUserService.existsByEmail(newUser.getEmail()))
-            return new ResponseEntity(new Message("ese email ya existe"), HttpStatus.BAD_REQUEST);
+
         User user =
-                new User(newUser.getName(), newUser.getUserName(), newUser.getEmail(),
+                new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getUserName(),newUser.getUserName(),
                         passwordEncoder.encode(newUser.getPassword()));
 
         if(newUser.getRole().equals("user")){
