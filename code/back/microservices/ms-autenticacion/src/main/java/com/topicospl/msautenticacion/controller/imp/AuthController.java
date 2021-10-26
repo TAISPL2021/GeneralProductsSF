@@ -24,6 +24,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200",allowedHeaders = "*")
@@ -60,6 +61,7 @@ public class AuthController implements IAuthController {
         if(newUser.getRole().equals("user")){
             Optional<Role> myRole = iRoleService.findByRoleName(RoleName.USER);
             if (myRole.isEmpty()){
+                myRole = Optional.ofNullable(Role.builder().roleName(RoleName.valueOf(RoleName.USER.name())).build());
                 iRoleService.save(myRole.get());
             }
             user.setRole(myRole.get());
@@ -69,6 +71,7 @@ public class AuthController implements IAuthController {
         if(newUser.getRole().equals("admin")){
             Optional<Role> myRole = iRoleService.findByRoleName(RoleName.ADMIN);
             if (myRole.isEmpty()){
+                 myRole = Optional.ofNullable(Role.builder().roleName(RoleName.valueOf(RoleName.ADMIN.name())).build());
                 iRoleService.save(myRole.get());
             }
             user.setRole(myRole.get());
@@ -89,5 +92,10 @@ public class AuthController implements IAuthController {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         JwtDTO jwtDto = new JwtDTO(jwt, "Bearer",userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return iUserService.getAll();
     }
 }

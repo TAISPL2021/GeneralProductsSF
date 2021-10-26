@@ -2,6 +2,7 @@ package com.topicospl.msautenticacion.service;
 
 import com.topicospl.msautenticacion.bean.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
@@ -13,4 +14,6 @@ public interface IUserService {
     boolean existsByEmail(String email);
 
     void save(User user);
+
+   List<User> getAll ();
 }

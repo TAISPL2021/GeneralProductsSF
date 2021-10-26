@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @ToString
 public class UserDTO {
     @NotBlank
-    @JsonProperty("user")
+    @JsonProperty("userName")
     private String userName;
     @NotBlank
     @JsonProperty("password")
