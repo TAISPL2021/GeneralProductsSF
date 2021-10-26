@@ -54,7 +54,7 @@ public class AuthController implements IAuthController {
             return new ResponseEntity(new Message("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
 
         User user =
-                new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getUserName(),newUser.getUserName(),
+                new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getUserName(),
                         passwordEncoder.encode(newUser.getPassword()));
 
         if(newUser.getRole().equals("user")){
