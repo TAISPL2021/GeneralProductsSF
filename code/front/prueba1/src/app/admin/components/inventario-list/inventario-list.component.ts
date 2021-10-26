@@ -12,7 +12,7 @@ import {environment} from '../../../../environments/environment';
 })
 export class InventarioListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'price', 'description', 'stock','discount','actions'];
+  displayedColumns: string[] = ['id', 'title', 'price', 'description','state', 'stock','discount','actions'];
   products: Product[];
   programacion: any;
   version: string;
