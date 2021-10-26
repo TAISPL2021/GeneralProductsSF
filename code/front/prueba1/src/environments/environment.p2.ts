@@ -4,7 +4,29 @@
 
 export const environment = {
   production: false,
-  url_api: 'http://msinventario-env.eba-q3dccgva.us-east-1.elasticbeanstalk.com'
+  url_api: 'http://msinventario-env.eba-q3dccgva.us-east-1.elasticbeanstalk.com',
+  Version: 'P2',
+  programacion: {
+    //autenticacion 
+    RegistroUsuario:true,
+    GestionPerfil: true,
+    InicioSesion: true,
+    //catalogo
+    VisualizacionProductos:true,
+    BuscarProducto:true,
+    ComprarProducto:true,
+    //administracion
+    AnadirProducto:true,
+    ActualizarProducto:true,
+    EliminarProducto:true,
+    GenerarFactura:true,
+    CrearPromocion:false,
+    AdministrarUsuariosRegistrados:false,
+    //pago electronico
+    GestionarPagos:false,
+    //reporte
+    GestionarReportes:true
+  }  
 };
 
 /*

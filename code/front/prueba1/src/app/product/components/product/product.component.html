@@ -20,7 +20,7 @@
         <p>{{product.description | slice:0:10}}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button (click)="addCart()" mat-raised-button color="accent">añadir al carrito</button>
+        <button *ngIf="programacion.ComprarProducto == true" (click)="addCart()" mat-raised-button color="accent">añadir al carrito</button>
         <a [routerLink]="['/products',product.id]" mat-raised-button color="primary">detalles</a> 
     </mat-card-actions>
 </mat-card>

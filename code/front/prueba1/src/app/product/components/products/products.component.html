@@ -1,3 +1,5 @@
-<div class="product-list">
+<app-filter-product *ngIf="programacion.BuscarProducto == true"  [products]="products" (productFilterClicked)="filterProduct($event)" ></app-filter-product>
+<div class="product-list" *ngIf="products.length > 0 ; else elseProduct">
     <app-product *ngFor="let product of products ;  index as i" (productClicked)="clickProduct($event)" [product]="product"></app-product>
-</div>  
+</div>   
+<ng-template #elseProduct>No existe productos con este filtro.</ng-template>

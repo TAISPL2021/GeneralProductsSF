@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url_api: 'http://msinventario-env.eba-q3dccgva.us-east-1.elasticbeanstalk.com',
-  Version: 'DEV',
+  Version: 'P3',
   programacion: {
     //autenticacion 
     RegistroUsuario:true,

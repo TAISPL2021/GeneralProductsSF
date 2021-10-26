@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   url_api: 'http://msinventario-env.eba-q3dccgva.us-east-1.elasticbeanstalk.com',
-  Version: 'DEV',
+  Version: 'P1',
   programacion: {
     //autenticacion 
     RegistroUsuario:true,
@@ -14,18 +14,18 @@ export const environment = {
     //catalogo
     VisualizacionProductos:true,
     BuscarProducto:true,
-    ComprarProducto:true,
+    ComprarProducto:false,
     //administracion
     AnadirProducto:true,
     ActualizarProducto:true,
     EliminarProducto:true,
-    GenerarFactura:true,
-    CrearPromocion:true,
-    AdministrarUsuariosRegistrados:true,
+    GenerarFactura:false,
+    CrearPromocion:false,
+    AdministrarUsuariosRegistrados:false,
     //pago electronico
-    GestionarPagos:true,
+    GestionarPagos:false,
     //reporte
-    GestionarReportes:true
+    GestionarReportes:false
   }  
 };
 
