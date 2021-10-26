@@ -7,25 +7,29 @@ import { ProductComponent } from './components/product/product.component';
 import {ProductRoutingModule} from './product-routing.module';
 import {SharedModule} from './../shared/shared.module';
 import {MaterialModule} from './../material/material.module';
-
+import { FilterProductComponent } from './components/filter-product/filter-product.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductDetailComponent,
-    ProductComponent
+    ProductComponent,
+    FilterProductComponent
   ],
   exports: [
     ProductsComponent,
     ProductDetailComponent,
-    ProductComponent
+    ProductComponent,
+    FilterProductComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     ProductRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class ProductModule { }

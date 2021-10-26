@@ -6,7 +6,10 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <button (click)="CloseSession()" mat-raised-button color="accent">Cerrar Sesión</button>
-      <a mat-list-item routerLink="/admin/inventario">Inventario</a>
+      <a *ngIf="programacion.AnadirProducto == true || programacion.ActualizarProducto == true" mat-list-item routerLink="/admin/inventario">Inventario</a>
+      <a *ngIf="programacion.GenerarFactura == true" mat-list-item routerLink="/home">Generar Facturas</a>
+      <a *ngIf="programacion.CrearPromocion == true" mat-list-item routerLink="/home">Crear Promocion</a>
+      <a *ngIf="programacion.AdministrarUsuariosRegistrados == true" mat-list-item routerLink="/home">Administrar Usuarios</a>
       <a mat-list-item routerLink="/home">back</a>
       
 
