@@ -21,9 +21,6 @@ export class ProductosService {
     };
     return httpOptions;
   }
-  getProduct(id: string): any{
-
-  }
 
   getAllProduct(nombre: string): Observable<Product[]>
   {
@@ -44,18 +41,6 @@ export class ProductosService {
     .set('Access-Control-Request-Headers', '*')
     .set('Access-Control-Request-Method', '*');
     return this.http.post(`${environment.url_api}/inventario/producto`, product,{'headers': headers})
-   
-  }
-
-  cualquiera(product: Partial<Product>): any{
-    console.log(`${environment.url_api}/post`);
-    /*console.log(JSON.stringify(product));*/
-    const headers= new HttpHeaders()
-    .set('content-type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*')
-    .set('Access-Control-Request-Headers', '*')
-    .set('Access-Control-Request-Method', '*');
-    var data = this.http.post(`${environment.url_api}/post`,null);
    
   }
 
