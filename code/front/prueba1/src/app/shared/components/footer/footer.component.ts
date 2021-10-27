@@ -8,27 +8,17 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class FooterComponent implements OnInit {
 
-  emailField: FormControl;
+  breakpoint : number;
 
   constructor() {
-    this.emailField = new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]);
-    this.emailField.valueChanges.subscribe(email => {
-      console.log(email);
-    });
+    
   }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 700) ? 1 : 3;
   }
 
-  sendMail(): any{
-    if (this.emailField.valid)
-    {
-      const valor = this.emailField.value;
-
-    }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 3;
   }
-
 }

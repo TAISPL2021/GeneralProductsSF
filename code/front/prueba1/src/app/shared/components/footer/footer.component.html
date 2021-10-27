@@ -1,21 +1,28 @@
-<footer class="footer">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-xs-12 col-md-4">
-          <div class="box">
-            <h2>Pontificia Universidad Javeriana</h2>
-            <ul>
-              <li><a routerLink="/">Juliana Murillo Marmolejo</a></li>
-              <li><a routerLink="/">Daniela Beltran</a></li>
-              <li><a routerLink="/">Jairo Andres Camargo Vargas</a></li>
-              <li><a routerLink="/">Huil Sebastian Camacho</a></li>
-              <li><a routerLink="/">Felix Rafael Moreno Tabares</a></li>
-              <li><a routerLink="/">Oscar Nope</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+<footer class="footer" >
+  <mat-grid-list [cols]="breakpoint" rowHeight="70px" (window:resize)="onResize($event)">
+    <mat-grid-tile [colspan]="breakpoint">
+      <h2>Pontificia Universidad Javeriana</h2>
+      <mat-divider></mat-divider>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-list>
+        <mat-list-item> Juliana Murillo Marmolejo </mat-list-item>
+        <mat-list-item> Daniela Beltran </mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-list>
+        <mat-list-item> Huil Sebastian Camacho </mat-list-item>
+        <mat-list-item> Felix Rafael Moreno Tabares </mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-list>
+        <mat-list-item> Jairo Andres Camargo Vargas </mat-list-item>
+        <mat-list-item> Oscar Nope </mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 </footer>
+  
   
