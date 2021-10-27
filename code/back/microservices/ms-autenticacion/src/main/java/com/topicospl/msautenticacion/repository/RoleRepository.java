@@ -1,12 +1,12 @@
 package com.topicospl.msautenticacion.repository;
 
-import com.topicospl.msautenticacion.bean.Role;
-import com.topicospl.msautenticacion.enums.RoleName;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.topicospl.msautenticacion.bean.Role;
+import com.topicospl.msautenticacion.enums.RoleName;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Integer> {

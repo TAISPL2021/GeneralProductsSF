@@ -1,18 +1,14 @@
 package com.topicospl.msautenticacion.service.imp;
 
-import com.topicospl.msautenticacion.bean.User;
-import com.topicospl.msautenticacion.bean.dto.Message;
-import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
-import com.topicospl.msautenticacion.repository.UserRepository;
-import com.topicospl.msautenticacion.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.topicospl.msautenticacion.bean.User;
+import com.topicospl.msautenticacion.repository.UserRepository;
+import com.topicospl.msautenticacion.service.IUserService;
 
 @Service
 public class UserService implements IUserService {
