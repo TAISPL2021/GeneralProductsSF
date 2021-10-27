@@ -1,19 +1,26 @@
 package com.topicospl.msautenticacion.service;
 
 import com.topicospl.msautenticacion.bean.User;
+import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+
 public interface IUserService {
 
-    Optional<User> getByUserName(String username);
+	Optional<User> getByUserName(String username);
 
-    boolean existsByUserName(String userName);
+	Optional<User> getByUserMail(String username);
 
-    boolean existsByEmail(String email);
+	boolean existsByUserName(String userName);
 
-    void save(User user);
+	boolean existsByEmail(String email);
 
-   List<User> getAll ();
+	void save(User user);
+
+	List<User> getAll();
+
 }

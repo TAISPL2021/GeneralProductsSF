@@ -1,5 +1,6 @@
 package com.topicospl.msautenticacion.bean.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -36,8 +37,8 @@ public class NewUserDTO {
     @NotBlank
     @JsonProperty("password")
     private String password;
-    @JsonProperty("role")
+
     private String role;
-
-
+    private String email;
+    
 }

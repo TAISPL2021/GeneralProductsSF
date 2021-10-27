@@ -32,16 +32,16 @@ import java.util.Optional;
 public class AuthController implements IAuthController {
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-   @Autowired
+    @Autowired
     private  AuthenticationManager authenticationManager;
 
     @Autowired
-    IUserService iUserService;
+    private IUserService iUserService;
     
     @Autowired
-    IRoleService iRoleService;
+    private IRoleService iRoleService;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -49,12 +49,16 @@ public class AuthController implements IAuthController {
     @Override
     public ResponseEntity<?> nuevo(@Valid @RequestBody NewUserDTO newUser, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return new ResponseEntity(new Message("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
-        if(iUserService.existsByUserName(newUser.getUserName()))
-            return new ResponseEntity(new Message("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-
+            return new ResponseEntity<>(new Message("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
+            
+        if(iUserService.existsByUserName(newUser.getUserName())) 
+        	 return new ResponseEntity<>(new Message("Nombre Usuario ["+ newUser.getUserName() +"] ya se encuentra registro"), HttpStatus.BAD_REQUEST);
+        
+        if(iUserService.existsByEmail(newUser.getEmail())) 
+        	 return new ResponseEntity<>(new Message("Correo Electronico ["+ newUser.getEmail() +"] ya se encuentra registro"), HttpStatus.BAD_REQUEST);
+        
         User user =
-                new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getUserName(),
+                new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getEmail(),
                         passwordEncoder.encode(newUser.getPassword()));
 
         if(newUser.getRole().equals("user")){
@@ -64,7 +68,6 @@ public class AuthController implements IAuthController {
                 iRoleService.save(myRole.get());
             }
             user.setRole(myRole.get());
-
         }
         
         if(newUser.getRole().equals("admin")){
@@ -77,20 +80,29 @@ public class AuthController implements IAuthController {
         }
 
         iUserService.save(user);
-        return new ResponseEntity(new Message("user guardado"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new Message("user guardado"), HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<JwtDTO> login(@Valid @RequestBody UserDTO loginuser, BindingResult bindingResult){
+    public ResponseEntity<?> login(@Valid @RequestBody UserDTO loginuser, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-          return new ResponseEntity(new Message("campos mal puestos"), HttpStatus.BAD_REQUEST);
+          return new ResponseEntity<>(new Message("campos mal puestos"), HttpStatus.BAD_REQUEST);
+        
+        //Si el usuario hace login con correo
+        if(loginuser.getUserName().contains("@")) {
+        	var tmpUserOptional = iUserService.getByUserMail(loginuser.getUserName());
+        	if(tmpUserOptional.isPresent())
+        		loginuser.setUserName(tmpUserOptional.get().getUserName());
+        }
+        
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginuser.getUserName(), loginuser.getPassword()));
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         JwtDTO jwtDto = new JwtDTO(jwt, "Bearer",userDetails.getUsername(), userDetails.getAuthorities());
-        return new ResponseEntity(jwtDto, HttpStatus.OK);
+        return new ResponseEntity<>(jwtDto, HttpStatus.OK);
     }
 
     @Override

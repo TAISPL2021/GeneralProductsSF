@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/role")
+@RequestMapping("/autenticacion")
 public interface IRoleController {
 
     @GetMapping("/roles")
