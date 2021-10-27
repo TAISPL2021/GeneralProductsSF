@@ -13,7 +13,7 @@ import com.topicospl.msinventario.controller.IProductoController;
 import com.topicospl.msinventario.response.InventarioResponse;
 import com.topicospl.msinventario.service.IProductoService;
 
-@CrossOrigin(origins = "http://localhost:4200",allowedHeaders = "*")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 public class ProductoController implements IProductoController {
 

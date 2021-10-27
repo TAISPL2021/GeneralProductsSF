@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.topicospl.mscatalogo.bean.ProductoDTO;
 
-@FeignClient(name = "ms-inventario")
+@FeignClient(name ="ms-catalogo", url = "http://msinventario-env.eba-qtpvvxmm.us-east-1.elasticbeanstalk.com")
 public interface CatalagoProxy {
 
 	@GetMapping("/inventario/productos") 
