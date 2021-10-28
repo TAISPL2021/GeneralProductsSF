@@ -1,0 +1,11 @@
+
+<div class="row">
+    <div class="col-xs">
+        Filtro: 
+        <mat-form-field appearance="fill">
+            <mat-label>Buscar</mat-label>
+            <input  matInput  required type="text" id="buscar" [(ngModel)]="buscar" (ngModelChange)="filter($event)">
+        </mat-form-field>
+    </div>
+</div>
+        

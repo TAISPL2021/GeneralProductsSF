@@ -1,0 +1,22 @@
+
+<div class='header'>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <div class="header-row row between-xs middle-xs">
+                
+                <nav>
+                    <span> Versión {{version}}</span>
+                    <a mat-button routerLink="/home" routerLinkActive="active">Inicio</a>
+                    <a mat-button *ngIf="programacion.VisualizacionProductos == true" routerLink="/products" routerLinkActive="active">Productos</a>
+                    <a mat-button *ngIf="programacion.RegistroUsuario == true" routerLink="/register" routerLinkActive="active">Registro</a>
+                    <a mat-button *ngIf="programacion.InicioSesion == true" routerLink="/login" routerLinkActive="active">Login</a>
+                </nav>
+                
+            </div>
+            <a *ngIf="programacion.ComprarProducto == true" mat-raised-button [matBadge] ="total2$ | async" matBadgeColor="warn" routerLink="/order">
+                card 
+                <mat-icon>shopping_cart</mat-icon>
+            </a>
+        </mat-toolbar-row>
+    </mat-toolbar>    
+</div>

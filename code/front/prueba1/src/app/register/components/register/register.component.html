@@ -1,0 +1,94 @@
+<form [formGroup]="form" (ngSubmit)="SaveProduct($event)">
+  <mat-card>
+      <mat-card-header>
+          <h4><b>Register</b></h4>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row" id="one">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input formControlName="name" matInput [type]="hide" required type="text">
+              <mat-error *ngIf="form.get('name').hasError('required')">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row" id="two">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Primer Apellido</mat-label>
+              <input formControlName="lastname" matInput [type]="hide" required type="text">
+              <mat-error *ngIf="form.get('lastname').hasError('required')">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row" id="three">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Dirección</mat-label>
+              <input formControlName="address" matInput [type]="hide" required type="text">
+              <mat-error *ngIf="form.get('address').hasError('required')">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row" id="four">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Género</mat-label>
+              <input formControlName="gender" matInput [type]="hide" type="text">
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row" id="five">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Usuario</mat-label>
+              <input formControlName="user" matInput [type]="hide" required type="text">
+              <mat-error *ngIf="form.get('user').hasError('required')">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row2" id="one">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Segundo Nombre</mat-label>
+              <input formControlName="middleName" matInput [type]="hide" type="text">
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row2" id="two">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Segundo Apellido</mat-label>
+              <input formControlName="secondLastName" matInput [type]="hide" type="text">
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row2" id="three">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>télefono</mat-label>
+              <input formControlName="number" matInput [type]="hide" required type="number">
+              <mat-error *ngIf="form.get('number').hasError('required')">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>  
+          </div>
+        </div>
+        <div class="row2" id="five">
+          <div class="col-xs">
+            <mat-form-field appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+
+    </mat-card-content>
+      <mat-card-actions>
+          <button [disabled]="form.invalid" mat-raised-button type="submit">Completar</button>
+      </mat-card-actions>
+  </mat-card>
+  
+</form>

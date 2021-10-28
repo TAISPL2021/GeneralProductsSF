@@ -1,0 +1,35 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport color="primary"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false" >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <button (click)="CloseSession()" mat-raised-button color="accent">Cerrar Sesión</button>
+      <a *ngIf="programacion.AnadirProducto == true || programacion.ActualizarProducto == true" mat-list-item routerLink="/admin/inventario">Inventario</a>
+      <a *ngIf="programacion.GenerarFactura == true" mat-list-item routerLink="/home">Generar Facturas</a>
+      <a *ngIf="programacion.CrearPromocion == true" mat-list-item routerLink="/home">Crear Promocion</a>
+      <a *ngIf="programacion.AdministrarUsuariosRegistrados == true" mat-list-item routerLink="/home">Administrar Usuarios</a>
+      <a mat-list-item routerLink="/home">back</a>
+      
+
+    </mat-nav-list>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Intranet</span>
+      
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
