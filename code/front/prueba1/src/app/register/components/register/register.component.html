@@ -4,113 +4,19 @@
           <h4><b>Register</b></h4>
       </mat-card-header>
       <mat-card-content>
-        <!--<div class="row" id="one">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre</mat-label>
-              <input formControlName="name" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('name').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row" id="two">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Primer Apellido</mat-label>
-              <input formControlName="lastName" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('lastName').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row" id="three">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Dirección</mat-label>
-              <input formControlName="address" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('address').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row" id="four">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Género</mat-label>
-              <input formControlName="gender" matInput [type]="hide" type="text">
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row" id="five">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Usuario</mat-label>
-              <input formControlName="userName" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('userName').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row" id="six">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Email</mat-label>
-              <input formControlName="email" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('email').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row2" id="one">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Segundo Nombre</mat-label>
-              <input formControlName="secondName" matInput [type]="hide" type="text">
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row2" id="two">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Segundo Apellido</mat-label>
-              <input formControlName="secondLastName" matInput [type]="hide" type="text">
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row2" id="three">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>télefono</mat-label>
-              <input formControlName="phone" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('phone').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>
-        <div class="row2" id="five">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Contraseña</mat-label>
-              <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row2" id="six">
-          <div class="col-xs">
-            <mat-form-field appearance="fill">
-              <mat-label>Rol</mat-label>
-              <input formControlName="role" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('role').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
-          </div>
-        </div>-->
-        
-
-
       <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
             <input formControlName="name" matInput [type]="hide" required type="text">
             <mat-error *ngIf="form.get('name').hasError('required')">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>  
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Segundo Nombre</mat-label>
+            <input formControlName="secondName" matInput required [type]="hide" type="text">
+            <mat-error *ngIf="form.get('secondName').hasError('required')">{{getErrorMessage()}}</mat-error>
           </mat-form-field>  
         </mat-grid-tile>
         <mat-grid-tile>
@@ -122,12 +28,11 @@
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
-            <mat-label>Dirección</mat-label>
-            <input formControlName="address" matInput [type]="hide" required type="text">
-            <mat-error *ngIf="form.get('address').hasError('required')">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>  
+            <mat-label>Segundo Apellido</mat-label>
+            <input formControlName="secondLastName" matInput required [type]="hide" type="text">
+            <mat-error *ngIf="form.get('secondLastName').hasError('required')">{{getErrorMessage()}}</mat-error>
+          </mat-form-field> 
         </mat-grid-tile>
-
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Género</mat-label>
@@ -140,9 +45,16 @@
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
-            <mat-label>Usuario</mat-label>
-            <input formControlName="userName" matInput [type]="hide" required type="text">
-            <mat-error *ngIf="form.get('userName').hasError('required')">{{getErrorMessage()}}</mat-error>
+              <mat-label>Télefono</mat-label>
+              <input formControlName="phone" matInput [type]="hide" required type="text">
+              <mat-error *ngIf="form.get('phone').hasError('required')">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>  
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <input formControlName="address" matInput [type]="hide" required type="text">
+            <mat-error *ngIf="form.get('address').hasError('required')">{{getErrorMessage()}}</mat-error>
           </mat-form-field>  
         </mat-grid-tile>
         <mat-grid-tile>
@@ -154,22 +66,10 @@
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
-            <mat-label>Segundo Nombre</mat-label>
-            <input formControlName="secondName" matInput [type]="hide" type="text">
+            <mat-label>Usuario</mat-label>
+            <input formControlName="userName" matInput [type]="hide" required type="text">
+            <mat-error *ngIf="form.get('userName').hasError('required')">{{getErrorMessage()}}</mat-error>
           </mat-form-field>  
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field appearance="fill">
-            <mat-label>Segundo Apellido</mat-label>
-            <input formControlName="secondLastName" matInput [type]="hide" type="text">
-          </mat-form-field> 
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field appearance="fill">
-              <mat-label>Télefono</mat-label>
-              <input formControlName="phone" matInput [type]="hide" required type="text">
-              <mat-error *ngIf="form.get('phone').hasError('required')">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>  
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="fill">
@@ -180,8 +80,7 @@
             </button>
           </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile>
-          
+        <mat-grid-tile> 
           <mat-form-field appearance="fill">
             <mat-label>Rol</mat-label>
             <select matNativeControl required formControlName="role">
@@ -190,8 +89,6 @@
             </select>
             <mat-error *ngIf="form.get('role').hasError('required')">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
-
-
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-card-actions>

@@ -22,12 +22,12 @@ export class RegisterComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        secondName: [''],
+        secondName: ['', [Validators.required]],
         lastName:['', [Validators.required]],
-        secondLastName:[''],
+        secondLastName:['', [Validators.required]],
         address: ['', [Validators.required]],
         phone: ['', [Validators.required]],
-        gender: [''],
+        gender: ['', [Validators.required]],
         userName: ['', [Validators.required]],
         email: ['', [Validators.required]],
         password: ['', [Validators.required]],
