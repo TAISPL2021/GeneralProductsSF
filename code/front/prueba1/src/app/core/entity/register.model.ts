@@ -1,11 +1,13 @@
 export interface Register{
     name: string;
-    middleName: string;
-    lastname:string;
-    secondLastName:string;
+    secondName: string;
+    lastName: string;
+    secondLastName: string;
     address: string;
-    number: number;
-    gender: string;
-    user : string;
-    password : string; //base 64
+    phone: string;
+    gender: string; 
+    userName: string;
+    email: string;
+    password: string;
+    role: string;
 }

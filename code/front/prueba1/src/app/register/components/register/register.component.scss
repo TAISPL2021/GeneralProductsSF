@@ -32,7 +32,7 @@ mat-card-content{
   padding-left: 15px;
 }
 
-.row {
+/*.row {
   float: left;
   grid-column: 1;
   padding-bottom: 30px;
@@ -59,6 +59,14 @@ mat-card-content{
 #four{
   grid-row: 4;
 }
+
+#five{
+  grid-row: 5;
+}
+
+#six{
+  grid-row: 6;
+}*/
 
 input {
   
@@ -87,7 +95,7 @@ input {
 
 mat-card{
     height:100%;
-    width: 500px;
+    width: 800px;
     margin-top: -80px;
 }
 
@@ -99,7 +107,7 @@ mat-form-field{
 }
 
 
-button {
+/*button {
   border: none;
   background: $color;
   cursor: pointer;
@@ -107,13 +115,13 @@ button {
   padding: 6px;
   width: 200px;
   color: white;
-  margin-left: 25px;
+  margin-left: 20px;
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
   &:hover { 
     transform: translateY(-3px);
     box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
   }
-}
+}*/
 
 mat-card-actions{
     margin-left: 130px;

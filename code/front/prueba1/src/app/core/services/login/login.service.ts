@@ -16,7 +16,7 @@ export class LoginService {
 
   getLogin(login: Login): Boolean
   {
-    this.http.post(`${environment.url_api}/login`, login).pipe(
+    this.http.post(`${environment.url_api}/autenticacion/login`, login).pipe(
       retry(3),
       catchError(this.handleError),
       map((response: any) => {this.result =true;})

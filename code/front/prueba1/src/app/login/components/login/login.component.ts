@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        user: ['', [Validators.required]],
+        userName: ['', [Validators.required]],
         password: ['', [Validators.required]],
       }
     );
@@ -34,12 +34,16 @@ export class LoginComponent implements OnInit {
     if (this.form.valid){
       this.login = this.form.value;
       console.log(this.login);
-      /*this.loginService.getLogin(login).subscribe( (newproduct) => {
-        console.log(newproduct);
+
+
+      /*this.loginService.getLogin(this.login).subscribe( (login) => {
+        console.log(login);
         this.router.navigate(['./admin/products']);
       });*/
-      alert(this.login.user);
-      this.cookieService.set("user", this.login.user);
+
+
+      alert(this.login.userName);
+      this.cookieService.set("userName", this.login.userName);
       this.router.navigate(['./admin/inventario']);
     }
     else{

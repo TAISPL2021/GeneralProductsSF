@@ -8,8 +8,8 @@
             <div class="col-xs">
               <mat-form-field appearance="fill">
                 <mat-label>Usuario</mat-label>
-                <input formControlName="user" matInput [type]="hide" required type="text">
-                <mat-error *ngIf="form.get('user').hasError('required')">{{getErrorMessage()}}</mat-error>
+                <input formControlName="userName" matInput [type]="hide" required type="text">
+                <mat-error *ngIf="form.get('userName').hasError('required')">{{getErrorMessage()}}</mat-error>
               </mat-form-field>  
             </div>
           </div>
