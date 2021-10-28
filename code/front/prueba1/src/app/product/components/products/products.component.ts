@@ -36,6 +36,7 @@ export class ProductsComponent implements OnInit {
   programacion: any;
   version: string;
   products: Product[] ;
+  productsAll: Product[] ;
 
   constructor(private productsService: ProductosService) { 
     this.programacion = environment.programacion;
@@ -43,23 +44,26 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchProducts();
+    this.fetchProducts("");
   }
   clickProduct(id: number): any{
     console.log(id.toString());
   }
 
-  fetchProducts(): any{
+  fetchProducts(producto: string): any{
+    this.products =null;
     this.products = this.productsMock;
+    
     this.productsService.getAllProductActive("").subscribe(products => {
       this.products = products;
+      this.productsAll = products;
       console.log(JSON.stringify(this.products));
     });
   }
 
   filterProduct(productTittle: string): any{
-    this.fetchProducts();
-    this.products = this.products.filter(element => element.title.includes(productTittle) == true);
+    this.products = this.productsAll;
+    this.products = this.products.filter(element => element.title.toUpperCase().includes(productTittle.toUpperCase()) == true);
   }
 
 }
