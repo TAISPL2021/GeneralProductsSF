@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import {environment} from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -21,7 +22,7 @@ export class NavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private cookieService: CookieService) {
+  constructor(private breakpointObserver: BreakpointObserver, private cookieService: CookieService, private router: Router) {
     this.programacion = environment.programacion;
     this.version = environment.Version;
   }
@@ -32,6 +33,6 @@ export class NavComponent {
     const allCookies: {} = this.cookieService.getAll();
     console.log(allCookies);
     const cookieExists: boolean = this.cookieService.check('user');
-    alert(cookieExists);
+    this.router.navigate(['/products']);
   }
 }
