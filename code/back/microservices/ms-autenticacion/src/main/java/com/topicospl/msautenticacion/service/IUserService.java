@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.topicospl.msautenticacion.bean.User;
+import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
 
 public interface IUserService {
 
@@ -18,5 +19,7 @@ public interface IUserService {
 	void save(User user);
 
 	List<User> getAll();
+	
+	void checkRegisterFormat(NewUserDTO userRegForm);
 
 }

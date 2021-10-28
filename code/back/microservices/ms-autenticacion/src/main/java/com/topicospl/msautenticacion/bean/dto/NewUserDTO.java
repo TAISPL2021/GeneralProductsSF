@@ -1,6 +1,7 @@
 package com.topicospl.msautenticacion.bean.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,8 +41,10 @@ public class NewUserDTO {
     @NotBlank
     @JsonProperty("password")
     private String password;
-
+    @JsonProperty("role")
     private String role;
+    @NotNull
+    @JsonProperty("email")
     private String email;
     
 }

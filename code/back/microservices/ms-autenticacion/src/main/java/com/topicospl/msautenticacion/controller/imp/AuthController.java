@@ -48,7 +48,10 @@ public class AuthController implements IAuthController {
 
     @Override
     public ResponseEntity<?> nuevo(@Valid @RequestBody NewUserDTO newUser, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
+        
+    	iUserService.checkRegisterFormat(newUser);
+    	
+    	if(bindingResult.hasErrors())
             return new ResponseEntity<>(new Message("campos mal puestos o email inválido"), HttpStatus.BAD_REQUEST);
             
         if(iUserService.existsByUserName(newUser.getUserName())) 
@@ -61,6 +64,8 @@ public class AuthController implements IAuthController {
                 new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getEmail(),
                         passwordEncoder.encode(newUser.getPassword()));
 
+        System.out.println("----- " + newUser.getRole());
+        
         if(newUser.getRole().equals("user")){
             Optional<Role> myRole = iRoleService.findByRoleName(RoleName.USER);
             if (myRole.isEmpty()){
