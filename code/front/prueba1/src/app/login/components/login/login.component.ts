@@ -36,15 +36,24 @@ export class LoginComponent implements OnInit {
       console.log(this.login);
 
 
-      /*this.loginService.getLogin(this.login).subscribe( (login) => {
-        console.log(login);
-        this.router.navigate(['./admin/products']);
-      });*/
-
-
-      alert(this.login.userName);
-      this.cookieService.set("userName", this.login.userName);
-      this.router.navigate(['./admin/inventario']);
+      this.loginService.getLogin(this.login).subscribe( (login) => {
+        console.log(login.authorities[0].authority);
+        
+        if (login.hasOwnProperty('nombreUsuario')) {
+          this.cookieService.set("userName", this.login.userName);
+          this.cookieService.set("rol", login.authorities[0].authority);
+          if (login.authorities[0].authority = 'ADMIN') {
+            //this.router.navigate(['/home']);
+            this.router.navigate(['./admin/inventario']);
+          }
+          else {
+            this.router.navigate(['/products']);
+          }
+        }
+        else {
+          alert('datos invalidos');
+        }
+      });      
     }
     else{
       alert('datos invalidos');

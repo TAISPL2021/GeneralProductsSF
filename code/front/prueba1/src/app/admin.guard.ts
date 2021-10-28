@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
   {
 
-    const cookieExists: boolean = this.cookieService.check('user');
+    const cookieExists: boolean = this.cookieService.check('userName');
     if(cookieExists){
       return true;
     }

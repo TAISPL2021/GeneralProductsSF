@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url_api: 'http://localhost:8000',
+  url_api: 'http://napigateway-env.eba-gxjregse.us-east-1.elasticbeanstalk.com',
   Version: 'P1',
   programacion: {
     //autenticacion 

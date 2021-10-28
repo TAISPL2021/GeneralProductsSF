@@ -14,14 +14,16 @@ export class LoginService {
 
   }
 
-  getLogin(login: Login): Boolean
+  getLogin(login: Login): any
   {
-    this.http.post(`${environment.url_api}/autenticacion/login`, login).pipe(
+    /*this.http.post(`${environment.url_api}/autenticacion/login`, login).pipe(
       retry(3),
       catchError(this.handleError),
       map((response: any) => {this.result =true;})
-    );
-    return this.result;
+    );*/
+
+    return this.http.post(`${environment.url_api}/autenticacion/login`, login)
+    /*return this.result;*/
   }
 
   private handleError(error: HttpErrorResponse) {
