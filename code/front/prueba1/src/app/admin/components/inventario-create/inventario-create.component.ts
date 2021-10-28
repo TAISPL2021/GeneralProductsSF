@@ -29,7 +29,6 @@ export class InventarioCreateComponent implements OnInit {
   }
   ngOnInit(): void {
     
-    this.productsService.cualquiera(null);
     this.form = this.formBuilder.group(
       {
         id: ['', [Validators.required]],
@@ -62,7 +61,6 @@ export class InventarioCreateComponent implements OnInit {
 
     event.preventDefault();
     if (this.form.valid){
-      this.productsService.cualquiera(null);
       const product = this.form.value;
       console.log(this.product);
 

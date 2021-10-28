@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  SaveProduct( event: Event): any{
+  Savelogin( event: Event): any{
     event.preventDefault();
     if (this.form.valid){
       this.login = this.form.value;
