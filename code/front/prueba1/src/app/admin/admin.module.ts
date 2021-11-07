@@ -7,6 +7,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { InventarioListComponent } from './components/inventario-list/inventario-list.component';
 import { InventarioCreateComponent } from './components/inventario-create/inventario-create.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 
 
@@ -18,7 +19,8 @@ import { InventarioCreateComponent } from './components/inventario-create/invent
     
     
     InventarioListComponent,
-    InventarioCreateComponent
+    InventarioCreateComponent,
+    ReportesComponent
   ],
   imports: [
     CommonModule,

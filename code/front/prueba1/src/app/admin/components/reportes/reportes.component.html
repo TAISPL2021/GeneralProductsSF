@@ -1,0 +1,35 @@
+<br>
+<button mat-raised-button>Crear Reporte Mensual</button>
+<button mat-raised-button>Crear Reporte Anual</button>
+<br>
+<br>
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="fecha">
+        <th mat-header-cell > Fecha </th>
+        <td mat-cell>   </td>
+      </ng-container>
+
+    <ng-container matColumnDef="resumen">
+      <th mat-header-cell > Resumen </th>
+      <td mat-cell >  </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell > Descripcion </th>
+      <td mat-cell >  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell > Productos vendidos </th>
+      <td mat-cell >  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+      <th mat-header-cell > Valor </th>
+      <td mat-cell> </td>
+    </ng-container>
+
+    <tr mat-header-row></tr>
+    <tr mat-row></tr>
+  </table>
