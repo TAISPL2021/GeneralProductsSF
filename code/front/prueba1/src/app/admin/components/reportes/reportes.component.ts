@@ -12,7 +12,7 @@ import {environment} from '../../../../environments/environment';
 })
 export class ReportesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'price', 'description','state', 'stock','discount','actions'];
+  displayedColumns: string[] = ['date', 'id', 'description','quantity','price'];
   products: Product[];
   programacion: any;
   version: string;
