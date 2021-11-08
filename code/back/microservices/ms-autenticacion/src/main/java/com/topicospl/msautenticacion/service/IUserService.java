@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.topicospl.msautenticacion.bean.User;
+import com.topicospl.msautenticacion.bean.dto.EditUserDTO;
 import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
 
 public interface IUserService {
@@ -21,5 +22,9 @@ public interface IUserService {
 	List<User> getAll();
 	
 	void checkRegisterFormat(NewUserDTO userRegForm);
+
+	User editUser(User user, EditUserDTO editUse);
+
+	void deleteUser(User user);
 
 }

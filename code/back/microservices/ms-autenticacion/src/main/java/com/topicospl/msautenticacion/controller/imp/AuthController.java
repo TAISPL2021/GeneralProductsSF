@@ -2,10 +2,7 @@ package com.topicospl.msautenticacion.controller.imp;
 
 import com.topicospl.msautenticacion.bean.Role;
 import com.topicospl.msautenticacion.bean.User;
-import com.topicospl.msautenticacion.bean.dto.JwtDTO;
-import com.topicospl.msautenticacion.bean.dto.Message;
-import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
-import com.topicospl.msautenticacion.bean.dto.UserDTO;
+import com.topicospl.msautenticacion.bean.dto.*;
 import com.topicospl.msautenticacion.controller.IAuthController;
 import com.topicospl.msautenticacion.enums.RoleName;
 import com.topicospl.msautenticacion.jwt.JwtProvider;
@@ -113,5 +110,29 @@ public class AuthController implements IAuthController {
     @Override
     public List<User> getAll() {
         return iUserService.getAll();
+    }
+
+    @Override
+    public ResponseEntity<?> edit(EditUserDTO editUser, BindingResult bindingResult) {
+        Optional<User> user = iUserService.getByUserMail(editUser.getEmail());
+        return (user.isEmpty())?  new ResponseEntity<>( new Message("El usuario no existe con ese correo"), HttpStatus.BAD_REQUEST):  new ResponseEntity<>(iUserService.editUser(user.get(),editUser), HttpStatus.OK);
+
+        //buscar el usuario por el nombre y correo
+        // permitir cambio de todo menos de el nombre y correo
+        // buscar los que no vengan nulos y cambiarlos
+        //guardar
+
+    }
+
+    @Override
+    public ResponseEntity<?> delete(UserDTO user, BindingResult bindingResult) {
+        Optional<User> findUser = iUserService.getByUserName(user.getUserName());
+        if (findUser.isEmpty()) {
+            return new ResponseEntity<>( new Message("El usuario no existe con ese nombre de usuario"), HttpStatus.BAD_REQUEST);
+        }else{
+            iUserService.deleteUser(findUser.get());
+            return new ResponseEntity<>(new Message("usuario eliminado"), HttpStatus.OK);
+        }
+
     }
 }

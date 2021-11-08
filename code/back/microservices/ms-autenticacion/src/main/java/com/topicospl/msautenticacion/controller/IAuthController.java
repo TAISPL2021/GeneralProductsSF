@@ -5,12 +5,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.topicospl.msautenticacion.bean.dto.EditUserDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.topicospl.msautenticacion.bean.User;
 import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
@@ -27,5 +25,11 @@ public interface IAuthController {
 
     @GetMapping("/users")
     List<User> getAll();
+
+    @PutMapping("/edit")
+    ResponseEntity<?> edit(@Valid @RequestBody EditUserDTO editUser, BindingResult bindingResult);
+
+    @DeleteMapping("/eliminar")
+    ResponseEntity<?> delete(@Valid @RequestBody UserDTO user , BindingResult bindingResult);
 
 }
