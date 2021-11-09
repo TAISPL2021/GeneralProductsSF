@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import {NavComponent} from './components/nav/nav.component';
 import {InventarioListComponent} from './components/inventario-list/inventario-list.component';
 import { InventarioCreateComponent } from './components/inventario-create/inventario-create.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReporteOrdenesComponent } from './components/reporteOrdenes/reporteOrdenes.component';
+import { ReporteProductosComponent } from './components/reporteProductos/reporteProductos.component';
+import { ReportePromocionesComponent } from './components/reportePromociones/reportePromociones.component';
 
 const routes: Routes = [
   {
@@ -23,8 +25,16 @@ const routes: Routes = [
         component: InventarioListComponent
       },
       {
-        path: 'reportes',
-        component: ReportesComponent
+        path: 'reporteOrdenes',
+        component: ReporteOrdenesComponent
+      },
+      {
+        path: 'reporteProductos',
+        component: ReporteProductosComponent
+      },
+      {
+        path: 'reportePromociones',
+        component: ReportePromocionesComponent
       }
     ]
   }

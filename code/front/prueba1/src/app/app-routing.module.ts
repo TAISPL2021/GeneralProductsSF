@@ -3,6 +3,8 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LayoutComponent} from './layout/layout.component';
 import {AdminGuard} from './admin.guard';
+import { UpdateComponent } from './UpdateUser/components/update.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -34,8 +36,13 @@ const routes: Routes = [
         loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
       },
       {
-        path : 'profileManagement',
-        loadChildren: () => import('./profileManagement/profile.module').then(m => m.ProfileModule)
+        path : 'GestionPerfil',
+        children: [
+          {
+            path: 'actualizar',
+            component: UpdateComponent
+          }
+        ]
       }
     ]
   },

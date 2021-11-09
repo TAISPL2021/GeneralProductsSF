@@ -7,9 +7,10 @@ import { NavComponent } from './components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { InventarioListComponent } from './components/inventario-list/inventario-list.component';
 import { InventarioCreateComponent } from './components/inventario-create/inventario-create.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
-
-
+import { ReporteOrdenesComponent } from './components/reporteOrdenes/reporteOrdenes.component';
+import { ReporteProductosComponent } from './components/reporteProductos/reporteProductos.component';
+import { ReportePromocionesComponent } from './components/reportePromociones/reportePromociones.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -20,14 +21,18 @@ import { ReportesComponent } from './components/reportes/reportes.component';
     
     InventarioListComponent,
     InventarioCreateComponent,
-    ReportesComponent
+    ReporteOrdenesComponent,
+    ReporteProductosComponent,
+    ReportePromocionesComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    LayoutModule
+    LayoutModule,
+    MatMenuModule
+    
   ]
 })
 export class AdminModule { }

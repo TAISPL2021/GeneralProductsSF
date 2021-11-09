@@ -1,18 +1,18 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {ProductosService} from './../../../core/services/products/productos.service';
+import {ProductosService} from '../../../core/services/products/productos.service';
 import {Product} from '../../../core/entity/product.model';
 import {environment} from '../../../../environments/environment';
 
 
 @Component({
   selector: 'app-reportes',
-  templateUrl: './reportes.component.html',
-  styleUrls: ['./reportes.component.scss']
+  templateUrl: './reporteProductos.component.html',
+  styleUrls: ['./reporteProductos.component.scss']
 })
-export class ReportesComponent implements OnInit {
+export class ReporteProductosComponent implements OnInit {
 
-  displayedColumns: string[] = ['date', 'id', 'description','quantity','price'];
+  displayedColumns: string[] = ['id', 'title', 'price', 'description','state', 'stock','discount'];
   products: Product[];
   programacion: any;
   version: string;

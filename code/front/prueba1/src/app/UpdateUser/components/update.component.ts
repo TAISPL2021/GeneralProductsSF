@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
-import {Result} from '../../../../../core/entity/result.model';
+import {Result} from '../../core/entity/result.model';
 import {Router} from '@angular/router';
-import {UpdateService} from './../../../../../core/services/updateUser/update.service';
-import {Update} from '../../../../../core/entity/update.model';
+import {UpdateService} from '../../core/services/updateUser/update.service';
+import {Update} from '../../core/entity/update.model';
 
 @Component({
   selector: 'app-login',

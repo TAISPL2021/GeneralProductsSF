@@ -10,7 +10,11 @@
                     <a mat-button *ngIf="programacion.VisualizacionProductos == true" routerLink="/products" routerLinkActive="active">Productos</a>
                     <a mat-button *ngIf="programacion.RegistroUsuario == true" routerLink="/register" routerLinkActive="active">Registro</a>
                     <a mat-button *ngIf="programacion.InicioSesion == true" routerLink="/login" routerLinkActive="active">Login</a>
-                    <a mat-button *ngIf="programacion.GestionPerfil == true" routerLink="/profileManagement" routerLinkActive="active">Gestion de perfil</a>
+                    <a mat-button *ngIf="programacion.GestionPerfil == true" [matMenuTriggerFor]="reportes">Gestion de perfil</a>
+                    <mat-menu #reportes="matMenu" xPosition="after">
+                      <button mat-menu-item routerLink="GestionPerfil/actualizar">Actualizar Datos</button>
+                      <button mat-menu-item routerLink="/home">Eliminar Cuenta</button>
+                    </mat-menu>
                 </nav>
                 
             </div>
