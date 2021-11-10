@@ -1,7 +1,5 @@
 package com.topicospl.msadmistracion.controller.imp;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +17,23 @@ public class AdministracionPromocionController implements IAdministracionPromoci
 	private IAdministracionPromocionService promocionService;
 	
 	@Override
-	public ResponseEntity<?> promicionGenerator() {
-		return null;
+	public ResponseEntity<?> promicionGenerator(PromocionDTO promocion) {
+		return promocionService.createPromocion(promocion);
 	}
 
 	@Override
-	public ResponseEntity<List<PromocionDTO>> promocionList(Boolean filter) {
+	public ResponseEntity<?> promocionList(Boolean filter) {
 		return promocionService.getAllRecords(filter);
 	}
 
 	@Override
 	public ResponseEntity<?> updatePromocion(PromocionDTO promocion) {
 		return promocionService.updatePromocion(promocion);
+	}
+
+	@Override
+	public ResponseEntity<?> promocionById(Long id) {
+		return promocionService.promocionById(id);
 	}
 
 }

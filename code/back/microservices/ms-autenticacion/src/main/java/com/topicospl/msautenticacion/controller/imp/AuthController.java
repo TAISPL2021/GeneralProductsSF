@@ -60,8 +60,6 @@ public class AuthController implements IAuthController {
         User user =
                 new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getEmail(),
                         passwordEncoder.encode(newUser.getPassword()));
-
-        System.out.println("----- " + newUser.getRole());
         
         if(newUser.getRole().equals("user")){
             Optional<Role> myRole = iRoleService.findByRoleName(RoleName.USER);
@@ -126,13 +124,17 @@ public class AuthController implements IAuthController {
 
     @Override
     public ResponseEntity<?> delete(UserDTO user, BindingResult bindingResult) {
-        Optional<User> findUser = iUserService.getByUserName(user.getUserName());
-        if (findUser.isEmpty()) {
+            	
+    	Optional<User> findUser = iUserService.getByUserName(user.getUserName());
+    	
+    	Optional<User> findUserByEmail = iUserService.getByUserMail(user.getUserName());
+    	
+        if (findUser.isEmpty() && findUserByEmail.isEmpty()) 
             return new ResponseEntity<>( new Message("El usuario no existe con ese nombre de usuario"), HttpStatus.BAD_REQUEST);
-        }else{
-            iUserService.deleteUser(findUser.get());
-            return new ResponseEntity<>(new Message("usuario eliminado"), HttpStatus.OK);
-        }
-
+        
+        iUserService.deleteUser(findUser.get());
+        
+        return new ResponseEntity<>(new Message("usuario eliminado"), HttpStatus.OK);
+   
     }
 }

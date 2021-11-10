@@ -1,24 +1,18 @@
 package com.topicospl.msautenticacion.service.imp;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.topicospl.msautenticacion.bean.dto.EditUserDTO;
-import org.modelmapper.*;
-import org.modelmapper.config.Configuration;
-import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.topicospl.msautenticacion.bean.User;
+import com.topicospl.msautenticacion.bean.dto.EditUserDTO;
 import com.topicospl.msautenticacion.bean.dto.NewUserDTO;
 import com.topicospl.msautenticacion.exception.RegisterGeneralException;
 import com.topicospl.msautenticacion.repository.UserRepository;
 import com.topicospl.msautenticacion.service.IUserService;
-
-import javax.persistence.Column;
 
 @Service
 public class UserService implements IUserService {

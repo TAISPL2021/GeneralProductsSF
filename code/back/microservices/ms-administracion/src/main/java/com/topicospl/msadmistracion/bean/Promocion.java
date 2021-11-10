@@ -5,10 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.topicospl.msadmistracion.bean.dto.PromocionDTO;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Promocion {
 
 	@Id
@@ -20,5 +26,14 @@ public class Promocion {
 	private String tipo;
 	private Boolean estado;
 	private Long porcentaje;
+	
+	public Promocion(PromocionDTO promocion){
+		this.codigo = promocion.getCodigo();
+		this.nombre = promocion.getNombre();
+		this.detalle = promocion.getDetalle();
+		this.tipo = promocion.getTipo();
+		this.estado = promocion.getEstado();
+		this.porcentaje = promocion.getPorcentaje();
+	}
 	
 }

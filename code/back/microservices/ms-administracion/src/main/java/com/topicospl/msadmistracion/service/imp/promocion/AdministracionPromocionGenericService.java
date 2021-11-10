@@ -24,7 +24,12 @@ public class AdministracionPromocionGenericService implements IAdministracionPro
 
 	@Override
 	public ResponseEntity<?> createPromocion(PromocionDTO promocion) {
-		return null;
+		return new ResponseEntity<>(null,HttpStatus.NOT_IMPLEMENTED);
+	}
+
+	@Override
+	public ResponseEntity<?> promocionById(Long id) {
+		return new ResponseEntity<>(null,HttpStatus.NOT_IMPLEMENTED);
 	}
 
 }
