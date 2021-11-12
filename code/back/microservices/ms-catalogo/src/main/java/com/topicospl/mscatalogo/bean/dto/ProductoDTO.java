@@ -1,4 +1,4 @@
-package com.topicospl.mscatalogo.bean;
+package com.topicospl.mscatalogo.bean.dto;
 
 import java.util.Date;
 

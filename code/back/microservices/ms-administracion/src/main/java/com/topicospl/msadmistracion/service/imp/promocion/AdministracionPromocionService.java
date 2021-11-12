@@ -25,7 +25,7 @@ public class AdministracionPromocionService implements IAdministracionPromocionS
 	@Override
 	public ResponseEntity<?> getAllRecords(Boolean filter) {
 
-		List<PromocionDTO> convert;
+		List<?> convert;
 		
 		if (filter) {
 			convert = promocionRepository.findByEstado(true).stream().map(PromocionDTO::new).collect(Collectors.toList());

@@ -20,4 +20,5 @@ public class PromocionResponse {
 	private String message;
 	private ResponseEntity<?> body;
 
+
 }

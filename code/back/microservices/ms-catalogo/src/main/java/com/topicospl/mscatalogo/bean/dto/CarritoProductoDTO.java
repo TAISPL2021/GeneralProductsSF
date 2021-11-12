@@ -1,6 +1,4 @@
-package com.topicospl.mscatalogo.bean;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.topicospl.mscatalogo.bean.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,11 +11,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CarritoDTO {
-
-	@JsonProperty("producto-id")
-	private Long productoCode;
+public class CarritoProductoDTO {
 	
-	@JsonProperty("producto-cantidad")
+	private String productoNombre;
+	
+	private String productoDetalle;
+	
 	private Long productoCantidadComprar;
 }
