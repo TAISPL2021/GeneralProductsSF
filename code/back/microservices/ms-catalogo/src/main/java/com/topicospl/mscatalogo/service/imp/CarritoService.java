@@ -1,15 +1,12 @@
 package com.topicospl.mscatalogo.service.imp;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.github.andrewoma.dexx.collection.HashMap;
 import com.topicospl.mscatalogo.bean.Carrito;
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoOutDTO;
