@@ -38,8 +38,8 @@ public class AdministracionPromocionService implements IAdministracionPromocionS
 			response.setStatus(HttpStatus.OK.name());
 			response.setMessage("Listado Productos con estado " + filter );
 			response.setBody(new ResponseEntity<>(convert, HttpStatus.OK));
-		
-		return new ResponseEntity<>(response, HttpStatus.OK);
+
+		return new ResponseEntity<>(response.getBody().getBody(), HttpStatus.OK);
 	}
 
 	@Override

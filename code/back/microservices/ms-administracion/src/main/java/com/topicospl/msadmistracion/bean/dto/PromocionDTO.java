@@ -1,23 +1,31 @@
 package com.topicospl.msadmistracion.bean.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.topicospl.msadmistracion.bean.Promocion;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class PromocionDTO {
 
-	private Long id;
-	private Long codigo;
-	private String nombre;
-	private String detalle;
-	private String tipo;
-	private Boolean estado;
-	private Long porcentaje;
+		@JsonIgnore
+		private Long id;
+		@JsonProperty("id")
+		private Long codigo;
+		@JsonProperty("nombre")
+		private String nombre;
+		@JsonProperty("detalle")
+		private String detalle;
+		@JsonProperty("tipo")
+		private String tipo;
+		@JsonProperty("estado")
+		private Boolean estado;
+		@JsonProperty("porcentaje")
+		private Long porcentaje;
 
 	public PromocionDTO(Promocion promocionEntity) {
 		this.id = promocionEntity.getId();

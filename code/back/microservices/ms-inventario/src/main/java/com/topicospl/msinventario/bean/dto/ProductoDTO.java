@@ -43,7 +43,7 @@ public class ProductoDTO {
 	@JsonProperty("image")
 	private String productoImg; 
 	
-	@JsonIgnore
+
 	private Date productoFechaInclusion;
 	
 	@JsonIgnore
