@@ -13,6 +13,7 @@ public class ApiGatewayRouter {
 		return rBuilder.routes()
 					.route(p -> p.path("/inventario/producto").uri("lb://ms-inventario"))	
 					.route(p -> p.path("/catalogo/**").uri("lb://ms-catalogo"))
+					.route(p -> p.path("/carrito/**").uri("lb://ms-catalogo"))
 					.route(p -> p.path("/autenticacion/**").uri("lb://ms-autenticacion"))
 					.route(p -> p.path("/administracion/**").uri("lb://ms-administracion"))
 				.build();
