@@ -24,4 +24,9 @@ public class CarritoController implements ICarrito {
 		return carritoService.incluirCarrito(carrito);
 	}
 
+	@Override
+	public ResponseEntity<?> checkOutCarrito(Long carritoId) {
+		return carritoService.checkOutCarrito(carritoId);
+	}
+
 }

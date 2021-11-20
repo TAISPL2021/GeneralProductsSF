@@ -8,4 +8,5 @@ public interface ICarritoService {
 
 	public ResponseEntity<?> statusCarrito(String userName);
 	public ResponseEntity<?> incluirCarrito(CarritoInDTO carrito);
+	public ResponseEntity<?> checkOutCarrito(Long carritoId);
 }
