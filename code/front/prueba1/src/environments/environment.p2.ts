@@ -22,6 +22,7 @@ export const environment = {
     GenerarFactura:true,
     CrearPromocion:false,
     AdministrarUsuariosRegistrados:false,
+    AdministrarPedidos:false,
     //pago electronico
     GestionarPagos:false,
     //reporte

@@ -28,11 +28,13 @@ export class NavComponent {
   }
 
   CloseSession(): any{
-    this.cookieService.deleteAll('/', 'user');     
-    this.cookieService.delete('user','/');     
+    this.cookieService.deleteAll('/', 'userName');     
+    this.cookieService.delete('userName','/');     
+    this.cookieService.deleteAll('/', 'rol');     
+    this.cookieService.delete('rol','/');    
     const allCookies: {} = this.cookieService.getAll();
     console.log(allCookies);
-    const cookieExists: boolean = this.cookieService.check('user');
+    const cookieExists: boolean = this.cookieService.check('userName');
     this.router.navigate(['/products']);
   }
 }

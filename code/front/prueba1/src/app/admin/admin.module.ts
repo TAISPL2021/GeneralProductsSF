@@ -11,6 +11,7 @@ import { ReporteOrdenesComponent } from './components/reporteOrdenes/reporteOrde
 import { ReporteProductosComponent } from './components/reporteProductos/reporteProductos.component';
 import { ReportePromocionesComponent } from './components/reportePromociones/reportePromociones.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
     InventarioCreateComponent,
     ReporteOrdenesComponent,
     ReporteProductosComponent,
-    ReportePromocionesComponent
+    ReportePromocionesComponent,
+    PedidosListComponent
   ],
   imports: [
     CommonModule,

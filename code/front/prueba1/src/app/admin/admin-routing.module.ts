@@ -6,6 +6,7 @@ import { InventarioCreateComponent } from './components/inventario-create/invent
 import { ReporteOrdenesComponent } from './components/reporteOrdenes/reporteOrdenes.component';
 import { ReporteProductosComponent } from './components/reporteProductos/reporteProductos.component';
 import { ReportePromocionesComponent } from './components/reportePromociones/reportePromociones.component';
+import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'inventario/crear/:id',
         component: InventarioCreateComponent
+      },
+      {
+        path: 'pedidos',
+        component: PedidosListComponent
       },
       {
         path: 'inventario',
