@@ -48,10 +48,21 @@ public class ProductoService implements IProductoService {
 		return new ResponseEntity<>(productoRepository.findByProductoNombreLike(querySearch.toLowerCase().trim())
 				.stream().map(ProductoDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
+	
+	@Override
+	public ResponseEntity<?> findByProductoCode(Long pCode) {
+		var tmpProduct =  productoRepository.findByProductoCode(pCode);
+		
+		if(tmpProduct.isPresent()) {
+			return new ResponseEntity<>(new ProductoDTO(tmpProduct.get()),HttpStatus.OK);
+		}
+			throw new ProductoAlreadyExistException("El Producto con el Codigo: ["+pCode+"] no se encontro en la DB");
+	
+	}
 
 	@Override
 	public ResponseEntity<InventarioResponse> saveRecord(ProductoDTO product) {
-		var tmpProductoCode = findByProductoCode(product.getProductoCode());
+		var tmpProductoCode = findByProductoCodeInternal(product.getProductoCode());
 		
 		if(tmpProductoCode.isPresent())
 			throw new ProductoAlreadyExistException("El Producto con el Codigo: ["+product.getProductoCode()+"] existe en la DB");
@@ -69,7 +80,7 @@ public class ProductoService implements IProductoService {
 	@Override
 	public ResponseEntity<InventarioResponse> updateRecord(ProductoDTO product) {
 		
-		var tmpProductoChecker = findByProductoCode(product.getProductoCode());
+		var tmpProductoChecker = findByProductoCodeInternal(product.getProductoCode());
 		
 		if(tmpProductoChecker.isPresent()) {
 			var tmpProducto = tmpProductoChecker.get();
@@ -93,8 +104,8 @@ public class ProductoService implements IProductoService {
 		}
 	}
 
-	@Override
-	public Optional<Producto> findByProductoCode(Long pCode) {	
+
+	private Optional<Producto> findByProductoCodeInternal(Long pCode) {	
 		return productoRepository.findByProductoCode(pCode);
 	}
 	
@@ -111,7 +122,5 @@ public class ProductoService implements IProductoService {
 				.productoCantidadDisponible(p.getProductoCantidadDisponible() == null ? 0 : p.getProductoCantidadDisponible())
 			.build();
 	}
-
-
 	
 }

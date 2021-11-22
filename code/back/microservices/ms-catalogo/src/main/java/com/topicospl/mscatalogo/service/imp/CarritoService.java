@@ -76,10 +76,9 @@ public class CarritoService implements ICarritoService {
 
 		var listCarritoByID = carritoRepository.findByCarritoId(carritoId); 
 		
-		System.out.println("--------------"+ listCarritoByID.toString());
-		System.out.println("-------------- LLAMADO MS ADMINISTRACION GENERACION FACTURA");
-		System.out.println("-------------- RECEPCION RESULTADO MS ADMINISTRCAION GENERACION FACTURA");
-		
+		var responseMsAdministracion = administracionProxy.facturaGenerator(listCarritoByID);
+
+		System.out.println("RESPONSE BODY : " +responseMsAdministracion.getBody());
 		carritoRepository.removeCacheCarrito(carritoId);
 		
 		return new ResponseEntity<>(new CarritoFacturaGenDTO(), HttpStatus.OK);
