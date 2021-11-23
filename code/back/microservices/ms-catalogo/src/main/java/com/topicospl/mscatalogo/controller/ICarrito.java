@@ -17,4 +17,7 @@ public interface ICarrito {
 	
 	@PostMapping("/incluir")
 	public ResponseEntity<?> addProductoIntoCarrito(@RequestBody CarritoInDTO carrito);
+	
+	@PostMapping("/checkout/{carritoId}")
+	public ResponseEntity<?> checkOutCarrito(@PathVariable("carritoId") Long carritoId);
 }

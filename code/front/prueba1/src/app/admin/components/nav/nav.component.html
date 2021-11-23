@@ -10,8 +10,9 @@
       <a *ngIf="programacion.AnadirProducto == true || programacion.ActualizarProducto == true" mat-list-item routerLink="/admin/inventario">Inventario</a>
       <a *ngIf="programacion.GenerarFactura == true" mat-list-item routerLink="/home">Generar Facturas</a>
       <a *ngIf="programacion.CrearPromocion == true" mat-list-item routerLink="/home">Crear Promocion</a>
+      <a *ngIf="programacion.AdministrarPedidos == true" mat-list-item routerLink="/admin/pedidos">Administrar Pedidos</a>
       <a *ngIf="programacion.GestionarReportes == true" mat-list-item [matMenuTriggerFor]="reportes">Reportes</a>
-      <mat-menu #reportes="matMenu" xPosition="after">
+      <mat-menu #reportes="matMenu" xPosition="after"> 
         <button mat-menu-item routerLink="/admin/reporteOrdenes">Reporte Ordénes</button>
         <button mat-menu-item routerLink="/admin/reporteProductos">Reporte Productos</button>
         <button mat-menu-item routerLink="/admin/reportePromociones">Reporte Promociones</button>

@@ -24,12 +24,74 @@
         
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>datos personales</ng-template>    
-        Datos personales
-    </mat-step>
-    <mat-step>
         <ng-template matStepLabel>Pago</ng-template>    
-        pago
+        <form [formGroup]="form" (ngSubmit)="SavePago($event)">
+          <mat-card>
+              <mat-card-header>
+                  <h4><b>Metodo de pagos</b></h4>
+              </mat-card-header>
+              <mat-card-content>
+              <mat-grid-list cols="3" rowHeight="2:1">
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Número de la tarjeta</mat-label>
+                    <input formControlName="numeroTarjeta" matInput [type]="hide" required type="text">
+                    <mat-error *ngIf="form.get('numeroTarjeta').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>  
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Nombre en la tarjeta</mat-label>
+                    <input formControlName="NombreTarjeta" matInput required [type]="hide" type="text">
+                    <mat-error *ngIf="form.get('NombreTarjeta').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>  
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha de expiración</mat-label>
+                    <input formControlName="FechaExpiracion" matInput [type]="hide" required type="text">
+                    <mat-error *ngIf="form.get('FechaExpiracion').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>            
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label># de verificación</mat-label>
+                    <input formControlName="NumeroDeVerificacion" matInput required [type]="hide" type="text">
+                    <mat-error *ngIf="form.get('NumeroDeVerificacion').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field> 
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Cuotas</mat-label>
+                    <select matNativeControl required formControlName="cuotas">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option> 
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="24">24</option>
+                      <option value="36">36</option>
+                      <option value="72">72</option>
+                    </select>
+                    <mat-error *ngIf="form.get('cuotas').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-card-actions>
+                    <button [disabled]="form.invalid" mat-raised-button type="submit">Finalizar Compra</button>
+                  </mat-card-actions>    
+                </mat-grid-tile>
+              </mat-grid-list>     
+            </mat-card-content>
+          </mat-card>
+        </form>
     </mat-step>
 </mat-horizontal-stepper>
 

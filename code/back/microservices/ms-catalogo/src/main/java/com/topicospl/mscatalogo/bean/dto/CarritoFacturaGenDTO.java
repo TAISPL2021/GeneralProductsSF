@@ -1,8 +1,5 @@
 package com.topicospl.mscatalogo.bean.dto;
 
-import java.time.LocalDate;
-import java.util.Hashtable;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -16,15 +13,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CarritoOutDTO {
+public class CarritoFacturaGenDTO {
 
-	@JsonProperty("usuario")
-	private String userName;
-
-	private LocalDate fecha;
+	@JsonProperty("factura-id")
+	private String facturaNumero;
 	
-	@JsonProperty("carrito-id")
-	private Long carritoId;
-
-	private Hashtable<Long, CarritoProductoDTO> productos;
+	@JsonProperty("factura-msg")
+	private String facturaMsg;
+	
+	@JsonProperty("factura-resultado")
+	private String facturaEstado;
 }

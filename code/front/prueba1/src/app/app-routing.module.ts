@@ -32,8 +32,16 @@ const routes: Routes = [
         loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
       },
       {
+        path : 'updateuser',
+        loadChildren: () => import('./UpdateUser/update.module').then(m => m.UpdateModule)
+      },
+      {
         path : 'login',
         loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+      },
+      {
+        path : 'cart',
+        loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
       },
       {
         path : 'GestionPerfil',

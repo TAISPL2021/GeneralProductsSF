@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.topicospl.mscatalogo.bean.Carrito;
+import com.topicospl.mscatalogo.bean.dto.CarritoFacturaGenDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoOutDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoProductoDTO;
+import com.topicospl.mscatalogo.proxy.AdministracionProxy;
 import com.topicospl.mscatalogo.repository.CarritoRepository;
 import com.topicospl.mscatalogo.service.ICarritoService;
 
@@ -19,6 +21,9 @@ public class CarritoService implements ICarritoService {
 
 	@Autowired
 	private CarritoRepository carritoRepository;
+	
+	@Autowired
+	private AdministracionProxy administracionProxy;
 
 	@Override
 	public ResponseEntity<?> statusCarrito(String userName) {
@@ -31,15 +36,23 @@ public class CarritoService implements ICarritoService {
 	public ResponseEntity<?> incluirCarrito(CarritoInDTO carrito) {
 
 		Hashtable<Long, CarritoProductoDTO> hProducts = new Hashtable<>();
-
+		
+		var carritoIdGen = 1L +  (Math.random() * (100000000L - 1L));
+		
+		var carritoId = carrito.getCarritoId()==null ? carritoIdGen : carrito.getCarritoId();
+		carrito.setCarritoId((long) carritoId); 
+		
 		carritoRepository.save(new Carrito(carrito));
-		var listCarrito = carritoRepository.findByUserName(carrito.getUserName());
+		//var listCarrito = carritoRepository.findByUserName(carrito.getUserName());
+		
+		var listCarrito = carritoRepository.findByCarritoId(carrito.getCarritoId());
 		
 		var carritoViewOut = new CarritoOutDTO();
 		carritoViewOut.setUserName(carrito.getUserName());
-		carritoViewOut.setFecha(listCarrito.size() < 0 ? null : listCarrito.get(0).getFechaCarrito());
+		carritoViewOut.setFecha(listCarrito.size() == 0 ? null : listCarrito.get(0).getFechaCarrito());
+		carritoViewOut.setCarritoId(carrito.getCarritoId());
 
-		listCarrito.forEach(value -> {
+		listCarrito.forEach(value -> { 
 
 			if(hProducts.containsKey(value.getProductoCode())) {
 				var tempProducto = hProducts.get(value.getProductoCode());
@@ -56,6 +69,19 @@ public class CarritoService implements ICarritoService {
 		carritoViewOut.setProductos(hProducts);
 
 		return new ResponseEntity<>(carritoViewOut, HttpStatus.OK);
+	}
+
+	@Override 
+	public ResponseEntity<?> checkOutCarrito(Long carritoId) {
+
+		var listCarritoByID = carritoRepository.findByCarritoId(carritoId); 
+		
+		var responseMsAdministracion = administracionProxy.facturaGenerator(listCarritoByID);
+
+		System.out.println("RESPONSE BODY : " +responseMsAdministracion.getBody());
+		carritoRepository.removeCacheCarrito(carritoId);
+		
+		return new ResponseEntity<>(new CarritoFacturaGenDTO(), HttpStatus.OK);
 	}
 
 }

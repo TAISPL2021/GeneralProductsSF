@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import {ProductosService} from './../../../core/services/products/productos.service';
 import {Product} from '../../../core/entity/product.model';
+import {Carrito} from '../../../core/entity/carrito.model';
 import {CartService} from './../../../core/services/cart/cart.service'
 import {environment} from '../../../../environments/environment';
 
@@ -13,6 +14,7 @@ import {environment} from '../../../../environments/environment';
 export class ProductDetailComponent implements OnInit {
 
   product: Product;
+  
   programacion: any;
   version: string;
   productsMock: Product[] =[
@@ -54,7 +56,16 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addCart(): any{
-    this.cartService.addCart(this.product);    
+
+    var carrito: Carrito ={
+      userName : "usuario",
+      producto_id : this.product.id,
+      producto_nombre : this.product.title,
+      producto_detalle : this.product.description,
+      producto_cantidad : 1,
+    }
+
+    this.cartService.addCart(carrito);    
     /*this.productClicked.emit(this.product.id);*/
   }
 

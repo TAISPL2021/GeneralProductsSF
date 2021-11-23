@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   login: Login
   hide = true;
+  mock = true;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private cookieService: CookieService) { }
 
@@ -35,10 +36,16 @@ export class LoginComponent implements OnInit {
       this.login = this.form.value;
       console.log(this.login);
 
+      if(this.mock == true){
+        var json = '{"token":"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJGbW9yZW5vVDI1IiwiaWF0IjoxNjM1MzQ0NTA4LCJleHAiOjE2MzUzODA1MDh9.HWWmXBV3mrlDRilqepnobmXh7BhoHtasaUaPYwFbm3fgsjNUaP1KaH2A2q0eUa678vqBkM3-e0JhTN3Ux60d_Q","bearer": "Bearer","nombreUsuario": "FmorenoT25","authorities": [{"authority": "USER"}]}'
+        var login=JSON.parse(json);
+        this.cookieService.set("userName", this.login.userName);
+        this.cookieService.set("rol", login.authorities[0].authority);
+        this.router.navigate(['/order']);
 
+      }
       this.loginService.getLogin(this.login).subscribe( (login) => {
         console.log(login.authorities[0].authority);
-        
         if (login.hasOwnProperty('nombreUsuario')) {
           this.cookieService.set("userName", this.login.userName);
           this.cookieService.set("rol", login.authorities[0].authority);
@@ -47,7 +54,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['./admin/inventario']);
           }
           else {
-            this.router.navigate(['/products']);
+            this.router.navigate(['/order']);
           }
         }
         else {

@@ -29,6 +29,8 @@ public class Carrito {
 	
 	private String userName;
 	
+	private Long carritoId;
+	 
 	private LocalDate fechaCarrito;
 	
 	private Long productoCode;
@@ -46,5 +48,6 @@ public class Carrito {
 		this.productoCantidadComprar = carrito.getProductoCantidadComprar();
 		this.productoNombre = carrito.getProductoNombre();
 		this.productoDetalle = carrito.getProductoDetalle();
+		this.carritoId = carrito.getCarritoId();
 	}
 }

@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Product} from '../../../core/entity/product.model';
 import {CartService} from './../../../core/services/cart/cart.service'
 import {environment} from '../../../../environments/environment';
+import {Carrito} from '../../../core/entity/carrito.model';
 
 @Component({
     selector : 'app-product',
@@ -22,7 +23,15 @@ export class ProductComponent
         this.version = environment.Version;
     }
     addCart(): any{
-        this.cartService.addCart(this.product);
+        var carrito: Carrito ={
+            userName : "usuario",
+            producto_id : this.product.id,
+            producto_nombre : this.product.title,
+            producto_detalle : this.product.description,
+            producto_cantidad : 1,
+        }
+      
+        this.cartService.addCart(carrito);
         
         /*this.productClicked.emit(this.product.id);*/
     }

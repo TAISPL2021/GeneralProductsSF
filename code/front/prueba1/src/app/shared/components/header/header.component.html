@@ -8,20 +8,23 @@
                     <span> Versión {{version}}</span>
                     <a mat-button routerLink="/home" routerLinkActive="active">Inicio</a>
                     <a mat-button *ngIf="programacion.VisualizacionProductos == true" routerLink="/products" routerLinkActive="active">Productos</a>
-                    <a mat-button *ngIf="programacion.RegistroUsuario == true" routerLink="/register" routerLinkActive="active">Registro</a>
-                    <a mat-button *ngIf="programacion.InicioSesion == true" routerLink="/login" routerLinkActive="active">Login</a>
                     <a mat-button *ngIf="programacion.GestionPerfil == true" [matMenuTriggerFor]="reportes">Gestion de perfil</a>
                     <mat-menu #reportes="matMenu" xPosition="after">
-                      <button mat-menu-item routerLink="GestionPerfil/actualizar">Actualizar Datos</button>
-                      <button mat-menu-item routerLink="/home">Eliminar Cuenta</button>
+                      <button mat-menu-item *ngIf="programacion.GestionPerfil == true" routerLink="GestionPerfil/actualizar">Actualizar Datos</button>
+                      <button mat-menu-item *ngIf="programacion.GestionPerfil == true" routerLink="/home">Eliminar Cuenta</button>
+                      <a mat-menu-item *ngIf="programacion.InicioSesion == true" routerLink="/login" routerLinkActive="active">Login</a>
+                      <a mat-menu-item *ngIf="programacion.RegistroUsuario == true" routerLink="/register" routerLinkActive="active">Registro</a>
+                      <a *ngIf="sesion == true" mat-raised-button  (click)="CloseSession()"> cerrar sesión  </a>
                     </mat-menu>
                 </nav>
                 
             </div>
-            <a *ngIf="programacion.ComprarProducto == true" mat-raised-button [matBadge] ="total2$ | async" matBadgeColor="warn" routerLink="/order">
+            
+            <a *ngIf="programacion.ComprarProducto == true" mat-raised-button [matBadge] ="total2$ | async" matBadgeColor="warn" routerLink="/cart">
                 card 
                 <mat-icon>shopping_cart</mat-icon>
             </a>
+            
         </mat-toolbar-row>
     </mat-toolbar>    
 </div>

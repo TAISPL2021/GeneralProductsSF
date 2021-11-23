@@ -24,6 +24,9 @@ public interface IProductoController {
 	@GetMapping("/producto/{query}")
 	public ResponseEntity<List<ProductoDTO>> findBySearch(@PathVariable String query);
 	
+	@GetMapping("/producto/info/{query}")
+	public ResponseEntity<?> findByCode(@PathVariable Long query);
+	
 	@GetMapping("/productos")
 	public ResponseEntity<List<ProductoDTO>> findAllActive();
 	
