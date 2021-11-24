@@ -41,14 +41,14 @@ export class PedidosListComponent implements OnInit {
       },
       Carrito : [
         {
-          userName : "pepito",
+          id : 1,
           producto_id : "1",
           producto_nombre : "sandwiches",
           producto_detalle : "detaller",
           producto_cantidad : 1,
         },
         {
-          userName : "pepito",
+          id : 2,
           producto_id : "2",
           producto_nombre : "sandwiches de pollo",
           producto_detalle : "detalle 2",

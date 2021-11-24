@@ -5,6 +5,8 @@ import {Product} from '../../../core/entity/product.model';
 import {Carrito} from '../../../core/entity/carrito.model';
 import {CartService} from './../../../core/services/cart/cart.service'
 import {environment} from '../../../../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
+import {CookieCart} from '../../../shared/crosscuting/CookieCart';
 
 @Component({
   selector: 'app-product-detail',
@@ -40,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
     }
   ];
 
-  constructor(private route: ActivatedRoute, private productsService: ProductosService, private cartService: CartService) { 
+  constructor(private route: ActivatedRoute, private productsService: ProductosService, private cartService: CartService, private cookieCart: CookieCart) { 
     this.programacion = environment.programacion;
     this.version = environment.Version;
   }
@@ -56,17 +58,22 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addCart(): any{
-
     var carrito: Carrito ={
-      userName : "usuario",
+      id : 0,
       producto_id : this.product.id,
       producto_nombre : this.product.title,
       producto_detalle : this.product.description,
       producto_cantidad : 1,
     }
 
-    this.cartService.addCart(carrito);    
+    this.cartService.addCart(carrito).subscribe(cart =>
+    {
+        console.log();
+        carrito.id = cart.id;
+        carrito = cart;
+        this.cookieCart.addCookie(carrito);
+        
+    });  
     /*this.productClicked.emit(this.product.id);*/
   }
-
 }
