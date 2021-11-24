@@ -137,4 +137,20 @@ public class AuthController implements IAuthController {
         return new ResponseEntity<>(new Message("usuario eliminado"), HttpStatus.OK);
    
     }
+
+	@Override
+	public ResponseEntity<?> getBy(String name) {
+		
+		var tmpUserMail = iUserService.getByUserMail(name);
+		System.out.println("MAIL  - " + tmpUserMail.toString());
+		if(tmpUserMail.isPresent())
+			return new ResponseEntity<>(tmpUserMail.get(),HttpStatus.OK);
+		
+		var tmpUserName = iUserService.getByUserName(name);
+		System.out.println("UserName  - " + tmpUserName.toString());
+		if(tmpUserName.isPresent())
+			return new ResponseEntity<>(tmpUserName.get(),HttpStatus.OK);
+		
+		return new ResponseEntity<>("",HttpStatus.CONFLICT);
+	}
 }

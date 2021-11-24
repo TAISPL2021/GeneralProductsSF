@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.topicospl.mscatalogo.bean.Carrito;
-import com.topicospl.mscatalogo.bean.dto.CarritoFacturaGenDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoOutDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoProductoDTO;
@@ -49,7 +48,7 @@ public class CarritoService implements ICarritoService {
 		
 		var carritoViewOut = new CarritoOutDTO();
 		carritoViewOut.setUserName(carrito.getUserName());
-		carritoViewOut.setFecha(listCarrito.size() == 0 ? null : listCarrito.get(0).getFechaCarrito());
+		carritoViewOut.setFecha(listCarrito.isEmpty() ? null : listCarrito.get(0).getFechaCarrito());
 		carritoViewOut.setCarritoId(carrito.getCarritoId());
 
 		listCarrito.forEach(value -> { 
@@ -74,14 +73,14 @@ public class CarritoService implements ICarritoService {
 	@Override 
 	public ResponseEntity<?> checkOutCarrito(Long carritoId) {
 
-		var listCarritoByID = carritoRepository.findByCarritoId(carritoId); 
+		var listCarritoByID = carritoRepository.findByCarritoId(carritoId);    
 		
 		var responseMsAdministracion = administracionProxy.facturaGenerator(listCarritoByID);
 
 		System.out.println("RESPONSE BODY : " +responseMsAdministracion.getBody());
 		carritoRepository.removeCacheCarrito(carritoId);
 		
-		return new ResponseEntity<>(new CarritoFacturaGenDTO(), HttpStatus.OK);
+		return new ResponseEntity<>(responseMsAdministracion.getBody(), HttpStatus.OK);
 	}
 
 }

@@ -3,11 +3,15 @@ package com.topicospl.msadmistracion.bean;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,7 +37,9 @@ public class Factura {
 	
 	private String facturaDireccionCliente;
 	
-	@ElementCollection()
+	@ElementCollection(targetClass = Producto.class)
+	@Column(name = "lProductos" )
+	@Cascade(CascadeType.ALL)
 	private List<Producto> productos;
 	
 	private Double facturaTotal;

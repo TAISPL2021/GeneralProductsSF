@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
+import com.topicospl.mscatalogo.bean.dto.PagoDTO;
 
 @RequestMapping("/carrito")
 public interface ICarrito {
@@ -19,5 +20,6 @@ public interface ICarrito {
 	public ResponseEntity<?> addProductoIntoCarrito(@RequestBody CarritoInDTO carrito);
 	
 	@PostMapping("/checkout/{carritoId}")
-	public ResponseEntity<?> checkOutCarrito(@PathVariable("carritoId") Long carritoId);
+	public ResponseEntity<?> checkOutCarrito(@PathVariable("carritoId") Long carritoId, @RequestBody PagoDTO pagoDTO);
+	
 }

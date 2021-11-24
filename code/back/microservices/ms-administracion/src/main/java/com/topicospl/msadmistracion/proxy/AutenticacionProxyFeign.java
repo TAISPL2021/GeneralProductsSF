@@ -8,6 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.topicospl.msadmistracion.bean.User;
@@ -21,4 +22,7 @@ public interface AutenticacionProxyFeign {
 	
     @GetMapping("/users")
     public List<User> getAll();
+    
+    @GetMapping("/users/{uName}")
+    public ResponseEntity<User> getBy(@PathVariable("uName") String uName);
 }

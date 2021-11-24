@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
+import com.topicospl.mscatalogo.bean.dto.PagoDTO;
 import com.topicospl.mscatalogo.controller.ICarrito;
 import com.topicospl.mscatalogo.service.ICarritoService;
 
@@ -25,7 +26,7 @@ public class CarritoController implements ICarrito {
 	}
 
 	@Override
-	public ResponseEntity<?> checkOutCarrito(Long carritoId) {
+	public ResponseEntity<?> checkOutCarrito(Long carritoId, PagoDTO pagoDTO) {
 		return carritoService.checkOutCarrito(carritoId);
 	}
 

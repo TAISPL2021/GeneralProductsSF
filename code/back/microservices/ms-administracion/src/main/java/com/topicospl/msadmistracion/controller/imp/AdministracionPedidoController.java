@@ -15,7 +15,7 @@ public class AdministracionPedidoController implements IAdministracionPedidoCont
 	}
 
 	@Override
-	public ResponseEntity<?> updateStatePedido() {
+	public ResponseEntity<?> updateStatePedido(Long idPedido) {
 		// TODO Auto-generated method stub
 		return null;
 	}

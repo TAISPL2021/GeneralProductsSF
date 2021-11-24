@@ -25,6 +25,9 @@ public interface IAuthController {
 
     @GetMapping("/users")
     List<User> getAll();
+    
+    @GetMapping("/users/{uName}")
+    ResponseEntity<?> getBy(@PathVariable("uName") String name);
 
     @PutMapping("/edit")
     ResponseEntity<?> edit(@Valid @RequestBody EditUserDTO editUser, BindingResult bindingResult);

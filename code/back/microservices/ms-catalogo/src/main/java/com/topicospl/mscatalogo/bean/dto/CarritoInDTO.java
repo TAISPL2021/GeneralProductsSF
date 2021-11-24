@@ -18,18 +18,18 @@ public class CarritoInDTO {
 	@JsonProperty("userName")
 	private String userName;
 	
-	@JsonProperty("carrito-id")
+	@JsonProperty("carrito_id")
 	private Long carritoId;
 	
-	@JsonProperty("producto-id")
+	@JsonProperty("producto_id")
 	private Long productoCode;
 	
-	@JsonProperty("producto-nombre")
+	@JsonProperty("producto_nombre")
 	private String productoNombre;
 	
-	@JsonProperty("producto-detalle")
+	@JsonProperty("producto_detalle")
 	private String productoDetalle;
 	
-	@JsonProperty("producto-cantidad")
+	@JsonProperty("producto_cantidad")
 	private Long productoCantidadComprar;
 }
