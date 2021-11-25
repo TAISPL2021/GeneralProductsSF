@@ -14,7 +14,7 @@ import { ReportePromocionesComponent } from './components/reportePromociones/rep
 import { MatMenuModule } from '@angular/material/menu';
 import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
 import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
-
+import { UsuariosListComponent } from './components/usuarios-list/usuarios-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { PromotionListComponent } from './components/promotion-list/promotion-li
     ReporteOrdenesComponent,
     ReporteProductosComponent,
     ReportePromocionesComponent,
-    PedidosListComponent
+    PedidosListComponent,
+    UsuariosListComponent
   ],
   imports: [
     CommonModule,
