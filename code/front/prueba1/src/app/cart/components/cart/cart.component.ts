@@ -41,7 +41,6 @@ export class CartComponent implements OnInit {
 
   GoToPagar(): void{
     const cookieExists: boolean = this.cookieService.check('userName');
-    alert(cookieExists);
     if(cookieExists){
       this.router.navigate(['./order']);
     }

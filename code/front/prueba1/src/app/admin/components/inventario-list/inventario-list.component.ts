@@ -33,6 +33,7 @@ export class InventarioListComponent implements OnInit {
       console.log(this.products);
       this.products = products;
       this.changeDetectorRefs.detectChanges();
+      this.router.navigate(['/admin/pedidos']);
     });
   }
 

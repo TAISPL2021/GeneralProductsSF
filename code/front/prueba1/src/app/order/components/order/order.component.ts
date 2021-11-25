@@ -7,6 +7,8 @@ import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {OrderService} from './../../../core/services/order/order.service';
 import { CookieCart } from 'src/app/shared/crosscuting/CookieCart';
+import { FacturaResponse } from 'src/app/core/entity/FacturaResponse.model';
+import { MatStepper } from '@angular/material/stepper';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -18,8 +20,29 @@ export class OrderComponent implements OnInit {
   hide = true;
   form: FormGroup;
   order: Order;
+  factura: FacturaResponse = {
+    id: 0,
+    facturaCodigo: 0,
+    facturaFecha: "",
+    facturaNombreCliente: "",
+    facturaCorreoCliente: "",
+    facturaDireccionCliente: "",
+    productos: [
+      {
+        productoCode: 0,
+        productoNombre: "",
+        productoDetalle: "",
+        productoPrecio: 0,
+        productoCantidad: 0,
+        total: 0
+      }
+        
+    ],
+    facturaTotal: 0
+};
   carrito: Carrito[];
   displayedColumns: string[] = ['producto_id', 'producto_nombre', 'producto_cantidad'];
+  displayedColumnsFactura: string[] = ['productoCode', 'productoNombre', 'productoCantidad', 'total'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +69,9 @@ export class OrderComponent implements OnInit {
     console.log(this.carrito);
     
   }
-
+  goBill(stepper: MatStepper): void{
+      stepper.next();
+  }
   SavePago($event): any{
     event.preventDefault();
     if (this.form.valid){
@@ -54,11 +79,11 @@ export class OrderComponent implements OnInit {
       const order : Order = this.form.value;
       order.userName = this.cookieCart.getCookieUser();
       console.log(order);
-      this.orderService.BuyNow(order,idcarrito).subscribe( (neworder) => {
-        console.log(neworder);
+      this.orderService.BuyNow(order,idcarrito).subscribe( (facturaresponse) => {
+        console.log(facturaresponse);
+        this.factura = facturaresponse;
         alert('Pago creado!');
         this.cookieCart.destroyCart();
-        this.router.navigate(['/product']);
       });
     }
     else{

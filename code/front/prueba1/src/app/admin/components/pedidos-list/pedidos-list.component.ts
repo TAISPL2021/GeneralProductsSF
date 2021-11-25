@@ -78,8 +78,14 @@ export class PedidosListComponent implements OnInit {
   }
 
   updatePedido(idpedido: number): any{
-    alert("entro");
-    this.pedidosService.updateProduct(idpedido);
+    
+    this.pedidosService.updateProduct(idpedido).subscribe(pedidos =>
+      {
+        console.log(pedidos);
+        alert("Pedido eliminado correctamente");    
+        this.changeDetectorRefs.detectChanges();
+      });
+    
   }
 
 }

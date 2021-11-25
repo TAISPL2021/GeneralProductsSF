@@ -1,4 +1,4 @@
-<mat-horizontal-stepper>
+<mat-horizontal-stepper #stepper>
     <mat-step>    
         <mat-card>
           <mat-card-title>Sus Productos</mat-card-title>
@@ -31,7 +31,7 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Pago</ng-template>    
-        <form [formGroup]="form" (ngSubmit)="SavePago($event)">
+        <form [formGroup]="form" (ngSubmit)="SavePago($event); goBill(stepper)">
           <mat-card>
               <mat-card-header>
                   <h4><b>Metodo de pagos</b></h4>
@@ -99,5 +99,70 @@
           </mat-card>
         </form>
     </mat-step>
+    <mat-step>    
+      <mat-card>
+        <mat-card-title>
+          <h4><b>Factura</b></h4>
+        </mat-card-title>
+        
+        
+        <mat-card-subtitle>
+          <mat-grid-list cols="2" rowHeight="80px">
+            <mat-grid-tile>
+              <h4><b>Codigo:</b>{{factura.facturaCodigo}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile><h4>
+              <b>Fecha:</b>{{factura.facturaFecha}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h4><b>Cliente:</b>{{factura.facturaNombreCliente}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h4><b>Correo:</b>{{factura.facturaCorreoCliente}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h4><b>Total:</b>{{factura.facturaTotal}}</h4>
+            </mat-grid-tile>
+          </mat-grid-list>
+         
+          
+          
+          
+          
+          <br>
+          <mat-divider></mat-divider>
+          <table mat-table [dataSource]="factura.productos" class="mat-elevation-z8 demo-table">
+            <!-- Weight Column -->
+           <ng-container matColumnDef="productoCode">
+             <th mat-header-cell *matHeaderCellDef> Id </th>
+             <td mat-cell *matCellDef="let element"> {{element.productoCode}} </td>
+           </ng-container>
+        
+           <!-- Position Column -->
+           <ng-container matColumnDef="productoNombre">
+             <th mat-header-cell *matHeaderCellDef> Nombre </th>
+             <td mat-cell *matCellDef="let element"> {{element.productoNombre}} </td>
+           </ng-container>
+         
+           <!-- Name Column -->
+           <ng-container matColumnDef="productoCantidad">
+            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.productoCantidad}} </td>
+          </ng-container>
+
+           <!-- Name Column -->
+           <ng-container matColumnDef="total">
+             <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+             <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+           </ng-container>
+           
+           <tr mat-header-row *matHeaderRowDef="displayedColumnsFactura"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedColumnsFactura;"></tr>
+          </table>
+          
+        </mat-card-subtitle>
+      </mat-card>
+      
+  </mat-step>
 </mat-horizontal-stepper>
 

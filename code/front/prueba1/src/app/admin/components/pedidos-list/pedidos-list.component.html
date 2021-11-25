@@ -31,7 +31,7 @@
     <ng-container matColumnDef="Enviado">
         <th mat-header-cell *matHeaderCellDef> Enviar Pedido</th>
         <td  mat-cell *matCellDef="let element">
-            <button mat-mini-fab color="primary" (click)="updatePedido(element.id)">
+            <button mat-mini-fab color="primary" (click)="updatePedido(element.id);">
                 <mat-icon>forward</mat-icon>
             </button>    
         </td>
@@ -44,7 +44,6 @@
                     <mat-icon>note</mat-icon>
                 </button> 
             </div>
-            
         </td>
     </ng-container>
     <ng-container matColumnDef="expandedDetail">

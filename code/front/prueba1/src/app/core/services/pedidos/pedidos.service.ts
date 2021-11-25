@@ -29,7 +29,8 @@ export class PedidosService {
 
   updateProduct(idpedidos: number): any
   {
-    return this.http.put(`${environment.url_api}/administracion/pedido/${idpedidos}`,"");
+    console.log(idpedidos);
+    return this.http.put(`${environment.url_api}/administracion/pedido/${idpedidos}`,null);
   }
 
 }
