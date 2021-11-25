@@ -5,13 +5,20 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.topicospl.msreporte.bean.Factura;
+import com.topicospl.msreporte.bean.Producto;
+import com.topicospl.msreporte.bean.dto.OrdersReportDTO;
+import com.topicospl.msreporte.proxy.AdminProxy;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.topicospl.msreporte.bean.ProductoDTO;
@@ -19,7 +26,6 @@ import com.topicospl.msreporte.bean.PromocionDTO;
 import com.topicospl.msreporte.bean.dto.ProductsReportsDTO;
 import com.topicospl.msreporte.bean.dto.PromReportsDTO;
 import com.topicospl.msreporte.proxy.ProductProxy;
-import com.topicospl.msreporte.proxy.PromocionProxy;
 import com.topicospl.msreporte.service.IReportService;
 
 @Service
@@ -28,7 +34,7 @@ public class ReportService implements IReportService {
 	@Autowired
 	private ProductProxy reporteProxy;
 	@Autowired
-	private PromocionProxy promocionProxy;
+	private AdminProxy promocionProxy;
 
 	private ModelMapper modelMapper = new ModelMapper();
 	Date date = new Date();
@@ -63,6 +69,36 @@ public class ReportService implements IReportService {
 		}.getType();
 		List<PromReportsDTO> report = modelMapper.map(prom, listType);
 	return report;
+	}
+
+	@Override
+	public List<OrdersReportDTO> getListOrders(boolean monthly) {
+		List<Factura> listFacturas = Arrays.asList(modelMapper.map(promocionProxy.listFactura().getBody(),Factura[].class)) ;
+		 List<OrdersReportDTO> listOrders = new ArrayList<>();
+		List<Producto> productosAdd = new ArrayList<>();
+		for (Factura listFac:listFacturas ) {
+			for (Producto prod:listFac.getProductos() ) {
+				if (!productosAdd.contains(prod)) {
+					OrdersReportDTO order = new OrdersReportDTO();
+					order.setFacturaCodigo(listFac.getFacturaCodigo());
+					order.setFacturaFecha(listFac.getFacturaFecha());
+					order.setFacturaNombreCliente(listFac.getFacturaNombreCliente());
+					order.setCantidad(1);
+					order.setNombreProduct(prod.getProductoNombre());
+					order.setPriceProducto(prod.getProductoPrecio());
+					order.setProductId(prod.getProductoCode());
+					listOrders.add(order);
+					System.out.println("hola");
+				} else {
+					for (OrdersReportDTO orders : listOrders) {
+						if (orders.getProductId() == prod.getId()) {
+							orders.setCantidad(orders.getCantidad() + 1);
+						}
+					}
+				}
+			}
+		}
+		return listOrders;
 	}
 
 }

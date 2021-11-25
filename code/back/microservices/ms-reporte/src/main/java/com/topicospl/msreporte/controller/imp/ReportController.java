@@ -29,7 +29,7 @@ public class ReportController implements IReportController {
 
     @Override
     public ResponseEntity<?> getOrderReport(boolean monthly) {
-        return null;
+        return (reportService.getListOrders(false).isEmpty())? new ResponseEntity<>(new Message("No hay productos en el inventario"), HttpStatus.BAD_REQUEST): new ResponseEntity<>(reportService.getListOrders(false), HttpStatus.OK);
     }
 
     @Override
