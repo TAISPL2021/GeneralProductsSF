@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,11 +16,29 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.iterable.S3Objects;
+import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ObjectListing;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class derivacionTAIS {
 
@@ -78,6 +97,7 @@ public class derivacionTAIS {
 				Files.writeString(Path.of(fileEnviromentVariabilidad.getPath()), content);
 				
 				cmd();
+				uploadS3();
 			}
 
 			comparator = tmpStringConfig.equals(tmpConfigIntermedio);
@@ -90,6 +110,7 @@ public class derivacionTAIS {
 				Files.writeString(Path.of(fileEnviromentVariabilidad.getPath()), content);
 
 				cmd();
+				uploadS3();
 
 			}
 
@@ -103,6 +124,7 @@ public class derivacionTAIS {
 				Files.writeString(Path.of(fileEnviromentVariabilidad.getPath()), content);
 				
 				cmd();
+				uploadS3();
 
 			}
 
@@ -111,10 +133,43 @@ public class derivacionTAIS {
 		}
 	}
 
-	private static void cmd() {
-		String comando = "cmd /c start cmd.exe /K \" cd "+PATH_FRONT+" && ng build && exit";
+	private static void uploadS3() throws IOException {
+		  AWSCredentials credentials = new BasicAWSCredentials(
+	                "AKIATUUWEDXK3X3Q76ZH", 
+	                "I8s0zFjJEYNslvTOnq6l1q8zj6wiN8gBKKtc4n7x");
+	        
+	        AmazonS3 s3client = AmazonS3ClientBuilder.standard()
+	        			.withRegion(Regions.US_EAST_1)
+	        			.withCredentials(new AWSStaticCredentialsProvider(credentials))
+	        			.build();
+	        
+//	        front-aws-app
+//	        List<Bucket> buckets = s3client.listBuckets();
+//	        System.out.println("Your {S3} buckets are:");
+//	        for (Bucket b : buckets) {
+//	            System.out.println("* " + b.getName());
+//	           
+//	        }
+	        
+	        int counter = 0;
+	        File [] fullDirectory = new File(PATH_FRONT +"/dist/prueba1").listFiles();
+
+	        for (File file : fullDirectory) {
+	            if (file.isFile()) {
+	                System.out.println(file.getName());
+	                counter++;
+	            }
+	        }
+	        System.out.println(counter);
+	}
+	
+	private static void cmd() throws IOException {
+		FileUtils.deleteDirectory( new File(PATH_FRONT +"/dist"));
+		
+		String comando = "cmd /c cmd.exe /K \" cd "+PATH_FRONT+" && ng build && exit";
 		try {
-			Runtime.getRuntime().exec(comando);
+			Runtime.getRuntime().exec(comando).waitFor();
+
 		} catch (Exception ex) {
 			System.out.println("ex: " + ex.getMessage());
 		}
