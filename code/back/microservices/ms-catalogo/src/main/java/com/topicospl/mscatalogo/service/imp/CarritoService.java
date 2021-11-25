@@ -1,6 +1,8 @@
 package com.topicospl.mscatalogo.service.imp;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.topicospl.mscatalogo.bean.Carrito;
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoOutDTO;
+import com.topicospl.mscatalogo.bean.dto.CarritoProdsDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoProductoDTO;
 import com.topicospl.mscatalogo.bean.dto.FacturaDTO;
 import com.topicospl.mscatalogo.bean.dto.PagoDTO;
@@ -67,7 +70,11 @@ public class CarritoService implements ICarritoService {
 			
 		});
 		
-		carritoViewOut.setProductos(hProducts);
+		List<CarritoProdsDTO> listProds = new ArrayList<>();
+		
+		hProducts.forEach((k,v)-> listProds.add(new CarritoProdsDTO(k, v.getProductoNombre(),v.getProductoDetalle(),v.getProductoCantidadComprar())));
+		
+		carritoViewOut.setProductos(listProds);
 
 		return new ResponseEntity<>(carritoViewOut, HttpStatus.OK);
 	}
@@ -76,6 +83,8 @@ public class CarritoService implements ICarritoService {
 	public ResponseEntity<?> checkOutCarrito(Long carritoId, PagoDTO pagoDTO) {
 
 		var listCarritoByID = carritoRepository.findByCarritoId(carritoId);    
+		
+		listCarritoByID.forEach(v -> v.setUserName(pagoDTO.getUserName()));
 		
 		var facturaToGen = new FacturaDTO();
 		facturaToGen.setCarritoCheckOut(listCarritoByID);

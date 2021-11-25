@@ -23,16 +23,24 @@ public class AdministracionPromocionService implements IAdministracionPromocionS
 	private PromocionRepository promocionRepository;
 
 	@Override
-	public ResponseEntity<?> getAllRecords(Boolean filter) {
+	public ResponseEntity<?> getAllRecords(int filter) {
 
-		List<?> convert;
+		List<?> convert = null;
 		
-		if (filter) {
-			convert = promocionRepository.findByEstado(true).stream().map(PromocionDTO::new).collect(Collectors.toList());
-		}else {
-			convert = promocionRepository.findAll().stream().map(PromocionDTO::new).collect(Collectors.toList());
+		switch(filter){
+			case 1:
+				convert = promocionRepository.findByEstado(true).stream().map(PromocionDTO::new).collect(Collectors.toList());
+				break;
+			case 2:
+				convert = promocionRepository.findByEstado(false).stream().map(PromocionDTO::new).collect(Collectors.toList());
+				break;
+			case 3:
+				convert = promocionRepository.findAll().stream().map(PromocionDTO::new).collect(Collectors.toList());
+				break;
+			
 		}
 		
+
 		var response = new PromocionResponse();
 			response.setCode(String.valueOf(HttpStatus.OK.value()));
 			response.setStatus(HttpStatus.OK.name());

@@ -1,17 +1,15 @@
 package co.edu.javeriana;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.Properties;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,28 +24,21 @@ import org.xml.sax.SAXException;
 public class derivacionTAIS {
 
 	private static final String FILENAME = "../../Variabilidad/ArbolVariabilidad/configs/default.xml";
+	private static final String ENVIROMENT = "../../code/front/prueba1/src/environments/environment.ts";
+	private static final String INTERNAL_ENVIROMENT = "../DerivacionTAIS/src/main/resources/enviroments/";
+	private static final String PATH_FRONT = "../front/prueba1";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SAXException {
 
-		  List<String> tmpString;
-		  List<String> tmpStringConfig = new ArrayList<>();
-		
-		 String fileName = "../DerivacionTAIS/src/main/resources/BProductTemplate";
-		    File file = new File(fileName);
-		 
-		    try (Stream linesStream = Files.lines(file.toPath())) {
-		    	tmpString = (List<String>) linesStream.collect(Collectors.toList());
-		    }
-		
-		System.out.println("Template -> " + tmpString);
-		
-		
+		List<String> tmpStringConfig = new ArrayList<>();
+		List<String> tmpConfigBasico = convertAssets("../DerivacionTAIS/src/main/resources/BProductTemplate");
+		List<String> tmpConfigIntermedio = convertAssets("../DerivacionTAIS/src/main/resources/IProductTemplate");
+		List<String> tmpConfigCompleto = convertAssets("../DerivacionTAIS/src/main/resources/CProductTemplate");
+
 		File fXmlFile = new File(FILENAME);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
-		
-		int counter = 1;
-		
+
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
@@ -61,79 +52,98 @@ public class derivacionTAIS {
 				Node nameNode = nodeMap != null ? nodeMap.getNamedItem("name") : null;
 
 				if (nameNode != null) {
-						Node automatic = nodeMap.getNamedItem("automatic");
-						Node manual = nodeMap.getNamedItem("manual");
-						
-						if (isSelected(automatic, manual)) {
-							tmpStringConfig.add(nameNode.getNodeValue().trim());
-						}
+					Node automatic = nodeMap.getNamedItem("automatic");
+					Node manual = nodeMap.getNamedItem("manual");
+
+					if (isSelected(automatic, manual)) {
+						tmpStringConfig.add(nameNode.getNodeValue().trim());
+					}
 				}
-				
+
 			}
-			
+
 			System.out.println("CLIENTE -> " + tmpStringConfig);
-			
-//			var result = tmpStringConfig.stream().filter(two -> tmpString.stream().anyMatch(one -> one.equals(two))).collect(Collectors.toList());
-			
-			var result = tmpString.stream().filter(two -> tmpStringConfig.stream().anyMatch(one -> one.equals(two))).collect(Collectors.toList());
-			
-			System.out.println(result.size());
-			
+			boolean comparator;
+
+			File fileEnviromentVariabilidad = new File(ENVIROMENT);
+			File fileEnviromentConfig = null;
+
+			comparator = tmpStringConfig.equals(tmpConfigBasico);
+			if (comparator) {
+				System.out.println("Producto Basico Disponible - " + comparator);
+				fileEnviromentConfig = new File(INTERNAL_ENVIROMENT + "environment.p1.ts");
+
+				String content = new String(Files.readAllBytes(Paths.get(fileEnviromentConfig.getPath())));
+
+				Files.writeString(Path.of(fileEnviromentVariabilidad.getPath()), content);
+				
+				cmd();
+			}
+
+			comparator = tmpStringConfig.equals(tmpConfigIntermedio);
+			if (comparator) {
+				System.out.println("Producto Intermedio Disponible - " + comparator);
+				fileEnviromentConfig = new File(INTERNAL_ENVIROMENT + "environment.p2.ts");
+
+				String content = new String(Files.readAllBytes(Paths.get(fileEnviromentConfig.getPath())));
+
+				Files.writeString(Path.of(fileEnviromentVariabilidad.getPath()), content);
+
+				cmd();
+
+			}
+
+			comparator = tmpStringConfig.equals(tmpConfigCompleto);
+			if (comparator) {
+				System.out.println("Producto Completo Disponible - " + comparator);
+				fileEnviromentConfig = new File(INTERNAL_ENVIROMENT + "environment.p3.ts");
+
+				String content = new String(Files.readAllBytes(Paths.get(fileEnviromentConfig.getPath())));
+
+				Files.writeString(Path.of(fileEnviromentVariabilidad.getPath()), content);
+				
+				cmd();
+
+			}
+
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+	private static void cmd() {
+		String comando = "cmd /c start cmd.exe /K \" cd "+PATH_FRONT+" && ng build && exit";
+		try {
+			Runtime.getRuntime().exec(comando);
+		} catch (Exception ex) {
+			System.out.println("ex: " + ex.getMessage());
+		}
+	}
+
 	private static boolean isSelected(Node automatic, Node manual) {
 		return (automatic != null && automatic.getNodeValue().equals("selected"))
 				|| (manual != null && manual.getNodeValue().equals("selected"));
 	}
-	
 
-	// read file from resource's folder.
-	private static InputStream readXmlFileIntoInputStream(final String fileName) {
-		return derivacionTAIS.class.getClassLoader().getResourceAsStream(fileName);
-	}
+	private static List<String> convertAssets(String location) {
 
-	private static Properties leerPropiedades(String archivoPropiedades, String propiedad) {
-		try (InputStream input = new FileInputStream(archivoPropiedades)) {
+		BufferedReader reader;
+		String tmpLine = "";
+		try {
+			reader = new BufferedReader(new FileReader(location));
+			String line = reader.readLine();
+			while (line != null) {
+				tmpLine = line;
+				line = reader.readLine();
+			}
+			reader.close();
 
-			Properties prop = new Properties();
-
-			// load a properties file
-			prop.load(input);
-
-			// get the property value and print it out
-			//System.out.println(prop.getProperty(propiedad));
-			// System.out.println(prop.getProperty("db.user"));
-			// System.out.println(prop.getProperty("db.password"));
-
-			return prop;
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-			return null;
+			return Arrays.asList(tmpLine.split(","));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	}
 
-	private static void modificarPropiedades(String archivoPropiedades, Properties prop, String propiedad,
-			String newValue) {
-		try (FileOutputStream output = new FileOutputStream(archivoPropiedades)) {
-
-			// Properties prop = new Properties();
-
-			prop.setProperty(propiedad, newValue);
-			String Salida = output.toString();
-
-			prop.store(output, null);
-			output.close();
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+		throw new RuntimeException();
 	}
 
 }

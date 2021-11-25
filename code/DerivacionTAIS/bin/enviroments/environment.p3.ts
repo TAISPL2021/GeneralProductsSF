@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   url_api: 'http://apigateway-env.eba-32fcsrbi.us-east-1.elasticbeanstalk.com/',
-  Version: 'P1',
+  Version: 'P3',
   programacion: {
     //autenticacion 
     RegistroUsuario:true,
@@ -10,18 +10,18 @@ export const environment = {
     //catalogo
     VisualizacionProductos:true,
     BuscarProducto:true,
-    ComprarProducto:false,
+    ComprarProducto:true,
     //administracion
     AnadirProducto:true,
     ActualizarProducto:true,
     EliminarProducto:true,
-    GenerarFactura:false,
-    CrearPromocion:false,
-    AdministrarUsuariosRegistrados:false,
-    AdministrarPedidos:false,
+    GenerarFactura:true,
+    CrearPromocion:true,
+    AdministrarUsuariosRegistrados:true,
+    AdministrarPedidos:true,
     //pago electronico
-    GestionarPagos:false,
+    GestionarPagos:true,
     //reporte
-    GestionarReportes:false
+    GestionarReportes:true
   }  
 };

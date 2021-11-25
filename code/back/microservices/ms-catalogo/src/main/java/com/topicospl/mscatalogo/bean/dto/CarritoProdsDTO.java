@@ -11,13 +11,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PagoDTO {
+public class CarritoProdsDTO {
 
-	private String numeroTarjeta;
-	private String NombreTarjeta;
-	private String FechaExpiracion;
-	private String NumeroDeVerificacion;
-	private Long cuotas;
-	private String userName;
+	private Long id;
 	
+	private String productoNombre;
+	
+	private String productoDetalle;
+	
+	private Long productoCantidadComprar;
 }

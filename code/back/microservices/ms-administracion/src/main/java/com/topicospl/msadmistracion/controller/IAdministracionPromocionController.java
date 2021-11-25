@@ -15,7 +15,7 @@ import com.topicospl.msadmistracion.bean.dto.PromocionDTO;
 public interface IAdministracionPromocionController {
 
 	@GetMapping("/promocion")
-	public ResponseEntity<?> promocionList(@RequestHeader("filter") Boolean filter);
+	public ResponseEntity<?> promocionList(@RequestHeader("filter") int filter);
 	
 	@GetMapping("/promocion/{id}")
 	public ResponseEntity<?> promocionById(@PathVariable Long id);

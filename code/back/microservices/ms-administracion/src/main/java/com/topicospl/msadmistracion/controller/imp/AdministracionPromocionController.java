@@ -22,7 +22,7 @@ public class AdministracionPromocionController implements IAdministracionPromoci
 	}
 
 	@Override
-	public ResponseEntity<?> promocionList(Boolean filter) {
+	public ResponseEntity<?> promocionList(int filter) {
 		return promocionService.getAllRecords(filter);
 	}
 

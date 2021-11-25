@@ -18,7 +18,7 @@ public class AdministracionPromocionGenericService implements IAdministracionPro
 	}
 
 	@Override
-	public ResponseEntity<List<PromocionDTO>> getAllRecords(Boolean filter) {
+	public ResponseEntity<List<PromocionDTO>> getAllRecords(int filter) {
 		return new ResponseEntity<>(null,HttpStatus.NOT_IMPLEMENTED);
 	}
 

@@ -1,7 +1,7 @@
 package com.topicospl.mscatalogo.bean.dto;
 
 import java.time.LocalDate;
-import java.util.Hashtable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,5 +26,5 @@ public class CarritoOutDTO {
 	@JsonProperty("carrito_id")
 	private Long carritoId;
 
-	private Hashtable<Long, CarritoProductoDTO> productos;
+	private List<CarritoProdsDTO> productos;
 }
