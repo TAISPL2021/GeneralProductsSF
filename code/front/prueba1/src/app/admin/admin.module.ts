@@ -7,21 +7,24 @@ import { NavComponent } from './components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { InventarioListComponent } from './components/inventario-list/inventario-list.component';
 import { InventarioCreateComponent } from './components/inventario-create/inventario-create.component';
+import { PromotionCreateComponent } from './components/promotion-create/promotion-create.component';
 import { ReporteOrdenesComponent } from './components/reporteOrdenes/reporteOrdenes.component';
 import { ReporteProductosComponent } from './components/reporteProductos/reporteProductos.component';
 import { ReportePromocionesComponent } from './components/reportePromociones/reportePromociones.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
+import { PromotionListComponent } from './components/promotion-list/promotion-list.component';
 
 
 @NgModule({
   declarations: [
     
     NavComponent,
-    
-    
+
     InventarioListComponent,
     InventarioCreateComponent,
+    PromotionListComponent,
+    PromotionCreateComponent,
     ReporteOrdenesComponent,
     ReporteProductosComponent,
     ReportePromocionesComponent,
@@ -33,7 +36,7 @@ import { PedidosListComponent } from './components/pedidos-list/pedidos-list.com
     ReactiveFormsModule,
     MaterialModule,
     LayoutModule,
-    MatMenuModule
+    MatMenuModule,
     
   ]
 })

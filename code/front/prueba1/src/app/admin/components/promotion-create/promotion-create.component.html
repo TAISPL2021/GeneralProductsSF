@@ -1,0 +1,69 @@
+<form [formGroup]="form" (ngSubmit)="SavePromotion($event)">
+    <mat-card>
+        <mat-card-header>
+            <h4><b>{{nombre}}</b></h4>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field class="full-width">
+                        <input formControlName="id" placeholder="Codigo Promocion" matInput type="numeric" />
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nombre" placeholder="Nombre" matInput type="text" disabled/>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field class="full-width">
+                        <input formControlName="porcentaje" placeholder="Porcentaje" matInput type="numeric"/>
+                    </mat-form-field>
+                    <div *ngIf="porcentajeField.errors && porcentajeField.dirty">
+                        <p *ngIf="porcentajeField.hasError('porcentaje_invalid')">El campo debe ser mayor a 01.000</p>
+                        <p *ngIf="porcentajeField.hasError('required')">campo requerido</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field class="full-width">
+                        <textarea formControlName="detalle" placeholder="Descripcion" matInput></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Estado</mat-label>
+                        <mat-select formControlName="estado" placeholder="Estado">
+                          <mat-option value="true">Activo</mat-option>
+                          <mat-option value="false">Inactivo</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select formControlName="tipo" placeholder="Tipo">
+                          <mat-option value="combo">Combo</mat-option>
+                          <mat-option value="pack">Pack</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+    
+</form>

@@ -65,13 +65,14 @@ export class InventarioCreateComponent implements OnInit {
       console.log(this.product);
 
       if(this.id != null ){
-
+        
         product.id = this.id;
         this.productsService.updateProduct(product).subscribe( (newproduct) => {
           console.log(newproduct);
           this.router.navigate(['./admin/inventario']);
         });
       }else{
+
         this.productsService.createProduct(product).subscribe( (newproduct) => {
           console.log(newproduct);
           this.router.navigate(['./admin/inventario']);

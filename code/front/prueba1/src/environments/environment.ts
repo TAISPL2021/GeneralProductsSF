@@ -16,7 +16,7 @@ export const environment = {
     ActualizarProducto:true,
     EliminarProducto:true,
     GenerarFactura:false,
-    CrearPromocion:false,
+    CrearPromocion:true,
     AdministrarUsuariosRegistrados:false,
     AdministrarPedidos:false,
     //pago electronico

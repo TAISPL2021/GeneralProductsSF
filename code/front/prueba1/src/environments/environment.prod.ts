@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  url_api: 'http://msinventario-env.eba-q3dccgva.us-east-1.elasticbeanstalk.com',
+  url_api: 'http://apigateway-env.eba-32fcsrbi.us-east-1.elasticbeanstalk.com',
   Version: 'PROD',
   programacion: {
     //autenticacion 
