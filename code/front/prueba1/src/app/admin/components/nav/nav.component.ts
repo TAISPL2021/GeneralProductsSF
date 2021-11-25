@@ -36,7 +36,5 @@ export class NavComponent {
     console.log(allCookies);
     const cookieExists: boolean = this.cookieService.check('userName');
     this.router.navigate(['/products']);
-    this.router.navigate(['/promotion']);
-    this.router.navigate(['/usuarios']);
   }
 }
