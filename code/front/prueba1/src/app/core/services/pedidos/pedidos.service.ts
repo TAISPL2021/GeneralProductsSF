@@ -27,10 +27,9 @@ export class PedidosService {
     return this.http.get<Pedidos[]>(`${environment.url_api}/administracion/pedido`);
   }
 
-  updateProduct(changes: Partial<Pedidos>): any
+  updateProduct(idpedidos: number): any
   {
-    console.log(JSON.stringify(changes));
-    return this.http.put(`${environment.url_api}/administracion/pedido`, changes);
+    return this.http.put(`${environment.url_api}/administracion/pedido/${idpedidos}`,"");
   }
 
 }

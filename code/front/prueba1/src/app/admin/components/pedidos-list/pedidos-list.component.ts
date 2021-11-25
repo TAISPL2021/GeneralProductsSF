@@ -77,9 +77,9 @@ export class PedidosListComponent implements OnInit {
     });
   }
 
-  deleteProduct(variable : any): any{
-    console.log(this.expandedElement);
-    console.log(variable);
+  updatePedido(idpedido: number): any{
+    alert("entro");
+    this.pedidosService.updateProduct(idpedido);
   }
 
 }
