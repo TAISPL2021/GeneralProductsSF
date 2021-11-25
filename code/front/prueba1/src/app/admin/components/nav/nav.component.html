@@ -8,16 +8,17 @@
     <mat-nav-list>
       <button (click)="CloseSession()" mat-raised-button color="accent">Cerrar Sesión</button>
       <a *ngIf="programacion.AnadirProducto == true || programacion.ActualizarProducto == true" mat-list-item routerLink="/admin/inventario">Administrar Inventario</a>
-      <a *ngIf="programacion.CrearPromocion == true" mat-list-item routerLink="/admin/promotion">Crear Promocion</a>
+      <a *ngIf="programacion.CrearPromocion == true" mat-list-item routerLink="/admin/promotion">Administrar Promocion</a>
       <a *ngIf="programacion.AdministrarPedidos == true" mat-list-item routerLink="/admin/pedidos">Administrar Pedidos</a>
+      <a *ngIf="programacion.AdministrarUsuariosRegistrados == true" mat-list-item routerLink="/admin/usuarios">Administrar Usuarios</a>
       <a *ngIf="programacion.GestionarReportes == true" mat-list-item [matMenuTriggerFor]="reportes">Reportes</a>
+    
       <mat-menu #reportes="matMenu" xPosition="after"> 
         <button mat-menu-item routerLink="/admin/reporteOrdenes">Reporte Ordénes</button>
         <button mat-menu-item routerLink="/admin/reporteProductos">Reporte Productos</button>
         <button mat-menu-item routerLink="/admin/reportePromociones">Reporte Promociones</button>
-      </mat-menu>
+      </mat-menu>     
       
-      <a *ngIf="programacion.AdministrarUsuariosRegistrados == true" mat-list-item routerLink="/admin/usuarios">Administrar Usuarios</a>
       <a mat-list-item routerLink="/home">Salir</a>
     
     </mat-nav-list>
