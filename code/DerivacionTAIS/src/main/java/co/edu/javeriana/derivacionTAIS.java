@@ -135,8 +135,8 @@ public class derivacionTAIS {
 
 	private static void uploadS3() throws IOException {
 		  AWSCredentials credentials = new BasicAWSCredentials(
-	                "AKIATUUWEDXK3X3Q76ZH", 
-	                "I8s0zFjJEYNslvTOnq6l1q8zj6wiN8gBKKtc4n7x");
+	                "", 
+	                "");
 	        
 	        AmazonS3 s3client = AmazonS3ClientBuilder.standard()
 	        			.withRegion(Regions.US_EAST_1)
