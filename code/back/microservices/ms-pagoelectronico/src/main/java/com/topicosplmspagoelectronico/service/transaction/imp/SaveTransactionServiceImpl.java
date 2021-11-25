@@ -20,9 +20,11 @@ public class SaveTransactionServiceImpl implements SaveTransactionService {
         @SuppressWarnings("unused")
 		long start = System.currentTimeMillis();
         Thread.sleep(2000);
-        Transaction transaction = new Transaction(idClient,"OK");
-        transactionRepository.save(transaction);
-        return transactionRepository.saveAndFlush(transaction);
+        Transaction transaction = new Transaction();
+        transaction.setState("OK");
+        transaction.setIdCliente(idClient);
+
+        return  transactionRepository.saveAndFlush(transaction);
     }
 
 

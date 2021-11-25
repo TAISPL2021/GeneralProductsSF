@@ -2,7 +2,9 @@ package com.topicosplmspagoelectronico.service.payment.imp;
 
 
 import java.lang.reflect.Type;
+import java.util.List;
 
+import com.topicosplmspagoelectronico.repository.TransactionRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
    SaveTransactionService saveTransactionService;
     private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    TransactionRepository transactionRepository;
 
     @Override
     public TransactionDTO creditCardPayment(PaymentDTO payment, String idClient)throws InterruptedException {
@@ -29,6 +33,15 @@ public class PaymentServiceImpl implements PaymentService {
         }.getType();
         TransactionDTO transactionDTO = modelMapper.map(transaction, listType);
 
+        return transactionDTO;
+    }
+
+    @Override
+    public List<TransactionDTO> getAll() {
+        List<Transaction> transactions= transactionRepository.findAll();
+        Type listType = new TypeToken<List<TransactionDTO>>() {
+        }.getType();
+        List<TransactionDTO> transactionDTO = modelMapper.map(transactions, listType);
         return transactionDTO;
     }
 
