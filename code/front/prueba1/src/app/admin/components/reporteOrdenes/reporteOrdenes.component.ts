@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {ProductosService} from '../../../core/services/products/productos.service';
-import {Product} from '../../../core/entity/product.model';
 import {environment} from '../../../../environments/environment';
+import { ReportsService } from 'src/app/core/services/reports/report.service';
+import { Pedidos } from 'src/app/core/entity/pedidos.model';
 
 
 @Component({
@@ -12,12 +12,13 @@ import {environment} from '../../../../environments/environment';
 })
 export class ReporteOrdenesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'creationDate','shippingDate','clientName','clientEmail','state','productId','productName','quantity','subtotal'];
-  products: Product[];
+  displayedColumns: string[] = ['id','clientName','clientEmail','state','productId','productName','quantity','subtotal'];
+  expandedElement: Pedidos | null;
+  pedidos: Pedidos[];
   programacion: any;
   version: string;
 
-  constructor(private productosService: ProductosService, private router: Router,private changeDetectorRefs: ChangeDetectorRef) { 
+  constructor(private reportesService: ReportsService, private router: Router,private changeDetectorRefs: ChangeDetectorRef) { 
     this.programacion = environment.programacion;
     this.version = environment.Version;
   }
@@ -25,4 +26,13 @@ export class ReporteOrdenesComponent implements OnInit {
   ngOnInit(): void {
     
   }
-}
+
+  orderReport(monthly:boolean): any{
+    this.reportesService.getListOrders(monthly).subscribe(report =>
+      {
+        console.log(report);
+        this.pedidos = report;
+      });
+
+
+}}

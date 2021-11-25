@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {ProductosService} from '../../../core/services/products/productos.service';
-import {Product} from '../../../core/entity/product.model';
 import {environment} from '../../../../environments/environment';
+import { ReportsService } from 'src/app/core/services/reports/report.service';
+import { Promotion } from 'src/app/core/entity/promotion.model';
 
 
 @Component({
@@ -12,12 +12,12 @@ import {environment} from '../../../../environments/environment';
 })
 export class ReportePromocionesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name','state', 'finalDate','type'];
-  products: Product[];
+  displayedColumns: string[] = ['id', 'name','detail','state','type','percentage'];
+  promotions: Promotion[];
   programacion: any;
   version: string;
 
-  constructor(private productosService: ProductosService, private router: Router,private changeDetectorRefs: ChangeDetectorRef) { 
+  constructor(private reportesService: ReportsService, private router: Router,private changeDetectorRefs: ChangeDetectorRef) { 
     this.programacion = environment.programacion;
     this.version = environment.Version;
   }
@@ -25,4 +25,11 @@ export class ReportePromocionesComponent implements OnInit {
   ngOnInit(): void {
     
   }
-}
+
+  promReport(monthly:boolean): any{
+    this.reportesService.getListPromFromInventario(monthly).subscribe(report =>
+      {
+        console.log(report);
+        this.promotions = report;
+      });;
+}}

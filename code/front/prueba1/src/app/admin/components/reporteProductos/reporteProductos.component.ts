@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {ProductosService} from '../../../core/services/products/productos.service';
+import {ReportsService} from '../../../core/services/reports/report.service';
 import {Product} from '../../../core/entity/product.model';
 import {environment} from '../../../../environments/environment';
 
@@ -17,12 +17,16 @@ export class ReporteProductosComponent implements OnInit {
   programacion: any;
   version: string;
 
-  constructor(private productosService: ProductosService, private router: Router,private changeDetectorRefs: ChangeDetectorRef) { 
+  constructor(private reportesService: ReportsService, private router: Router,private changeDetectorRefs: ChangeDetectorRef) { 
     this.programacion = environment.programacion;
     this.version = environment.Version;
   }
 
-  ngOnInit(): void {
-    
-  }
-}
+  ngOnInit(): void {}
+
+  productsReport(monthly:boolean): any{
+    this.reportesService.getListProductosFromInventario(monthly).subscribe(report =>
+      {
+        this.products = report;
+      });;
+}}

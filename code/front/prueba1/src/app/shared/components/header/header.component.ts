@@ -45,4 +45,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  deleteAccount(): any{
+    alert("Para darte de baja en el sitio envia un correo a eliminarcuenta@generalproductssf.com, con el asunto Eliminar cuenta {usuario}, te llegará un correo de confirmación al email registrado");
+  }
+
 }

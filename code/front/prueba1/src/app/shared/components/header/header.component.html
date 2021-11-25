@@ -11,7 +11,7 @@
                     <a mat-button *ngIf="programacion.GestionPerfil == true" [matMenuTriggerFor]="reportes">Gestion de perfil</a>
                     <mat-menu #reportes="matMenu" xPosition="after">
                       <button mat-menu-item *ngIf="programacion.GestionPerfil == true" routerLink="GestionPerfil/actualizar">Actualizar Datos</button>
-                      <button mat-menu-item *ngIf="programacion.GestionPerfil == true" routerLink="/home">Eliminar Cuenta</button>
+                      <button mat-menu-item *ngIf="programacion.GestionPerfil == true" (click)="deleteAccount()">Darte de baja en el sitio</button>
                       <a mat-menu-item *ngIf="programacion.InicioSesion == true" routerLink="/login" routerLinkActive="active">Login</a>
                       <a mat-menu-item *ngIf="programacion.RegistroUsuario == true" routerLink="/register" routerLinkActive="active">Registro</a>
                       <a *ngIf="sesion == true" mat-raised-button  (click)="CloseSession()"> cerrar sesión  </a>
