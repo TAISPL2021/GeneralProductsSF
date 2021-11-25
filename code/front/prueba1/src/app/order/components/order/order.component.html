@@ -159,7 +159,11 @@
            <tr mat-header-row *matHeaderRowDef="displayedColumnsFactura"></tr>
            <tr mat-row *matRowDef="let row; columns: displayedColumnsFactura;"></tr>
           </table>
-          
+          <br>
+          <br>
+          <button mat-raised-button color="primary" [routerLink]="['../products']">
+            Seguir comprando
+          </button> 
         </mat-card-subtitle>
       </mat-card>
       
