@@ -16,5 +16,5 @@
 	<feature name="GestionDeUsuarios"/>
 	<feature name="Pedidos"/>
 	<feature name="PagoElectronico"/>
-	<feature name="Reporte"/>
+	<feature manual="selected" name="Reporte"/>
 </configuration>

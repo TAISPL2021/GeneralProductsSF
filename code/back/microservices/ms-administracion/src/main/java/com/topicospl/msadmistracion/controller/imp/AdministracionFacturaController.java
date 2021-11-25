@@ -19,4 +19,9 @@ public class AdministracionFacturaController implements IAdministracionFacturaCo
 		return administracionFacturaService.facturaGenerator(carritoCheckOut);
 	}
 
+	@Override
+	public ResponseEntity<?> listFactura() {
+		return administracionFacturaService.listFactura();
+	}
+
 }

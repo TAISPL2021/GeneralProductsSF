@@ -1,17 +1,5 @@
 package com.topicospl.msinventario.service.imp;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
 import com.topicospl.msinventario.bean.Producto;
 import com.topicospl.msinventario.bean.dto.ProductoDTO;
 import com.topicospl.msinventario.component.ITipoIVA;
@@ -20,19 +8,32 @@ import com.topicospl.msinventario.exception.ProductoNotFoundException;
 import com.topicospl.msinventario.repository.ProductoRepository;
 import com.topicospl.msinventario.response.InventarioResponse;
 import com.topicospl.msinventario.service.IProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class ProductoService implements IProductoService {
+public class ProductoServiceSpain implements IProductoService {
+
+    //private static final double VALUE_IVA = 19;
 
 	@Value("${ms.producto.img}")
 	private String imgRouteURL;
 
 	@Autowired
 	private ProductoRepository productoRepository;
-	
-    @Autowired
-    @Qualifier("colombia")
-    private ITipoIVA tipoIva;
+
+	@Autowired
+	@Qualifier("spain")
+	private ITipoIVA tipoIva;
 
 	@Override
 	public ResponseEntity<List<ProductoDTO>> getAllRecords() {
@@ -54,25 +55,14 @@ public class ProductoService implements IProductoService {
 		return new ResponseEntity<>(productoRepository.findByProductoNombreLike(querySearch.toLowerCase().trim())
 				.stream().map(ProductoDTO::new).collect(Collectors.toList()), HttpStatus.OK);
 	}
-	
-	@Override
-	public ResponseEntity<?> findByProductoCode(Long pCode) {
-		var tmpProduct =  productoRepository.findByProductoCode(pCode);
-		
-		if(tmpProduct.isPresent()) {
-			return new ResponseEntity<>(new ProductoDTO(tmpProduct.get()),HttpStatus.OK);
-		}
-			throw new ProductoAlreadyExistException("El Producto con el Codigo: ["+pCode+"] no se encontro en la DB");
-	
-	}
 
 	@Override
 	public ResponseEntity<InventarioResponse> saveRecord(ProductoDTO product) {
-		var tmpProductoCode = findByProductoCodeInternal(product.getProductoCode());
+		var tmpProductoCode = productoRepository.findByProductoCode(product.getProductoCode());
 		
 		if(tmpProductoCode.isPresent())
 			throw new ProductoAlreadyExistException("El Producto con el Codigo: ["+product.getProductoCode()+"] existe en la DB");
-		
+
 		product.setProductoPrecio(tipoIva.calcular(product.getProductoPrecio()));
 		productoRepository.save(transformerToEntity(product));
 		
@@ -84,14 +74,15 @@ public class ProductoService implements IProductoService {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+
 	@Override
 	public ResponseEntity<InventarioResponse> updateRecord(ProductoDTO product) {
 		
-		var tmpProductoChecker = findByProductoCodeInternal(product.getProductoCode());
+		var tmpProductoChecker = productoRepository.findByProductoCode(product.getProductoCode());
 		
 		if(tmpProductoChecker.isPresent()) {
 			var tmpProducto = tmpProductoChecker.get();
-							
+
 				tmpProducto.setProductoPrecio(tipoIva.calcular(product.getProductoPrecio()));
 				tmpProducto.setProductoDetalles(product.getProductoDetalles());
 				tmpProducto.setProductoDescuento(product.getProductoDescuento());
@@ -110,7 +101,7 @@ public class ProductoService implements IProductoService {
 			throw new ProductoNotFoundException("El Producto con el Codigo: ["+product.getProductoCode()+"] no se encontro en la DB");
 		}
 	}
-
+	
 	private Optional<Producto> findByProductoCodeInternal(Long pCode) {	
 		return productoRepository.findByProductoCode(pCode);
 	}
@@ -127,6 +118,17 @@ public class ProductoService implements IProductoService {
 				.productoFechaInclusion(new Date())
 				.productoCantidadDisponible(p.getProductoCantidadDisponible() == null ? 0 : p.getProductoCantidadDisponible())
 			.build();
+	}
+
+	@Override
+	public ResponseEntity<?> findByProductoCode(Long pCode) {
+		var tmpProduct =  productoRepository.findByProductoCode(pCode);
+		
+		if(tmpProduct.isPresent()) {
+			return new ResponseEntity<>(new ProductoDTO(tmpProduct.get()),HttpStatus.OK);
+		}
+			throw new ProductoAlreadyExistException("El Producto con el Codigo: ["+pCode+"] no se encontro en la DB");
+	
 	}
 	
 }

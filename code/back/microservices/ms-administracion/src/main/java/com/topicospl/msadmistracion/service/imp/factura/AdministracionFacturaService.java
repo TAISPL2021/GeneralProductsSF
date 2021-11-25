@@ -119,4 +119,9 @@ public class AdministracionFacturaService implements IAdministracionFacturaServi
 		return new ResponseEntity<>(facturaGen, HttpStatus.OK);
 	}
 
+	@Override
+	public ResponseEntity<?> listFactura() {
+		return new ResponseEntity<>(facturaRepository.findAll(),HttpStatus.OK);
+	}
+
 }

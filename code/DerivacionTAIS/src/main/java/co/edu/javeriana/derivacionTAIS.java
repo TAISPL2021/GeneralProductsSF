@@ -1,112 +1,97 @@
 package co.edu.javeriana;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class derivacionTAIS {
 
 	private static final String FILENAME = "../../Variabilidad/ArbolVariabilidad/configs/default.xml";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		// Instantiate the Factory
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
-		try (InputStream is = readXmlFileIntoInputStream("default.xml")) {
-
-			dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-
-			DocumentBuilder db = dbf.newDocumentBuilder();
-
-			Document doc = db.parse(is);
-
+		  List<String> tmpString;
+		  List<String> tmpStringConfig = new ArrayList<>();
+		
+		 String fileName = "../DerivacionTAIS/src/main/resources/BProductTemplate";
+		    File file = new File(fileName);
+		 
+		    try (Stream linesStream = Files.lines(file.toPath())) {
+		    	tmpString = (List<String>) linesStream.collect(Collectors.toList());
+		    }
+		
+		System.out.println("Template -> " + tmpString);
+		
+		
+		File fXmlFile = new File(FILENAME);
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		
+		int counter = 1;
+		
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
+			NodeList nList = doc.getFirstChild().getChildNodes();
 
+			for (int temp = 2; temp < nList.getLength(); temp++) {
 
+				Node nNode = nList.item(temp);
+				NamedNodeMap nodeMap = nNode.getAttributes();
+				Node nameNode = nodeMap != null ? nodeMap.getNamedItem("name") : null;
 
-			NodeList list = doc.getElementsByTagName("feature");
-
-			for (int temp = 0; temp < list.getLength(); temp++) {
-
-				Node node = list.item(temp);
-
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-
-					Element element = (Element) node;
-
-					// get staff's attribute
-					String feature = element.getAttribute("feature");
-					String automatic = element.getAttribute("automatic");
-					String manual = element.getAttribute("manual");
-					String name = element.getAttribute("name");
-					
-					System.out.print(feature + "\n");
-					System.out.print(automatic+ "\n");
-					System.out.print(manual+ "\n");
-					System.out.print(name+ "\n");
-					
-
-					if ("selected".equals(automatic) || "selected".equals(manual)) {
-						String featName = element.getAttribute("name");
-						switch (featName) {
-						case "RegistroDeUsuario":
-							break;
-						case "GestionDePerfil":
-							break;
-						case "InicioSesion":
-							break;
-						case "VisualizarProductos":
-							break;
-						case "BuscarProductos":
-							break;
-						case "CompraProductos":
-							break;
-						case "Inventario":
-							String propiedad = "eureka.instance.prefer-ip-address";
-							Properties prop = leerPropiedades("src/main/resources/application.properties", propiedad);
-							String valor = prop.getProperty(propiedad);
-							if (valor.equals("true")) {
-								modificarPropiedades("src/main/resources/application.properties", prop,
-										"eureka.instance.prefer-ip-address", "false");
-							}
-
-							break;
-						case "Facturacion":
-							break;
-						case "Promocion":
-							break;
-						case "GestionDeUsuarios":
-							break;
-						case "Pedidos":
-							break;
-						case "PagoElectronico":
-
-							break;
-						case "Reporte":
-							break;
-
+				if (nameNode != null) {
+						Node automatic = nodeMap.getNamedItem("automatic");
+						Node manual = nodeMap.getNamedItem("manual");
+						
+						if (isSelected(automatic, manual)) {
+							tmpStringConfig.add(nameNode.getNodeValue().trim());
 						}
-					}
-
 				}
+				
 			}
-
-		} catch (ParserConfigurationException | SAXException | IOException e) {
+			
+			System.out.println("CLIENTE -> " + tmpStringConfig);
+			
+//			var result = tmpStringConfig.stream().filter(two -> tmpString.stream().anyMatch(one -> one.equals(two))).collect(Collectors.toList());
+			
+			var result = tmpString.stream().filter(two -> tmpStringConfig.stream().anyMatch(one -> one.equals(two))).collect(Collectors.toList());
+			
+			System.out.println(result.size());
+			
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
 			e.printStackTrace();
 		}
-
 	}
+	
+	
+	private static boolean isSelected(Node automatic, Node manual) {
+		return (automatic != null && automatic.getNodeValue().equals("selected"))
+				|| (manual != null && manual.getNodeValue().equals("selected"));
+	}
+	
 
 	// read file from resource's folder.
 	private static InputStream readXmlFileIntoInputStream(final String fileName) {

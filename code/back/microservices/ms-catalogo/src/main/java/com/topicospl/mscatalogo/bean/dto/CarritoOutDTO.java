@@ -23,7 +23,7 @@ public class CarritoOutDTO {
 
 	private LocalDate fecha;
 	
-	@JsonProperty("carrito-id")
+	@JsonProperty("carrito_id")
 	private Long carritoId;
 
 	private Hashtable<Long, CarritoProductoDTO> productos;
