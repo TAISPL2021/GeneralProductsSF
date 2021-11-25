@@ -25,40 +25,34 @@ export class PedidosListComponent implements OnInit {
   pedidos: Pedidos[];
   pedidosMock: Pedidos[] =[
     {
-      Id : 1,
-      Usuario : {
-        name:"pepito",
-        address:"direccion",
-        email: "pepito@hotmail.com",
-        lastName: "perez",
-        gender: "Male",
-        phone: "3666666",
-        secondLastName: "perez",
-        secondName: "alberto",
-        role: "USER",
-        userName: "pepito",
-        password:""
-      },
-      Carrito : [
+      id : 1,
+      estadoPedido : "abierto",
+      nombreCliente : "pepito",
+      correoCliente : "pepito@hotmail.com",
+      telefonoCliente : "3666666",
+      direccionCliente : "direccion",     
+      productos : [
         {
-          id : 1,
-          producto_id : "1",
-          producto_nombre : "sandwiches",
-          producto_detalle : "detaller",
-          producto_cantidad : 1,
+          productoCode: 10002,
+          productoNombre: "Ejemplo",
+          productoDetalle: "Ejemplo",
+          productoPrecio: 15000.0,
+          productoCantidad: 1,
+          total: 15000.0
         },
         {
-          id : 2,
-          producto_id : "2",
-          producto_nombre : "sandwiches de pollo",
-          producto_detalle : "detalle 2",
-          producto_cantidad : 1,
+          productoCode: 10003,
+          productoNombre: "Ejemplo",
+          productoDetalle: "Ejemplo",
+          productoPrecio: 15000.0,
+          productoCantidad: 1,
+          total: 15000.0
         }
       ]
     } 
   ]
-  displayedColumns: string[] = ['Id', 'Usuario.name','Usuario.lastName','Usuario.email', 'Usuario.phone','Enviado','Factura'];
-  displayedCart: string[] = ['producto_id', 'producto_nombre','producto_cantidad'];
+  displayedColumns: string[] = ['id', 'nombreCliente','direccionCliente','correoCliente', 'telefonoCliente','estadoPedido','Enviado','Factura'];
+  displayedCart: string[] = ['productoCode', 'productoNombre','productoCantidad'];
   programacion: any;
   version: string;
 
@@ -68,7 +62,8 @@ export class PedidosListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pedidos = this.pedidosMock; 
+    this.fetchProducts();
+    //this.pedidos = this.pedidosMock; 
   }
   
 

@@ -24,13 +24,13 @@ export class PedidosService {
 
   getAllPedidos(nombre: string): Observable<Pedidos[]>
   {
-    return this.http.get<Pedidos[]>(`${environment.url_api}//`);
+    return this.http.get<Pedidos[]>(`${environment.url_api}/administracion/pedido`);
   }
 
   updateProduct(changes: Partial<Pedidos>): any
   {
     console.log(JSON.stringify(changes));
-    return this.http.put(`${environment.url_api}//`, changes);
+    return this.http.put(`${environment.url_api}/administracion/pedido`, changes);
   }
 
 }

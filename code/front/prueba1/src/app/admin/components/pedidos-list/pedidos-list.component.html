@@ -2,26 +2,31 @@
 
 <table mat-table [dataSource]="pedidos" class="mat-elevation-z8" multiTemplateDataRows>
 
-    <ng-container matColumnDef="Id">
+    <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
-    <ng-container matColumnDef="Usuario.name">
+    <ng-container matColumnDef="nombreCliente">
         <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.Usuario.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.nombreCliente}} </td>
     </ng-container>
-    <ng-container matColumnDef="Usuario.lastName">
-        <th mat-header-cell *matHeaderCellDef> Apellido </th>
-        <td mat-cell *matCellDef="let element"> {{element.Usuario.lastName}} </td>
+    <ng-container matColumnDef="direccionCliente">
+        <th mat-header-cell *matHeaderCellDef> Direccion Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.direccionCliente}} </td>
     </ng-container> 
-    <ng-container matColumnDef="Usuario.email">
+    <ng-container matColumnDef="correoCliente">
       <th mat-header-cell *matHeaderCellDef> Correo </th>
-      <td mat-cell *matCellDef="let element"> {{element.Usuario.email}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.correoCliente}} </td>
     </ng-container>
-    <ng-container matColumnDef="Usuario.phone">
+    <ng-container matColumnDef="telefonoCliente">
       <th mat-header-cell *matHeaderCellDef> Telefono </th>
-      <td mat-cell *matCellDef="let element">{{element.Usuario.phone}}</td>
+      <td mat-cell *matCellDef="let element">{{element.telefonoCliente}}</td>
     </ng-container>
+
+    <ng-container matColumnDef="estadoPedido">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element">{{element.estadoPedido}}</td>
+      </ng-container>
   
     <ng-container matColumnDef="Enviado">
         <th mat-header-cell *matHeaderCellDef> Enviar Pedido</th>
@@ -47,19 +52,19 @@
             <div class="example-element-detail"  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
             
                 <mat-card style="width: 100%;">
-                    <table mat-table [dataSource]="element.Carrito" class="mat-elevation-z8" multiTemplateDataRows style="width: 100%;">
+                    <table mat-table [dataSource]="element.productos" class="mat-elevation-z8" multiTemplateDataRows style="width: 100%;">
                     
-                        <ng-container matColumnDef="producto_id">
+                        <ng-container matColumnDef="productoCode">
                             <th mat-header-cell *matHeaderCellDef> Id </th>
-                            <td mat-cell *matCellDef="let col"> {{col.producto_id}} </td>
+                            <td mat-cell *matCellDef="let col"> {{col.productoCode}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="producto_nombre">
+                        <ng-container matColumnDef="productoNombre">
                             <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                            <td mat-cell *matCellDef="let col"> {{col.producto_nombre}} </td>
+                            <td mat-cell *matCellDef="let col"> {{col.productoNombre}} </td>
                         </ng-container>
-                        <ng-container matColumnDef="producto_cantidad">
+                        <ng-container matColumnDef="productoCantidad">
                             <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                            <td mat-cell *matCellDef="let col"> {{col.producto_cantidad}} </td>
+                            <td mat-cell *matCellDef="let col"> {{col.productoCantidad}} </td>
                         </ng-container> 
                         <tr mat-header-row *matHeaderRowDef="displayedCart"></tr>
                         <tr mat-row *matRowDef="let row2; columns: displayedCart"></tr>

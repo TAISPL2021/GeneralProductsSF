@@ -1,8 +1,21 @@
 import {Register} from './register.model';
-import {Carrito} from './carrito.model';
+
+export interface PedidosProductos{
+    productoCode : number;
+    productoNombre : string;
+    productoDetalle : string;
+    productoPrecio : number;
+    productoCantidad : number;
+    total : number;
+}
+
 
 export interface Pedidos{
-    Id : number;
-    Usuario : Register;
-    Carrito : Carrito[];
+    id : number;
+    estadoPedido : string;
+    nombreCliente : string;
+    correoCliente : string;
+    telefonoCliente : string;
+    direccionCliente : string;
+    productos : PedidosProductos[];
 }
