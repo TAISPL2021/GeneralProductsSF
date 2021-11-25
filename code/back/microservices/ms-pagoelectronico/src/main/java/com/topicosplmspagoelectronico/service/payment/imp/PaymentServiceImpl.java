@@ -28,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public TransactionDTO creditCardPayment(PaymentDTO payment, String idClient)throws InterruptedException {
-        Transaction transaction = saveTransactionService.saveTransaction(idClient);
+        Transaction transaction = saveTransactionService.saveTransaction(payment,idClient);
         Type listType = new TypeToken<TransactionDTO>() {
         }.getType();
         TransactionDTO transactionDTO = modelMapper.map(transaction, listType);
