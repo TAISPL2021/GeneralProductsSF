@@ -22,6 +22,7 @@ import com.topicospl.msinventario.response.InventarioResponse;
 import com.topicospl.msinventario.service.IProductoService;
 
 @Service
+@Qualifier("colombia")
 public class ProductoService implements IProductoService {
 
 	@Value("${ms.producto.img}")

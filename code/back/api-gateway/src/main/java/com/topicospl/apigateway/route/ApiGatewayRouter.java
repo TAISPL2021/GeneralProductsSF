@@ -11,11 +11,11 @@ public class ApiGatewayRouter {
 	@Bean
 	public RouteLocator gatewayRouter(RouteLocatorBuilder rBuilder) {
 		return rBuilder.routes()
-					.route(p -> p.path("/inventario/producto").uri("lb://ms-inventario"))	
-					.route(p -> p.path("/catalogo/**").uri("lb://ms-catalogo"))
-					.route(p -> p.path("/carrito/**").uri("lb://ms-catalogo"))
-					.route(p -> p.path("/autenticacion/**").uri("lb://ms-autenticacion"))
-					.route(p -> p.path("/administracion/**").uri("lb://ms-administracion"))
+					.route(p -> p.path("/inventario/producto").uri("http://msinventario-env.eba-zs269i4q.us-east-1.elasticbeanstalk.com/"))	
+					.route(p -> p.path("/catalogo/**").uri("http://mscatalogo-env.eba-zmxuircd.us-east-1.elasticbeanstalk.com/"))
+					.route(p -> p.path("/carrito/**").uri("http://mscatalogo-env.eba-zmxuircd.us-east-1.elasticbeanstalk.com/"))
+					.route(p -> p.path("/autenticacion/**").uri("http://msautenticacion-env.eba-fk9p9ffv.us-east-1.elasticbeanstalk.com/"))
+					.route(p -> p.path("/administracion/**").uri("http://msadministracion-env.eba-9pz4umru.us-east-1.elasticbeanstalk.com/"))
 				.build();
 	}
 	

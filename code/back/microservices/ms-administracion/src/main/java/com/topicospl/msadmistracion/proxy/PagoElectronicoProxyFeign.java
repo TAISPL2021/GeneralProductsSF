@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.topicospl.msadmistracion.bean.dto.PagoDTO;
 import com.topicospl.msadmistracion.bean.dto.TransactionDTO;
 
-@FeignClient(value = "ms-pagoelectronico" , url = "http://localhost:5300")
+@FeignClient(value = "ms-pagoelectronico" , url = "http://mspagoelectronico-env.eba-pz2iciie.us-east-1.elasticbeanstalk.com/")
 public interface PagoElectronicoProxyFeign {
 
 	@PostMapping(value = "pago/{uClient}")

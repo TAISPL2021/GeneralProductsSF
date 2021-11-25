@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Qualifier("spain")
 public class ProductoServiceSpain implements IProductoService {
 
     //private static final double VALUE_IVA = 19;

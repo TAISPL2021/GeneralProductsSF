@@ -19,6 +19,7 @@ import com.topicospl.msinventario.service.IProductoService;
 public class ProductoController implements IProductoController {
 
 	@Autowired
+	@Qualifier("colombia")
 	private IProductoService productoService;
 
 	@Override

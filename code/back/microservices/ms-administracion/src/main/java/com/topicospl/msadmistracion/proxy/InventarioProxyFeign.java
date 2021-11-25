@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.topicospl.msadmistracion.bean.dto.ProductoDTO;
 
-@FeignClient(value = "ms-administracion" , url = "http://localhost:5200")
+@FeignClient(value = "ms-administracion" , url = "http://msinventario-env.eba-zs269i4q.us-east-1.elasticbeanstalk.com/")
 public interface InventarioProxyFeign {
 
 	@GetMapping("inventario/producto/info/{query}")

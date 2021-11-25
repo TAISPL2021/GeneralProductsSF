@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.topicospl.msadmistracion.bean.User;
 import com.topicospl.msadmistracion.bean.dto.UserDTO;
 
-@FeignClient(value = "ms-autenticacion" , url = "http://localhost:5000/autenticacion")
+@FeignClient(value = "ms-autenticacion" , url = "http://msautenticacion-env.eba-fk9p9ffv.us-east-1.elasticbeanstalk.com/autenticacion")
 public interface AutenticacionProxyFeign {
 
 	@DeleteMapping("/eliminar")

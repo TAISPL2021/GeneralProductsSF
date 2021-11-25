@@ -57,9 +57,13 @@ public class AuthController implements IAuthController {
         if(iUserService.existsByEmail(newUser.getEmail())) 
         	 return new ResponseEntity<>(new Message("Correo Electronico ["+ newUser.getEmail() +"] ya se encuentra registro"), HttpStatus.BAD_REQUEST);
         
+//        User user =
+//                new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getEmail(),
+//                        passwordEncoder.encode(newUser.getPassword()));
+        
         User user =
                 new User(newUser.getName(), newUser.getSecondName(), newUser.getLastName(),newUser.getSecondLastName(),newUser.getAddress(),newUser.getPhone(),newUser.getGender(),newUser.getUserName(),newUser.getEmail(),
-                        passwordEncoder.encode(newUser.getPassword()));
+                        newUser.getPassword());
         
         if(newUser.getRole().equals("user")){
             Optional<Role> myRole = iRoleService.findByRoleName(RoleName.USER);

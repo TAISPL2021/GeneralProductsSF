@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.topicospl.mscatalogo.bean.dto.FacturaDTO;
 
-@FeignClient(name ="ms-administracion", url = "http://localhost:5500")
+@FeignClient(name ="ms-administracion", url = "http://msadministracion-env.eba-9pz4umru.us-east-1.elasticbeanstalk.com")
 public interface AdministracionProxy {
 
 	@PostMapping("/administracion/factura")
