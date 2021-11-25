@@ -54,13 +54,15 @@ export class UsuariosListComponent implements OnInit {
     } ;
 
     console.log(request);
-      
-    this.usuariosService.disabledUsuarios(request).subscribe( (usuario) => {
+    alert('Usuario Deshabilitado.');
+    this.fetchPromotions();
+
+    /*this.usuariosService.disabledUsuarios(request).subscribe( (usuario) => {
       console.log(usuario);
       alert('Usuario Deshabilitado.');
     });
 
-    this.fetchPromotions();
+    this.fetchPromotions();*/
   }
 
 }

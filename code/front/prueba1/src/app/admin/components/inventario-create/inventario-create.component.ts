@@ -99,7 +99,7 @@ export class InventarioCreateComponent implements OnInit {
       this.form.controls['description'].setValue(this.product.description);
       this.form.controls['discount'].setValue(this.product.discount);
       this.form.controls['stock'].setValue(this.product.stock);
-      this.form.controls['state'].setValue(this.product.state);
+      this.form.controls['state'].setValue(String(this.product.state));
     });
     
   }
