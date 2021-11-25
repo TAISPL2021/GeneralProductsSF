@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Carrito} from '../../../core/entity/carrito.model';
 import { CookieService } from 'ngx-cookie-service';
 import {Router} from '@angular/router';
+import { CookieCart } from 'src/app/shared/crosscuting/CookieCart';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,7 +12,7 @@ export class CartComponent implements OnInit {
 
 
   carrito: Carrito[]=[];
-
+  
   carritoMock: Carrito[] =[
     {
       id : 1,
@@ -31,10 +32,11 @@ export class CartComponent implements OnInit {
 
   displayedColumns: string[] = ['producto_id', 'producto_nombre', 'producto_cantidad'];
 
-  constructor(private cookieService: CookieService,private router: Router,) { }
+  constructor(private cookieService: CookieService,private router: Router,private cookieCart: CookieCart) { }
 
   ngOnInit(): void {
-    this.carrito = this.carritoMock
+    //this.carrito = this.carritoMock
+    this.carrito =this.cookieCart.getCookieCart()
   }
 
   GoToPagar(): void{

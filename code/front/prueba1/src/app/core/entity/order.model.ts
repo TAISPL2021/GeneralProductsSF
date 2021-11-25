@@ -6,6 +6,7 @@ export interface Order{
     FechaExpiracion: string,
     NumeroDeVerificacion: string,
     cuotas: number,
-    carrito: Carrito
+    userName: string
 }
+
 

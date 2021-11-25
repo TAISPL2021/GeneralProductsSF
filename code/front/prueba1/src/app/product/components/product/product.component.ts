@@ -5,6 +5,7 @@ import {environment} from '../../../../environments/environment';
 import {Carrito} from '../../../core/entity/carrito.model';
 import { CookieService } from 'ngx-cookie-service';
 import {CookieCart} from '../../../shared/crosscuting/CookieCart';
+import { map } from 'rxjs/operators';
 @Component({
     selector : 'app-product',
     templateUrl : './product.component.html',
@@ -33,14 +34,14 @@ export class ProductComponent
             producto_cantidad : 1,
         }
         
-        this.cartService.addCart(carrito).subscribe(cart =>
-        {
-            console.log();
-            carrito.id = cart.id;
-            carrito = cart;
+ 
+
+        this.cartService.addCart(carrito).subscribe( (cart: any) => {
+            console.log(cart);
+            carrito.id = cart.carrito_id;
             this.cookieCart.addCookie(carrito);                
         });
-        
+         
         /*this.productClicked.emit(this.product.id);*/
     }
 

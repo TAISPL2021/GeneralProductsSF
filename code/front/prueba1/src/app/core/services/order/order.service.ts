@@ -25,9 +25,9 @@ export class OrderService {
     return this.http.get<Order[]>(`${environment.url_api}//`);
   }
 
-  BuyNow(order: Partial<Order>): any
+  BuyNow(order: Partial<Order>,idcarrito: number): any
   {
     console.log(JSON.stringify(order));
-    return this.http.post(`${environment.url_api}//`, order)
+    return this.http.post<Order[]>(`${environment.url_api}/carrito/checkout/${idcarrito}`,order);
   }
 }

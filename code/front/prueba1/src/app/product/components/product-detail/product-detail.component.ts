@@ -66,13 +66,10 @@ export class ProductDetailComponent implements OnInit {
       producto_cantidad : 1,
     }
 
-    this.cartService.addCart(carrito).subscribe(cart =>
-    {
-        console.log();
-        carrito.id = cart.id;
-        carrito = cart;
-        this.cookieCart.addCookie(carrito);
-        
+    this.cartService.addCart(carrito).subscribe( (cart: any) => {
+      console.log(cart);
+      carrito.id = cart.carrito_id;
+      this.cookieCart.addCookie(carrito);                
     });  
     /*this.productClicked.emit(this.product.id);*/
   }
