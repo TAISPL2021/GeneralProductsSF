@@ -1,10 +1,10 @@
-package com.topicosplmspagoelectronico.bean;
+package com.topicosplmspagoelectronico.bean.dto;
 
 
 import lombok.Data;
 
 @Data
-public class Payment {
+public class PaymentDTO {
 
     private String NombreTarjeta;
     private String numeroTarjeta;

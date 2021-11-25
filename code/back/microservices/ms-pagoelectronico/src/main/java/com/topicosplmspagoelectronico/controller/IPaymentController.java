@@ -1,13 +1,13 @@
 package com.topicosplmspagoelectronico.controller;
 
 
-import com.topicosplmspagoelectronico.bean.Payment;
+import com.topicosplmspagoelectronico.bean.dto.PaymentDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/pago")
 public interface IPaymentController {
 
-	@PutMapping(value = "/{idClient}")
-	public ResponseEntity<?>  creditCardPayment(@RequestBody Payment payment, @PathVariable(value = "idClient") int idClient) throws InterruptedException ;
+	@PostMapping(value = "/{idClient}")
+	public ResponseEntity<?>  creditCardPayment(@RequestBody PaymentDTO payment, @PathVariable(value = "idClient") int idClient) throws InterruptedException ;
 }
