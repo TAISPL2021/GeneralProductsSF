@@ -55,7 +55,7 @@ export class PromotionCreateComponent implements OnInit {
       this.nombre="Agregar Promocion";
     }
   }
-
+º
   SavePromotion( event: Event): any{
 
     event.preventDefault();

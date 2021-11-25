@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {NavComponent} from './components/nav/nav.component';
 import {InventarioListComponent} from './components/inventario-list/inventario-list.component';
@@ -9,6 +9,7 @@ import { ReporteOrdenesComponent } from './components/reporteOrdenes/reporteOrde
 import { ReporteProductosComponent } from './components/reporteProductos/reporteProductos.component';
 import { ReportePromocionesComponent } from './components/reportePromociones/reportePromociones.component';
 import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
+import { UsuariosListComponent } from './components/usuarios-list/usuarios-list.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'promotion',
         component: PromotionListComponent
+      },
+      {
+        path: 'usuarios',
+        component: UsuariosListComponent
       },
       {
         path: 'pedidos',
