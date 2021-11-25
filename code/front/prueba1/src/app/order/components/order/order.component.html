@@ -1,0 +1,172 @@
+<mat-horizontal-stepper #stepper>
+    <mat-step>    
+        <mat-card>
+          <mat-card-title>Sus Productos</mat-card-title>
+          <mat-card-subtitle>
+            <br>
+            <table mat-table [dataSource]="carrito" class="mat-elevation-z8 demo-table">
+              <!-- Weight Column -->
+             <ng-container matColumnDef="producto_id">
+               <th mat-header-cell *matHeaderCellDef> Id </th>
+               <td mat-cell *matCellDef="let element"> {{element.producto_id}} </td>
+             </ng-container>
+          
+             <!-- Position Column -->
+             <ng-container matColumnDef="producto_nombre">
+               <th mat-header-cell *matHeaderCellDef> Nombre </th>
+               <td mat-cell *matCellDef="let element"> {{element.producto_nombre}} </td>
+             </ng-container>
+           
+             <!-- Name Column -->
+             <ng-container matColumnDef="producto_cantidad">
+               <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+               <td mat-cell *matCellDef="let element"> {{element.producto_cantidad}} </td>
+             </ng-container>
+             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-subtitle>
+        </mat-card>
+        
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Pago</ng-template>    
+        <form [formGroup]="form" (ngSubmit)="SavePago($event); goBill(stepper)">
+          <mat-card>
+              <mat-card-header>
+                  <h4><b>Metodo de pagos</b></h4>
+              </mat-card-header>
+              <mat-card-content>
+              <mat-grid-list cols="3" rowHeight="2:1">
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Número de la tarjeta</mat-label>
+                    <input formControlName="numeroTarjeta" matInput [type]="hide" required type="text">
+                    <mat-error *ngIf="form.get('numeroTarjeta').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>  
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Nombre en la tarjeta</mat-label>
+                    <input formControlName="NombreTarjeta" matInput required [type]="hide" type="text">
+                    <mat-error *ngIf="form.get('NombreTarjeta').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>  
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Fecha de expiración</mat-label>
+                    <input formControlName="FechaExpiracion" matInput [type]="hide" required type="text">
+                    <mat-error *ngIf="form.get('FechaExpiracion').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>            
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label># de verificación</mat-label>
+                    <input formControlName="NumeroDeVerificacion" matInput required [type]="hide" type="text">
+                    <mat-error *ngIf="form.get('NumeroDeVerificacion').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field> 
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Cuotas</mat-label>
+                    <select matNativeControl required formControlName="cuotas">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option> 
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="24">24</option>
+                      <option value="36">36</option>
+                      <option value="72">72</option>
+                    </select>
+                    <mat-error *ngIf="form.get('cuotas').hasError('required')">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <mat-card-actions>
+                    <button [disabled]="form.invalid" mat-raised-button type="submit">Finalizar Compra</button>
+                  </mat-card-actions>    
+                </mat-grid-tile>
+              </mat-grid-list>     
+            </mat-card-content>
+          </mat-card>
+        </form>
+    </mat-step>
+    <mat-step>    
+      <mat-card>
+        <mat-card-title>
+          <h4><b>Factura</b></h4>
+        </mat-card-title>
+        
+        
+        <mat-card-subtitle>
+          <mat-grid-list cols="2" rowHeight="80px">
+            <mat-grid-tile>
+              <h4><b>Codigo:</b>{{factura.facturaCodigo}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile><h4>
+              <b>Fecha:</b>{{factura.facturaFecha}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h4><b>Cliente:</b>{{factura.facturaNombreCliente}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h4><b>Correo:</b>{{factura.facturaCorreoCliente}}</h4>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <h4><b>Total:</b>{{factura.facturaTotal}}</h4>
+            </mat-grid-tile>
+          </mat-grid-list>
+         
+          
+          
+          
+          
+          <br>
+          <mat-divider></mat-divider>
+          <table mat-table [dataSource]="factura.productos" class="mat-elevation-z8 demo-table">
+            <!-- Weight Column -->
+           <ng-container matColumnDef="productoCode">
+             <th mat-header-cell *matHeaderCellDef> Id </th>
+             <td mat-cell *matCellDef="let element"> {{element.productoCode}} </td>
+           </ng-container>
+        
+           <!-- Position Column -->
+           <ng-container matColumnDef="productoNombre">
+             <th mat-header-cell *matHeaderCellDef> Nombre </th>
+             <td mat-cell *matCellDef="let element"> {{element.productoNombre}} </td>
+           </ng-container>
+         
+           <!-- Name Column -->
+           <ng-container matColumnDef="productoCantidad">
+            <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.productoCantidad}} </td>
+          </ng-container>
+
+           <!-- Name Column -->
+           <ng-container matColumnDef="total">
+             <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+             <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+           </ng-container>
+           
+           <tr mat-header-row *matHeaderRowDef="displayedColumnsFactura"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedColumnsFactura;"></tr>
+          </table>
+          <br>
+          <br>
+          <button mat-raised-button color="primary" [routerLink]="['../products']">
+            Seguir comprando
+          </button> 
+        </mat-card-subtitle>
+      </mat-card>
+      
+  </mat-step>
+</mat-horizontal-stepper>
+

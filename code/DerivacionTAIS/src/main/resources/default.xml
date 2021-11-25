@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Proyecto2"/>
+	<feature automatic="selected" name="Autenticacion"/>
+	<feature manual="selected" name="RegistroDeUsuario"/>
+	<feature manual="selected" name="GestionDePerfiil"/>
+	<feature manual="selected" name="InicioSesion"/>
+	<feature automatic="selected" name="Catalogo"/>
+	<feature manual="selected" name="VisualizarProductos"/>
+	<feature manual="selected" name="BuscarProductos"/>
+	<feature automatic="selected" name="CompraProductos"/>
+	<feature automatic="selected" manual="selected" name="Inventario"/>
+	<feature automatic="selected" name="Administracion"/>
+	<feature automatic="selected" name="Facturacion"/>
+	<feature name="Promocion"/>
+	<feature name="GestionDeUsuarios"/>
+	<feature name="Pedidos"/>
+	<feature manual="selected" name="PagoElectronico"/>
+	<feature name="Reporte"/>
+</configuration>

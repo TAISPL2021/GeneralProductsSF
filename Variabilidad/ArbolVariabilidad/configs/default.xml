@@ -2,16 +2,19 @@
 <configuration>
 	<feature automatic="selected" name="Proyecto2"/>
 	<feature automatic="selected" name="Autenticacion"/>
-	<feature manual="selected" name="Registro"/>
-	<feature manual="selected" name="Cuenta"/>
-	<feature name="AdministracionUsuarios"/>
+	<feature manual="selected" name="RegistroDeUsuario"/>
+	<feature manual="selected" name="GestionDePerfiil"/>
+	<feature manual="selected" name="InicioSesion"/>
 	<feature automatic="selected" name="Catalogo"/>
-	<feature manual="selected" name="ListaProductos"/>
-	<feature name="Pedidos"/>
+	<feature manual="selected" name="VisualizarProductos"/>
+	<feature manual="selected" name="BuscarProductos"/>
+	<feature name="CompraProductos"/>
+	<feature automatic="selected" manual="selected" name="Inventario"/>
 	<feature name="Administracion"/>
 	<feature name="Facturacion"/>
-	<feature name="Inventario"/>
 	<feature name="Promocion"/>
+	<feature name="GestionDeUsuarios"/>
+	<feature name="Pedidos"/>
 	<feature name="PagoElectronico"/>
 	<feature name="Reporte"/>
 </configuration>

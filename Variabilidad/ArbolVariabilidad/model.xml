@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <featureModel>
 	<properties>
-		<graphics key="legendautolayout" value="true"/>
+		<graphics key="legendposition" value="434,53"/>
+		<graphics key="legendautolayout" value="false"/>
 		<graphics key="showshortnames" value="false"/>
 		<graphics key="layout" value="vertical"/>
 		<graphics key="showcollapsedconstraints" value="true"/>
@@ -11,18 +12,21 @@
 	<struct>
 		<and abstract="true" mandatory="true" name="Proyecto2">
 			<or mandatory="true" name="Autenticacion">
-				<feature name="Registro"/>
-				<feature name="Cuenta"/>
-				<feature name="AdministracionUsuarios"/>
+				<feature name="RegistroDeUsuario"/>
+				<feature name="GestionDePerfiil"/>
+				<feature name="InicioSesion"/>
 			</or>
 			<or mandatory="true" name="Catalogo">
-				<feature name="ListaProductos"/>
-				<feature name="Pedidos"/>
+				<feature name="VisualizarProductos"/>
+				<feature name="BuscarProductos"/>
+				<feature name="CompraProductos"/>
 			</or>
+			<feature mandatory="true" name="Inventario"/>
 			<or name="Administracion">
 				<feature name="Facturacion"/>
-				<feature name="Inventario"/>
 				<feature name="Promocion"/>
+				<feature name="GestionDeUsuarios"/>
+				<feature name="Pedidos"/>
 			</or>
 			<feature name="PagoElectronico"/>
 			<feature name="Reporte"/>
@@ -31,17 +35,18 @@
 	<constraints>
 		<rule>
 			<imp>
-				<var>Pedidos</var>
+				<var>CompraProductos</var>
 				<var>Facturacion</var>
 			</imp>
 		</rule>
 		<rule>
-			<disj>
-				<not>
-					<var>PagoElectronico</var>
-				</not>
-				<var>Pedidos</var>
-			</disj>
+			<imp>
+				<var>PagoElectronico</var>
+				<conj>
+					<var>Facturacion</var>
+					<var>CompraProductos</var>
+				</conj>
+			</imp>
 		</rule>
 	</constraints>
 </featureModel>

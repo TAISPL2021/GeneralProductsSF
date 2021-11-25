@@ -1,0 +1,1 @@
+Autenticacion,RegistroDeUsuario,GestionDePerfiil,InicioSesion,Catalogo,BuscarProductos,Inventario

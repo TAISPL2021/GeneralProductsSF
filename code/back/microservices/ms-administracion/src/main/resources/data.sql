@@ -1,0 +1,1 @@
+insert into promocion (nombre, detalle, tipo, estado, porcentaje, codigo) values ('File','File','PRUEBA', false, 100, 999);

@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="Savelogin($event)">
+  <mat-card>
+      <mat-card-header>
+          <h4><b>Login</b></h4>
+      </mat-card-header>
+      <mat-card-content>
+          <div class="row">
+            <div class="col-xs">
+              <mat-form-field appearance="fill">
+                <mat-label>Usuario</mat-label>
+                <input formControlName="userName" matInput [type]="hide" required type="text">
+                <mat-error *ngIf="form.get('userName').hasError('required')">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>  
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs">
+              <mat-form-field appearance="fill">
+                <mat-label>Ingresa tu contraseña</mat-label>
+                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+      </mat-card-content>
+      <mat-card-actions>
+          <button [disabled]="form.invalid" mat-raised-button type="submit">Iniciar Sesión</button>
+      </mat-card-actions>
+  </mat-card>
+  
+</form>

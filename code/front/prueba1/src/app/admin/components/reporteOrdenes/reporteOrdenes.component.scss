@@ -1,0 +1,23 @@
+$color: #3f51b5 ;
+table {
+    width: 100%;
+    empty-cells: show;
+    border: ridge;
+  }
+
+  button {
+    border: none;
+    background: $color;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 6px;
+    width: 200px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+    &:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+    }
+    margin-left: 10px;
+  }
