@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 
 import com.topicospl.msadmistracion.bean.Factura;
 import com.topicospl.msadmistracion.bean.Producto;
-import com.topicospl.msadmistracion.bean.dto.CarritoDTO;
+import com.topicospl.msadmistracion.bean.dto.FacturaDTO;
+import com.topicospl.msadmistracion.bean.dto.PedidoDTO;
 import com.topicospl.msadmistracion.proxy.AutenticacionProxyFeign;
 import com.topicospl.msadmistracion.proxy.InventarioProxyFeign;
+import com.topicospl.msadmistracion.proxy.PagoElectronicoProxyFeign;
 import com.topicospl.msadmistracion.repository.FacturaRepository;
 import com.topicospl.msadmistracion.repository.ProductoRepository;
 import com.topicospl.msadmistracion.service.IAdministracionFacturaService;
+import com.topicospl.msadmistracion.service.IAdministracionPedidoService;
 
 @Service
 public class AdministracionFacturaService implements IAdministracionFacturaService {
@@ -33,20 +36,26 @@ public class AdministracionFacturaService implements IAdministracionFacturaServi
 
 	@Autowired
 	private ProductoRepository productoRepository;
+	
+	@Autowired
+	private IAdministracionPedidoService pedidoService; 
+	
+	@Autowired
+	private PagoElectronicoProxyFeign pagoElectronicoProxyFeign;
 
 	private Double fullTotal;
 
 	@Override
-	public ResponseEntity<?> facturaGenerator(List<CarritoDTO> carritoCheckOut) {
-
+	public ResponseEntity<?> facturaGenerator(FacturaDTO carritoCheckOut) {
+		
 		fullTotal = 0D;
 
-		var userInfo = autenticacionProxyFeign.getBy(carritoCheckOut.get(0).getUserName());
+		var userInfo = autenticacionProxyFeign.getBy(carritoCheckOut.getCarritoCheckOut().get(0).getUserName());
 
 		Hashtable<Long, Producto> hProducts = new Hashtable<>();
 		List<Producto> listProductos = new ArrayList<>();
 
-		carritoCheckOut.forEach(value -> {
+		carritoCheckOut.getCarritoCheckOut().forEach(value -> {
 
 			var productPrice = inventarioProxyFeign.findByCode(value.getProductoCode()).getBody();
 
@@ -74,6 +83,16 @@ public class AdministracionFacturaService implements IAdministracionFacturaServi
 
 		});
 
+		@SuppressWarnings("unused")
+		ResponseEntity<?> pagoResult;
+		try {
+			var tmpPago = carritoCheckOut.getPagoDTO();
+			tmpPago.setTotal(fullTotal);
+			pagoResult = pagoElectronicoProxyFeign.creditCardPayment(tmpPago, carritoCheckOut.getCarritoCheckOut().get(0).getUserName());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		var facturaIdGen = 1L + (Math.random() * (1000000000L - 1L));
 		var facturaGen = new Factura();
 		facturaGen.setFacturaCodigo((long) facturaIdGen);
@@ -87,6 +106,15 @@ public class AdministracionFacturaService implements IAdministracionFacturaServi
 		listProductos.forEach(v -> productoRepository.save(v));
 
 		facturaGen = facturaRepository.save(facturaGen);
+		
+		// Generacion ORDENES
+		pedidoService.createPedido(new PedidoDTO(
+					"Abierto",
+					userInfo.getBody().getName() + " " + userInfo.getBody().getLastName(),
+					userInfo.getBody().getEmail(),
+					userInfo.getBody().getPhone(),
+					userInfo.getBody().getAddress(),
+					listProductos));
 
 		return new ResponseEntity<>(facturaGen, HttpStatus.OK);
 	}

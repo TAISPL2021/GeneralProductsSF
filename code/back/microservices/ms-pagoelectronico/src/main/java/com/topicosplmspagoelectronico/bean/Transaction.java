@@ -17,10 +17,10 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int idCliente;
+    private String idCliente;
     private String state;
 
-    public Transaction(int idCliente, String state) {
+    public Transaction(String idCliente, String state) {
         this.idCliente = idCliente;
         this.state = state;
     }

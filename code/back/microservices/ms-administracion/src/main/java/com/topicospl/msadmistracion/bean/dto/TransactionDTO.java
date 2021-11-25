@@ -1,4 +1,4 @@
-package com.topicosplmspagoelectronico.bean.dto;
+package com.topicospl.msadmistracion.bean.dto;
 
 import lombok.*;
 

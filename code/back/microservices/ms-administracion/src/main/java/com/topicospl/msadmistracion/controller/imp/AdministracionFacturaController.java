@@ -1,12 +1,10 @@
 package com.topicospl.msadmistracion.controller.imp;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.topicospl.msadmistracion.bean.dto.CarritoDTO;
+import com.topicospl.msadmistracion.bean.dto.FacturaDTO;
 import com.topicospl.msadmistracion.controller.IAdministracionFacturaController;
 import com.topicospl.msadmistracion.service.IAdministracionFacturaService;
 
@@ -17,7 +15,7 @@ public class AdministracionFacturaController implements IAdministracionFacturaCo
 	private IAdministracionFacturaService administracionFacturaService;
 	
 	@Override
-	public ResponseEntity<?> facturaGenerator(List<CarritoDTO> carritoCheckOut) {
+	public ResponseEntity<?> facturaGenerator(FacturaDTO carritoCheckOut) {
 		return administracionFacturaService.facturaGenerator(carritoCheckOut);
 	}
 

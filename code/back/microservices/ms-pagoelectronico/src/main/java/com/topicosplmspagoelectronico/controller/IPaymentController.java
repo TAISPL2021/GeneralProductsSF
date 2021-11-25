@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.*;
 public interface IPaymentController {
 
 	@PostMapping(value = "/{idClient}")
-	public ResponseEntity<?>  creditCardPayment(@RequestBody PaymentDTO payment, @PathVariable(value = "idClient") int idClient) throws InterruptedException ;
+	public ResponseEntity<?>  creditCardPayment(@RequestBody PaymentDTO payment, @PathVariable(value = "idClient") String idClient) throws InterruptedException ;
 }

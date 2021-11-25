@@ -10,7 +10,7 @@ public class PaymentDTO {
     private String numeroTarjeta;
     private String FechaExpiracion;
     private String NumeroDeVerificacion;
-    private int cuotas;
-    private int total;
+    private Long cuotas;
+    private Double total;
 
 }

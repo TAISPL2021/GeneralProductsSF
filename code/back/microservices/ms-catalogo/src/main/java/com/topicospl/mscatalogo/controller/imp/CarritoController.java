@@ -27,7 +27,7 @@ public class CarritoController implements ICarrito {
 
 	@Override
 	public ResponseEntity<?> checkOutCarrito(Long carritoId, PagoDTO pagoDTO) {
-		return carritoService.checkOutCarrito(carritoId);
+		return carritoService.checkOutCarrito(carritoId, pagoDTO);
 	}
 
 }

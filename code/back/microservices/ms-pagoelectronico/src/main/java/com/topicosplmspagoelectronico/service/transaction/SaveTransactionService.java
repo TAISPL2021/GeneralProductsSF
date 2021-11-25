@@ -4,5 +4,5 @@ import com.topicosplmspagoelectronico.bean.Transaction;
 
 public interface SaveTransactionService {
 
-    Transaction saveTransaction(int idClient)throws InterruptedException;
+    Transaction saveTransaction(String idClient)throws InterruptedException;
 }

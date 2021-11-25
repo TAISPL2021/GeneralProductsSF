@@ -8,13 +8,13 @@
 	<feature automatic="selected" name="Catalogo"/>
 	<feature manual="selected" name="VisualizarProductos"/>
 	<feature manual="selected" name="BuscarProductos"/>
-	<feature name="CompraProductos"/>
+	<feature automatic="selected" name="CompraProductos"/>
 	<feature automatic="selected" manual="selected" name="Inventario"/>
-	<feature name="Administracion"/>
-	<feature name="Facturacion"/>
+	<feature automatic="selected" name="Administracion"/>
+	<feature automatic="selected" name="Facturacion"/>
 	<feature name="Promocion"/>
 	<feature name="GestionDeUsuarios"/>
 	<feature name="Pedidos"/>
-	<feature name="PagoElectronico"/>
+	<feature manual="selected" name="PagoElectronico"/>
 	<feature name="Reporte"/>
 </configuration>

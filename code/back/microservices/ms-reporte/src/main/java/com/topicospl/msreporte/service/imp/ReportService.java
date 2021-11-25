@@ -1,19 +1,6 @@
 package com.topicospl.msreporte.service.imp;
 
 
-import com.topicospl.msreporte.bean.ProductoDTO;
-import com.topicospl.msreporte.bean.PromocionDTO;
-import com.topicospl.msreporte.bean.dto.ProductsReportsDTO;
-import com.topicospl.msreporte.bean.dto.PromReportsDTO;
-import com.topicospl.msreporte.proxy.ProductProxy;
-import com.topicospl.msreporte.proxy.PromocionProxy;
-import com.topicospl.msreporte.service.IReportService;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -21,6 +8,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.topicospl.msreporte.bean.ProductoDTO;
+import com.topicospl.msreporte.bean.PromocionDTO;
+import com.topicospl.msreporte.bean.dto.ProductsReportsDTO;
+import com.topicospl.msreporte.bean.dto.PromReportsDTO;
+import com.topicospl.msreporte.proxy.ProductProxy;
+import com.topicospl.msreporte.proxy.PromocionProxy;
+import com.topicospl.msreporte.service.IReportService;
 
 @Service
 public class ReportService implements IReportService {

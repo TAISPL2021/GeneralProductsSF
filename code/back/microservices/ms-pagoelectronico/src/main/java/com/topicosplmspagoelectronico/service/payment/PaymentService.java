@@ -2,10 +2,9 @@ package com.topicosplmspagoelectronico.service.payment;
 
 
 import com.topicosplmspagoelectronico.bean.dto.PaymentDTO;
-import com.topicosplmspagoelectronico.bean.Transaction;
 import com.topicosplmspagoelectronico.bean.dto.TransactionDTO;
 
 public interface PaymentService {
 
-    TransactionDTO creditCardPayment(PaymentDTO payment, int idClient) throws InterruptedException;
+    TransactionDTO creditCardPayment(PaymentDTO payment, String idClient) throws InterruptedException;
 }

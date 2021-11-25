@@ -11,6 +11,8 @@ import com.topicospl.mscatalogo.bean.Carrito;
 import com.topicospl.mscatalogo.bean.dto.CarritoInDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoOutDTO;
 import com.topicospl.mscatalogo.bean.dto.CarritoProductoDTO;
+import com.topicospl.mscatalogo.bean.dto.FacturaDTO;
+import com.topicospl.mscatalogo.bean.dto.PagoDTO;
 import com.topicospl.mscatalogo.proxy.AdministracionProxy;
 import com.topicospl.mscatalogo.repository.CarritoRepository;
 import com.topicospl.mscatalogo.service.ICarritoService;
@@ -71,11 +73,15 @@ public class CarritoService implements ICarritoService {
 	}
 
 	@Override 
-	public ResponseEntity<?> checkOutCarrito(Long carritoId) {
+	public ResponseEntity<?> checkOutCarrito(Long carritoId, PagoDTO pagoDTO) {
 
 		var listCarritoByID = carritoRepository.findByCarritoId(carritoId);    
 		
-		var responseMsAdministracion = administracionProxy.facturaGenerator(listCarritoByID);
+		var facturaToGen = new FacturaDTO();
+		facturaToGen.setCarritoCheckOut(listCarritoByID);
+		facturaToGen.setPagoDTO(pagoDTO);
+		
+		var responseMsAdministracion = administracionProxy.facturaGenerator(facturaToGen);
 
 		System.out.println("RESPONSE BODY : " +responseMsAdministracion.getBody());
 		carritoRepository.removeCacheCarrito(carritoId);

@@ -1,4 +1,4 @@
-package com.topicospl.mscatalogo.bean.dto;
+package com.topicospl.msadmistracion.bean.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +18,6 @@ public class PagoDTO {
 	private String FechaExpiracion;
 	private String NumeroDeVerificacion;
 	private Long cuotas;
+	private Double total;
 	
 }
