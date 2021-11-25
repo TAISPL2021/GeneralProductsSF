@@ -1,25 +1,27 @@
 package com.topicosplmspagoelectronico.bean;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Builder
 
 public class Transaction {
-
-    private int id;
-    private int orderClientId;
-    private int orderId;
-    private String transactionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private int idCliente;
     private String state;
-    private String paymentNetworkResponse_code;
-    private String paymentNetworkResponseErrorMessage;
-    private String trazabilityCode;
-    private String authorizationCode;
-    private String pendingReason;
-    private String responseCode;
-    private String errorCode;
-    private String responseMessage;
-    private String transactionType;
+
+    public Transaction(int idCliente, String state) {
+        this.idCliente = idCliente;
+        this.state = state;
+    }
 }
