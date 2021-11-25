@@ -49,11 +49,13 @@ export class LoginComponent implements OnInit {
         if (login.hasOwnProperty('nombreUsuario')) {
           this.cookieService.set("userName", this.login.userName);
           this.cookieService.set("rol", login.authorities[0].authority);
-          if (login.authorities[0].authority = 'ADMIN') {
+          if (login.authorities[0].authority == 'ADMIN') {
+            
             //this.router.navigate(['/home']);
             this.router.navigate(['./admin/inventario']);
           }
-          else {
+          else 
+          {
             this.router.navigate(['/order']);
           }
         }
